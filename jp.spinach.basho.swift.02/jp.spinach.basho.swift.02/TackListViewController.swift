@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Spinach. All rights reserved.
 //
 
-import UIkit
+import UIKit
 
 class TackListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -43,7 +43,7 @@ class TackListViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : SelfTackListCell = tableView.dequeueReusableCellWithIdentifier("SelfTackList", forIndexPath: indexPath) as SelfTackListCell
+        var cell : SelfTackListCell = tableView.dequeueReusableCellWithIdentifier("SelfTackList", forIndexPath: indexPath) as! SelfTackListCell
         
         
         if(jsonData == nil){

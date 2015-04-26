@@ -195,7 +195,7 @@ class InfoViewDetailViewController: UIViewController {
             
             for(var i = 0 ;i < self.jsonData!["_total"].stringValue.toInt();i++){
                 println("render")
-                var view:ReplyView = UINib(nibName: "ReplyView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as ReplyView
+                var view:ReplyView = UINib(nibName: "ReplyView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! ReplyView
                 
                 view.count.text = String(i)
                 view.body.text  = self.jsonData!["_objs"][i]["comment"].string

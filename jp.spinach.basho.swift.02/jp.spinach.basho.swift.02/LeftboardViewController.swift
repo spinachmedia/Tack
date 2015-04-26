@@ -22,7 +22,7 @@ class LeftboardViewController: UIViewController {
     @IBAction func toTackList(sender: AnyObject) {
         //次の画面を生成
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : TackListViewController = storyBoard.instantiateViewControllerWithIdentifier("TackListViewController") as TackListViewController
+        let nextViewController : TackListViewController = storyBoard.instantiateViewControllerWithIdentifier("TackListViewController") as! TackListViewController
         
         //        ( self.slideMenuController()?.mainViewController? as UINavigationController ).pushViewController(nextViewController, animated: true)
         
@@ -35,7 +35,7 @@ class LeftboardViewController: UIViewController {
         
         //次の画面を生成
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : RegisterAcountViewController = storyBoard.instantiateViewControllerWithIdentifier("RegisterAcountViewController") as RegisterAcountViewController
+        let nextViewController : RegisterAcountViewController = storyBoard.instantiateViewControllerWithIdentifier("RegisterAcountViewController") as! RegisterAcountViewController
         
     //        ( self.slideMenuController()?.mainViewController? as UINavigationController ).pushViewController(nextViewController, animated: true)
         
@@ -49,7 +49,7 @@ class LeftboardViewController: UIViewController {
         
         //次の画面を生成
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : EditSettingViewController = storyBoard.instantiateViewControllerWithIdentifier("EditSettingViewController") as EditSettingViewController
+        let nextViewController : EditSettingViewController = storyBoard.instantiateViewControllerWithIdentifier("EditSettingViewController") as! EditSettingViewController
         
         //( self.slideMenuController()?.mainViewController? as UINavigationController ).pushViewController(nextViewController, animated: true)
         self.slideMenuController()?.mainViewController = nextViewController
@@ -62,7 +62,7 @@ class LeftboardViewController: UIViewController {
         
         //次の画面を生成
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : WhatAppViewController = storyBoard.instantiateViewControllerWithIdentifier("WhatAppViewController") as WhatAppViewController
+        let nextViewController : WhatAppViewController = storyBoard.instantiateViewControllerWithIdentifier("WhatAppViewController") as! WhatAppViewController
         
         //( self.slideMenuController()?.mainViewController? as UINavigationController ).pushViewController(nextViewController, animated: true)
         self.slideMenuController()?.mainViewController = nextViewController

@@ -27,6 +27,22 @@
 		185E4A761AE3E29700A2F8B7 /* pin02_shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A751AE3E29700A2F8B7 /* pin02_shopping.png */; };
 		185E4A781AE3E29A00A2F8B7 /* pin03_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A771AE3E29A00A2F8B7 /* pin03_activity.png */; };
 		185E4A7A1AE3E29F00A2F8B7 /* pin04_mytack.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A791AE3E29F00A2F8B7 /* pin04_mytack.png */; };
+		185E4A891AE6937900A2F8B7 /* button01_camera_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A7E1AE6937900A2F8B7 /* button01_camera_food.png */; };
+		185E4A8A1AE6937900A2F8B7 /* button01_picture_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A7F1AE6937900A2F8B7 /* button01_picture_food.png */; };
+		185E4A8B1AE6937900A2F8B7 /* button02_camera_shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A801AE6937900A2F8B7 /* button02_camera_shopping.png */; };
+		185E4A8C1AE6937900A2F8B7 /* button02_picture_shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A811AE6937900A2F8B7 /* button02_picture_shopping.png */; };
+		185E4A8D1AE6937900A2F8B7 /* button03_camera_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A821AE6937900A2F8B7 /* button03_camera_activity.png */; };
+		185E4A8E1AE6937900A2F8B7 /* button03_picture_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A831AE6937900A2F8B7 /* button03_picture_activity.png */; };
+		185E4A8F1AE6937900A2F8B7 /* button01_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A841AE6937900A2F8B7 /* button01_food.png */; };
+		185E4A901AE6937900A2F8B7 /* button02_shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A851AE6937900A2F8B7 /* button02_shopping.png */; };
+		185E4A911AE6937900A2F8B7 /* kakikomigamen_design-02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A861AE6937900A2F8B7 /* kakikomigamen_design-02.jpg */; };
+		185E4A921AE6937900A2F8B7 /* button03_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A871AE6937900A2F8B7 /* button03_activity.png */; };
+		185E4A931AE6937900A2F8B7 /* gazou_batu-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A881AE6937900A2F8B7 /* gazou_batu-01.png */; };
+		185E4A951AE6945100A2F8B7 /* TackWriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A941AE6945100A2F8B7 /* TackWriteView.xib */; };
+		185E4A9B1AE6986000A2F8B7 /* TackWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E4A9A1AE6986000A2F8B7 /* TackWriteView.swift */; };
+		185E4A9D1AEC996D00A2F8B7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185E4A9C1AEC996D00A2F8B7 /* QuartzCore.framework */; };
+		185E4A9F1AECB4F900A2F8B7 /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E4A9E1AECB4F900A2F8B7 /* noimage.png */; };
+		185E4AA11AECB96C00A2F8B7 /* UITextViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */; };
 		188D75D51ABDAF680004350C /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D75D41ABDAF680004350C /* Setting.swift */; };
 		188D75D71ABEA0F70004350C /* AppiariesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D75D61ABEA0F70004350C /* AppiariesSDK.framework */; };
 		188D75D91ABEBBBC0004350C /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188D75D81ABEBBBC0004350C /* Random.swift */; };
@@ -85,6 +101,22 @@
 		185E4A751AE3E29700A2F8B7 /* pin02_shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin02_shopping.png; sourceTree = "<group>"; };
 		185E4A771AE3E29A00A2F8B7 /* pin03_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin03_activity.png; sourceTree = "<group>"; };
 		185E4A791AE3E29F00A2F8B7 /* pin04_mytack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin04_mytack.png; sourceTree = "<group>"; };
+		185E4A7E1AE6937900A2F8B7 /* button01_camera_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button01_camera_food.png; sourceTree = "<group>"; };
+		185E4A7F1AE6937900A2F8B7 /* button01_picture_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button01_picture_food.png; sourceTree = "<group>"; };
+		185E4A801AE6937900A2F8B7 /* button02_camera_shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button02_camera_shopping.png; sourceTree = "<group>"; };
+		185E4A811AE6937900A2F8B7 /* button02_picture_shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button02_picture_shopping.png; sourceTree = "<group>"; };
+		185E4A821AE6937900A2F8B7 /* button03_camera_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button03_camera_activity.png; sourceTree = "<group>"; };
+		185E4A831AE6937900A2F8B7 /* button03_picture_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button03_picture_activity.png; sourceTree = "<group>"; };
+		185E4A841AE6937900A2F8B7 /* button01_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button01_food.png; sourceTree = "<group>"; };
+		185E4A851AE6937900A2F8B7 /* button02_shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button02_shopping.png; sourceTree = "<group>"; };
+		185E4A861AE6937900A2F8B7 /* kakikomigamen_design-02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "kakikomigamen_design-02.jpg"; sourceTree = "<group>"; };
+		185E4A871AE6937900A2F8B7 /* button03_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button03_activity.png; sourceTree = "<group>"; };
+		185E4A881AE6937900A2F8B7 /* gazou_batu-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gazou_batu-01.png"; sourceTree = "<group>"; };
+		185E4A941AE6945100A2F8B7 /* TackWriteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TackWriteView.xib; sourceTree = "<group>"; };
+		185E4A9A1AE6986000A2F8B7 /* TackWriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TackWriteView.swift; sourceTree = "<group>"; };
+		185E4A9C1AEC996D00A2F8B7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		185E4A9E1AECB4F900A2F8B7 /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
+		185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewExt.swift; sourceTree = "<group>"; };
 		188D75D41ABDAF680004350C /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		188D75D61ABEA0F70004350C /* AppiariesSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppiariesSDK.framework; sourceTree = "<group>"; };
 		188D75D81ABEBBBC0004350C /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
@@ -124,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185E4A9D1AEC996D00A2F8B7 /* QuartzCore.framework in Frameworks */,
 				188D75D71ABEA0F70004350C /* AppiariesSDK.framework in Frameworks */,
 				18C8056D1A964FFB00310A0A /* CoreLocation.framework in Frameworks */,
 				79CEBDBB6CD9A317ABEDE9FC /* libPods.a in Frameworks */,
@@ -164,8 +197,9 @@
 		1840F4021AD1063D00FAEF5C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				185E4A7D1AE6934E00A2F8B7 /* TACK_WRITE */,
 				185E4A7B1AE3E2A800A2F8B7 /* PIN */,
-				185E4A7C1AE3E2BF00A2F8B7 /* ICON */,
+				185E4A7C1AE3E2BF00A2F8B7 /* TOP_ICON */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -181,7 +215,7 @@
 			name = PIN;
 			sourceTree = "<group>";
 		};
-		185E4A7C1AE3E2BF00A2F8B7 /* ICON */ = {
+		185E4A7C1AE3E2BF00A2F8B7 /* TOP_ICON */ = {
 			isa = PBXGroup;
 			children = (
 				1840F40B1AD120F800FAEF5C /* icon00_tack.png */,
@@ -190,7 +224,62 @@
 				1840F4041AD11F0900FAEF5C /* icon03_activity.png */,
 				1840F4031AD11F0900FAEF5C /* icon04_mytack.png */,
 			);
-			name = ICON;
+			name = TOP_ICON;
+			sourceTree = "<group>";
+		};
+		185E4A7D1AE6934E00A2F8B7 /* TACK_WRITE */ = {
+			isa = PBXGroup;
+			children = (
+				185E4A9E1AECB4F900A2F8B7 /* noimage.png */,
+				185E4A7E1AE6937900A2F8B7 /* button01_camera_food.png */,
+				185E4A7F1AE6937900A2F8B7 /* button01_picture_food.png */,
+				185E4A801AE6937900A2F8B7 /* button02_camera_shopping.png */,
+				185E4A811AE6937900A2F8B7 /* button02_picture_shopping.png */,
+				185E4A821AE6937900A2F8B7 /* button03_camera_activity.png */,
+				185E4A831AE6937900A2F8B7 /* button03_picture_activity.png */,
+				185E4A841AE6937900A2F8B7 /* button01_food.png */,
+				185E4A851AE6937900A2F8B7 /* button02_shopping.png */,
+				185E4A861AE6937900A2F8B7 /* kakikomigamen_design-02.jpg */,
+				185E4A871AE6937900A2F8B7 /* button03_activity.png */,
+				185E4A881AE6937900A2F8B7 /* gazou_batu-01.png */,
+			);
+			name = TACK_WRITE;
+			sourceTree = "<group>";
+		};
+		185E4A961AE697CC00A2F8B7 /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				185E4A941AE6945100A2F8B7 /* TackWriteView.xib */,
+				185E4A9A1AE6986000A2F8B7 /* TackWriteView.swift */,
+			);
+			name = Top;
+			sourceTree = "<group>";
+		};
+		185E4A971AE697D800A2F8B7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				1840F3FE1AD1050900FAEF5C /* ReplyView.xib */,
+				1840F3FC1AD104F700FAEF5C /* ReplyView.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		185E4A981AE697E300A2F8B7 /* SelfTack */ = {
+			isa = PBXGroup;
+			children = (
+				1840F3F81AD0D30100FAEF5C /* SelfTackList.xib */,
+				1840F3FA1AD0D4A800FAEF5C /* SelfTackListCell.swift */,
+			);
+			name = SelfTack;
+			sourceTree = "<group>";
+		};
+		185E4A991AE697ED00A2F8B7 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				188D75DC1AC19E170004350C /* InfoView.xib */,
+				188D75DE1AC19FED0004350C /* InfoView.swift */,
+			);
+			name = InfoView;
 			sourceTree = "<group>";
 		};
 		18BE01C41AAAB33B00AB8436 /* Controller */ = {
@@ -217,14 +306,12 @@
 		18BE01C61AAAB36700AB8436 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18C805681A964FA400310A0A /* Main.storyboard */,
 				18C805501A964E7600310A0A /* LaunchScreen.xib */,
-				1840F3FE1AD1050900FAEF5C /* ReplyView.xib */,
-				1840F3FC1AD104F700FAEF5C /* ReplyView.swift */,
-				1840F3F81AD0D30100FAEF5C /* SelfTackList.xib */,
-				1840F3FA1AD0D4A800FAEF5C /* SelfTackListCell.swift */,
-				188D75DC1AC19E170004350C /* InfoView.xib */,
-				188D75DE1AC19FED0004350C /* InfoView.swift */,
+				18C805681A964FA400310A0A /* Main.storyboard */,
+				185E4A961AE697CC00A2F8B7 /* Top */,
+				185E4A971AE697D800A2F8B7 /* Detail */,
+				185E4A981AE697E300A2F8B7 /* SelfTack */,
+				185E4A991AE697ED00A2F8B7 /* InfoView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -277,6 +364,7 @@
 				1840F4021AD1063D00FAEF5C /* Images */,
 				18BE01C51AAAB35800AB8436 /* lib */,
 				18C805701A97A15300310A0A /* GMSMarkerExt.swift */,
+				185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */,
 				188D75D41ABDAF680004350C /* Setting.swift */,
 				18C805441A964E7600310A0A /* AppDelegate.swift */,
 				18C805491A964E7600310A0A /* ViewControllerExt.swift */,
@@ -319,6 +407,7 @@
 		37473ADF163BD3AEBDCA8D97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				185E4A9C1AEC996D00A2F8B7 /* QuartzCore.framework */,
 				188D75D61ABEA0F70004350C /* AppiariesSDK.framework */,
 				18C8056C1A964FFB00310A0A /* CoreLocation.framework */,
 				1A397054802405404586870A /* libPods.a */,
@@ -409,18 +498,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185E4A921AE6937900A2F8B7 /* button03_activity.png in Resources */,
 				188D75DD1AC19E170004350C /* InfoView.xib in Resources */,
 				1840F40A1AD11F0900FAEF5C /* icon01_food.png in Resources */,
 				1840F4091AD11F0900FAEF5C /* icon02_shopping.png in Resources */,
 				1840F3F91AD0D30100FAEF5C /* SelfTackList.xib in Resources */,
+				185E4A8E1AE6937900A2F8B7 /* button03_picture_activity.png in Resources */,
 				18C805691A964FA400310A0A /* Main.storyboard in Resources */,
 				185E4A741AE3E29000A2F8B7 /* pin01_food.png in Resources */,
 				185E4A761AE3E29700A2F8B7 /* pin02_shopping.png in Resources */,
+				185E4A891AE6937900A2F8B7 /* button01_camera_food.png in Resources */,
 				185E4A781AE3E29A00A2F8B7 /* pin03_activity.png in Resources */,
+				185E4A951AE6945100A2F8B7 /* TackWriteView.xib in Resources */,
 				1840F40C1AD120F800FAEF5C /* icon00_tack.png in Resources */,
+				185E4A8D1AE6937900A2F8B7 /* button03_camera_activity.png in Resources */,
+				185E4A931AE6937900A2F8B7 /* gazou_batu-01.png in Resources */,
+				185E4A9F1AECB4F900A2F8B7 /* noimage.png in Resources */,
+				185E4A8F1AE6937900A2F8B7 /* button01_food.png in Resources */,
+				185E4A8B1AE6937900A2F8B7 /* button02_camera_shopping.png in Resources */,
+				185E4A8A1AE6937900A2F8B7 /* button01_picture_food.png in Resources */,
 				18C805521A964E7600310A0A /* LaunchScreen.xib in Resources */,
 				18C8054F1A964E7600310A0A /* Images.xcassets in Resources */,
 				1840F4071AD11F0900FAEF5C /* icon04_mytack.png in Resources */,
+				185E4A911AE6937900A2F8B7 /* kakikomigamen_design-02.jpg in Resources */,
+				185E4A901AE6937900A2F8B7 /* button02_shopping.png in Resources */,
+				185E4A8C1AE6937900A2F8B7 /* button02_picture_shopping.png in Resources */,
 				1840F4081AD11F0900FAEF5C /* icon03_activity.png in Resources */,
 				185E4A7A1AE3E29F00A2F8B7 /* pin04_mytack.png in Resources */,
 				1840F3FF1AD1050900FAEF5C /* ReplyView.xib in Resources */,
@@ -479,6 +581,7 @@
 				188D75DB1ABECB700004350C /* ImageLogic.swift in Sources */,
 				1840F3F01ACFF6D000FAEF5C /* EditSettingViewController.swift in Sources */,
 				1840F3F51AD0113100FAEF5C /* TackListViewController.swift in Sources */,
+				185E4AA11AECB96C00A2F8B7 /* UITextViewExt.swift in Sources */,
 				18C8054A1A964E7600310A0A /* ViewControllerExt.swift in Sources */,
 				18C5D9221AAAB92900AF7EBB /* MapLogic.swift in Sources */,
 				188D75D91ABEBBBC0004350C /* Random.swift in Sources */,
@@ -488,6 +591,7 @@
 				1840F3F21ACFF71A00FAEF5C /* WhatAppViewController.swift in Sources */,
 				18C5D9291AAACD5200AF7EBB /* State.swift in Sources */,
 				18C805481A964E7600310A0A /* jp_spinach_basho_swift_02.xcdatamodeld in Sources */,
+				185E4A9B1AE6986000A2F8B7 /* TackWriteView.swift in Sources */,
 				18C805451A964E7600310A0A /* AppDelegate.swift in Sources */,
 				18C5D9271AAACCFC00AF7EBB /* Category.swift in Sources */,
 				18C8056F1A96555900310A0A /* SwiftyJSON.swift in Sources */,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A4q-vw-FHB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A4q-vw-FHB">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -384,78 +384,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="calibratedRGB"/>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yac-V0-rdp">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yac-V0-rdp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36v-Pb-fjy">
-                                        <rect key="frame" x="0.0" y="-2" width="320" height="573"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6Q-0x-zaJ">
-                                        <rect key="frame" x="25" y="156" width="270" height="314"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="FreeFormat" translatesAutoresizingMaskIntoConstraints="NO" id="z9N-VB-bPW">
-                                                <rect key="frame" x="8" y="46" width="255" height="156"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-Ay-o1X">
-                                                <rect key="frame" x="5" y="227" width="148" height="74"/>
-                                                <color key="backgroundColor" red="0.77167022129999996" green="1" blue="0.71648331210000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Write">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="tackTweet:" destination="CoE-50-UEg" eventType="touchUpInside" id="T86-Ow-pjK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEO-fF-jd9">
-                                                <rect key="frame" x="162" y="276" width="50" height="30"/>
-                                                <state key="normal" title="cam">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="goCamera:" destination="CoE-50-UEg" eventType="touchUpInside" id="CPF-fn-tfM"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SvO-br-LVv">
-                                                <rect key="frame" x="8" y="8" width="182" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eO-r4-qMt">
-                                                <rect key="frame" x="226" y="8" width="30" height="30"/>
-                                                <state key="normal" title="O">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1D-6Y-cWZ">
-                                                <rect key="frame" x="220" y="276" width="43" height="30"/>
-                                                <state key="normal" title="gal">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="goGallary:" destination="CoE-50-UEg" eventType="touchUpInside" id="bIf-IW-tHB"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CwT-CL-oTW">
-                                                <rect key="frame" x="161" y="210" width="101" height="96"/>
-                                            </imageView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjP-Pl-JOj">
-                                                <rect key="frame" x="239" y="201" width="24" height="29"/>
-                                                <color key="backgroundColor" red="1" green="0.0079675098069999992" blue="0.059801619960000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="x">
-                                                    <color key="titleColor" red="1" green="0.96533311349999995" blue="0.97553302249999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="removePicture:" destination="CoE-50-UEg" eventType="touchUpInside" id="bhu-L8-wNy"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtS-Gd-AfB">
                                 <rect key="frame" x="0.0" y="487" width="320" height="81"/>
@@ -538,9 +468,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="PtS-Gd-AfB" secondAttribute="trailing" constant="-16" id="CL1-nW-8QJ"/>
                             <constraint firstItem="xtu-bm-cI7" firstAttribute="top" secondItem="PtS-Gd-AfB" secondAttribute="bottom" id="STp-nM-PI3"/>
                             <constraint firstItem="BWO-Tc-qoR" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="Vun-kr-nYo"/>
+                            <constraint firstItem="yac-V0-rdp" firstAttribute="width" secondItem="hJv-Uc-P0t" secondAttribute="width" id="Wsn-K7-We0"/>
                             <constraint firstAttribute="width" secondItem="PtS-Gd-AfB" secondAttribute="width" id="YT1-6I-Z1d"/>
+                            <constraint firstItem="yac-V0-rdp" firstAttribute="height" secondItem="hJv-Uc-P0t" secondAttribute="height" id="dbE-bH-dfB"/>
+                            <constraint firstItem="yac-V0-rdp" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="hgg-Sl-uSg"/>
                             <constraint firstItem="PtS-Gd-AfB" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="mXY-Gz-Psb"/>
                             <constraint firstItem="BWO-Tc-qoR" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" id="szw-P3-1Cp"/>
+                            <constraint firstItem="xtu-bm-cI7" firstAttribute="top" secondItem="yac-V0-rdp" secondAttribute="bottom" id="wAN-lN-gwe"/>
                             <constraint firstItem="Ew4-FM-veg" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" constant="1" id="wgv-fA-4f2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ew4-FM-veg" secondAttribute="trailing" constant="-16" id="xyZ-8f-904"/>
                         </constraints>
@@ -548,21 +482,13 @@
                     <navigationItem key="navigationItem" id="bll-vo-r69"/>
                     <connections>
                         <outlet property="mapView" destination="flN-Qk-Ee3" id="92j-2v-pFN"/>
-                        <outlet property="operationView" destination="yac-V0-rdp" id="RBr-F1-lCB"/>
-                        <outlet property="pictureView" destination="CwT-CL-oTW" id="NUa-m1-qPA"/>
-                        <outlet property="removePictureButton" destination="QjP-Pl-JOj" id="fCd-oH-Js8"/>
                         <outlet property="selectorButtons" destination="C0M-8R-C2D" id="Pvl-uA-xWw"/>
                         <outlet property="tackButton" destination="8c5-OQ-ieD" id="daB-et-6gc"/>
+                        <outlet property="tackWriteView" destination="yac-V0-rdp" id="Wtp-Rc-5yF"/>
                         <outlet property="toggleCategoryActivity" destination="cR0-yl-p7k" id="AdW-LP-GPz"/>
                         <outlet property="toggleCategoryFood" destination="BkL-x8-vaQ" id="AUM-hW-aul"/>
                         <outlet property="toggleCategoryMyTack" destination="W4H-vA-fqo" id="epN-et-5f3"/>
                         <outlet property="toggleCategoryScene" destination="EKN-FX-pwo" id="Rb6-ir-Da6"/>
-                        <outlet property="uCameraButton" destination="aEO-fF-jd9" id="0pn-jO-Myb"/>
-                        <outlet property="uCommentArea" destination="z9N-VB-bPW" id="8cS-hp-eVh"/>
-                        <outlet property="uGalaryCarema" destination="Z1D-6Y-cWZ" id="g7f-H8-VIH"/>
-                        <outlet property="uPlaceAutoButton" destination="2eO-r4-qMt" id="qji-Qd-BOb"/>
-                        <outlet property="uPlaceText" destination="SvO-br-LVv" id="e4r-0X-3Kw"/>
-                        <outlet property="uWriteButton" destination="Ckn-Ay-o1X" id="MCm-Cv-ts1"/>
                         <outlet property="whichColorTackView" destination="LFd-Xz-9Rb" id="YQZ-T4-2Ym"/>
                     </connections>
                 </viewController>

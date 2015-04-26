@@ -2,39 +2,48 @@
 import UIKit
 import CoreLocation
 
-class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate,  UINavigationControllerDelegate  {
     
     var screenSize:CGSize? = UIScreen.mainScreen().applicationFrame.size
 
-    @IBOutlet weak var uCommentArea: UITextView!
-    @IBOutlet weak var uWriteButton: UIButton!
-    @IBOutlet weak var uCameraButton: UIButton!
-    @IBOutlet weak var uGalaryCarema: UIButton!
-    @IBOutlet weak var uPlaceText: UITextField!
     @IBOutlet weak var uFoodCategoryButton: UIButton!
     @IBOutlet weak var uSceneCategoryButton: UIButton!
     @IBOutlet weak var uActivityCategoryButton: UIButton!
     @IBOutlet weak var uPlaceAutoButton: UIButton!
     
-    var startFlg = true
+    /// 書き込み用画面
+    @IBOutlet weak var tackWriteView: UIView!
+    var operation : TackWriteView?
     
-    var calloutview: SMCalloutView?
+    var startFlg = true
+
+    /// 座標のやつ
     var lm: CLLocationManager!
-    let defaultRadius = 300
+
     
     var markerList: AnyObject!
     var tackedMarkerList : [GMSMarkerExt]?
     
+    
+    /// MAP
     @IBOutlet weak var mapView: GMSMapView!
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        println("start")
-        
+
         screenSize! = UIScreen.mainScreen().applicationFrame.size
         
-        self.operationView.hidden = true
+        //投稿用のViewの座標情報を取得
+        operation = UINib(nibName: "TackWriteView",
+            bundle: nil)
+            .instantiateWithOwner(self, options: nil)[0] as? TackWriteView
+        self.tackWriteView.addSubview(operation!);
+        operation!.setup()
+        operation!.controller = self
         
         mapView.myLocationEnabled = true
         mapView.delegate = self
@@ -48,19 +57,35 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         getHTTPAppiaries()
         
-        let _singleTap = UITapGestureRecognizer(target: self, action: "onTap:");
-        _singleTap.numberOfTapsRequired = 1;
-        view.addGestureRecognizer(_singleTap);
+        
+        
+        self.tackWriteView.hidden = true
+        
     }
-    
-    func onTap (recognizer:UIPanGestureRecognizer){
-        uCommentArea.resignFirstResponder();
-        uPlaceText.resignFirstResponder();
-    }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        switch(state){
+        case State.Nomal:
+            toNomalState(0)
+            break;
+        case State.SelectingColor:
+            toSelectColorState(0)
+            break;
+        case State.Operation:
+            toOperateState(0)
+            break;
+        default:
+            break;
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -170,57 +195,57 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     */
     func sendHTTPAppiaries(){
         
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.labelText = "Getting..."
-        
-        let img:UIImage? = self.pictureView.image
-        
-        var existImage = false
-        
-        if( img != nil ){
-            existImage = true
-        }else{
-        }
-        
-        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
-        
-        //ObjectID生成
-        //画像とコメント情報との紐付けに利用する。
-        //FILEAPIではObjectIDとして登録
-        //重複時はどうしようか・・・
-        let uuid = Random.getObjectId();
-        
-        var commentParams: Dictionary = [
-            "object_id": uuid,
-            "user_id" : LocalDataLogic.getUUID(),
-            "has_image": existImage,
-            "category":     category.toString(),
-            "place":        self.uPlaceText.text,
-            "comment":      self.uCommentArea.text,
-            "lat":          NSString(format: "%.15f", self.lm.location.coordinate.latitude),
-            "lng":          NSString(format: "%.15f", self.lm.location.coordinate.longitude),
-            "id":           "1",
-            "tack_point":   0
-        ]
-        
-        manager.POST(Setting.SET_COMMENT_URL, parameters: commentParams,
-            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-                
-                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                self.getHTTPAppiaries()
-                
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                println("error: \(error)")
-                //TODO:容量オーバーの時の処理
-                //TODO:404の時の処理
-                //TODO:タイムアウトの時の処理
-                //TODO:その他エラーの時の処理
-        })
-        
-        //画像を送信
-        self.sendImage(uuid);
+//        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+//        loadingNotification.labelText = "Getting..."
+//        
+//        let img:UIImage? = self.tackWriteView.imageView.image
+//        
+//        var existImage = false
+//        
+//        if( img != nil ){
+//            existImage = true
+//        }else{
+//        }
+//        
+//        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
+//        
+//        //ObjectID生成
+//        //画像とコメント情報との紐付けに利用する。
+//        //FILEAPIではObjectIDとして登録
+//        //重複時はどうしようか・・・
+//        let uuid = Random.getObjectId();
+//        
+//        var commentParams: Dictionary = [
+//            "object_id": uuid,
+//            "user_id" : LocalDataLogic.getUUID(),
+//            "has_image": existImage,
+//            "category":     category.toString(),
+//            "place":        self.uPlaceText.text,
+//            "comment":      self.uCommentArea.text,
+//            "lat":          NSString(format: "%.15f", self.lm.location.coordinate.latitude),
+//            "lng":          NSString(format: "%.15f", self.lm.location.coordinate.longitude),
+//            "id":           "1",
+//            "tack_point":   0
+//        ]
+//        
+//        manager.POST(Setting.SET_COMMENT_URL, parameters: commentParams,
+//            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+//                
+//                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                self.getHTTPAppiaries()
+//                
+//            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
+//                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                println("error: \(error)")
+//                //TODO:容量オーバーの時の処理
+//                //TODO:404の時の処理
+//                //TODO:タイムアウトの時の処理
+//                //TODO:その他エラーの時の処理
+//        })
+//        
+//        //画像を送信
+//        self.sendImage(uuid);
     }
     
     /**
@@ -228,40 +253,40 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     */
     func sendImage(objectId:String){
         
-        var manager : APISFileAPIClient = HTTPManager.getAppiariesSendFileManager()
-        
-        //画像の取り出し
-        let img:UIImage? = self.pictureView.image
-        if( img != nil ){
-            
-            //使いもしないメタデータ
-            var meta: Dictionary = [
-                "_tags": ""
-            ]
-            
-            //リサイズ
-            var imageData : NSData = ImageLogic.resizeIamgeWidth300(img);
-            
-            //送信
-            manager.createBinaryObjectWithId(objectId, filename: "image.jpeg", binary: imageData, meta: meta,
-                success: { (response : APISResponseObject!) in
-                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                    println(response)
-                }, failure: { (error : NSError!) in
-                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                    println(error)
-                    //TODO:容量オーバーの時の処理
-                    //TODO:404の時の処理
-                    //TODO:オブジェクトID重複時の処理
-                    //TODO:タイムアウトの時の処理
-                    //TODO:その他エラーの時の処理
-                }
-            )
-            
-        } else {
-            //nilの場合
-            println("nil");
-        }
+//        var manager : APISFileAPIClient = HTTPManager.getAppiariesSendFileManager()
+//        
+//        //画像の取り出し
+//        let img:UIImage? = self.tackWriteView.imageView.image
+//        if( img != nil ){
+//            
+//            //使いもしないメタデータ
+//            var meta: Dictionary = [
+//                "_tags": ""
+//            ]
+//            
+//            //リサイズ
+//            var imageData : NSData = ImageLogic.resizeIamgeWidth300(img);
+//            
+//            //送信
+//            manager.createBinaryObjectWithId(objectId, filename: "image.jpeg", binary: imageData, meta: meta,
+//                success: { (response : APISResponseObject!) in
+//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                    println(response)
+//                }, failure: { (error : NSError!) in
+//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                    println(error)
+//                    //TODO:容量オーバーの時の処理
+//                    //TODO:404の時の処理
+//                    //TODO:オブジェクトID重複時の処理
+//                    //TODO:タイムアウトの時の処理
+//                    //TODO:その他エラーの時の処理
+//                }
+//            )
+//            
+//        } else {
+//            //nilの場合
+//            println("nil");
+//        }
         
     }
     
@@ -271,10 +296,10 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         println("tap!")
         
-        let gmsMarker : GMSMarkerExt = marker as GMSMarkerExt
+        let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as InfoViewDetailViewController
+        let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
         
         
         let json = JSON(self.markerList)
@@ -297,8 +322,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as InfoView
-        let gmsMarker : GMSMarkerExt = marker as GMSMarkerExt
+        let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! InfoView
+        let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         
         let json = JSON(self.markerList)
         
@@ -325,7 +350,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var whichColorTackView: UIView!
     
     /// コメント入力のView
-    @IBOutlet weak var operationView: UIView!
+    //@IBOutlet weak var operationView: UIView!
     
     @IBOutlet weak var selectorButtons: UIView!
     
@@ -334,13 +359,13 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     @IBAction func tapWriteButton(sender: AnyObject) {
         switch(state){
             case State.Nomal:
-                toSelectColorState()
+                toSelectColorState(0.3)
                 break;
             case State.SelectingColor:
-                toNomalState()
+                toNomalState(0.3)
                 break;
             case State.Operation:
-                toNomalState()
+                toNomalState(0.3)
                 break;
             default:
                 break;
@@ -350,34 +375,30 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
 
     @IBAction func selectFoodColor(sender: AnyObject) {
         category = Category.FOOD
-        toOperateState()
+        toOperateState(0.3)
     }
     @IBAction func selectSceneColor(sender: AnyObject) {
         category = Category.SCENE
-        toOperateState()
+        toOperateState(0.3)
     }
     @IBAction func selectActivityColor(sender: AnyObject) {
         category = Category.ACTIVITY
-        toOperateState()
+        toOperateState(0.3)
     }
     
     @IBAction func tackTweet(sender: AnyObject) {
-        toNomalState()
+        toNomalState(0.3)
         
         let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.labelText = "Sending"
         sendHTTPAppiaries()
     }
+    
+    //----------------------
+    // 各カテゴリを絞るボタン
+    //----------------------
 
-    @IBAction func goCamera(sender: AnyObject) {
-        pickImageFromCamera()
-    }
-    
-    @IBAction func goGallary(sender: AnyObject) {
-        pickImageFromLibrary()
-    }
-    
     @IBOutlet weak var toggleCategoryFood: UIButton!
     @IBAction func toggleCategoryFood(sender: AnyObject) {
         if(self.toggleCategoryFood.alpha  == 1){
@@ -428,32 +449,32 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
     var state = State.Nomal
     
-    func toNomalState(){
+    func toNomalState(num : NSTimeInterval){
         state = State.Nomal
-        hideWhichColorTackView()
-        showSelectorButtons()
-        hideOperationView()
+        hideWhichColorTackView(num)
+        showSelectorButtons(num)
+        hideOperationView(num)
     }
     
-    func toSelectColorState(){
+    func toSelectColorState(num : NSTimeInterval){
         state = State.SelectingColor
-        showWhichColorTackView()
-        hideSelectorButtons()
-        hideOperationView()
+        showWhichColorTackView(num)
+        hideSelectorButtons(num)
+        hideOperationView(num)
     }
     
-    func toOperateState(){
+    func toOperateState(num : NSTimeInterval){
         state = State.Operation
-        hideWhichColorTackView()
-        hideSelectorButtons()
-        showOperationView()
+        hideWhichColorTackView(num)
+        hideSelectorButtons(num)
+        showOperationView(num)
     }
     
 //MARK: - animationDefineDetails
     
     @IBOutlet weak var tackButton: UIButton!
     
-    func showWhichColorTackView(){
+    func showWhichColorTackView(num : NSTimeInterval){
         
         let objWidth = self.whichColorTackView.frame.size.width
         
@@ -467,7 +488,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                 0
         )
         
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
+        UIView.animateWithDuration(num, animations: {() -> Void in
             self.tackButton.transform = CGAffineTransformMakeRotation(CGFloat(-179 * M_PI / 180.0))
             self.whichColorTackView.frame =
                 CGRectMake(
@@ -481,11 +502,11 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         })
         
     }
-    func hideWhichColorTackView(){
+    func hideWhichColorTackView(num : NSTimeInterval){
         
         let objWidth = self.whichColorTackView.frame.size.width
         
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
+        UIView.animateWithDuration(num, animations: {() -> Void in
             
             self.tackButton.transform = CGAffineTransformMakeRotation(CGFloat(0 * M_PI / 180.0))
             
@@ -504,8 +525,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
 //----------------
     
-    func showSelectorButtons(){
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
+    func showSelectorButtons(num : NSTimeInterval){
+        UIView.animateWithDuration(num, animations: {() -> Void in
             self.selectorButtons.frame =
                 
                 CGRectMake(
@@ -519,8 +540,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         })
         
     }
-    func hideSelectorButtons(){
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
+    func hideSelectorButtons(num : NSTimeInterval){
+        UIView.animateWithDuration(num, animations: {() -> Void in
             self.selectorButtons.frame =
                 
                 CGRectMake(
@@ -535,92 +556,56 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
 //----------------
+    ///ひとつまえのカテゴリを記憶・・・。なんだこのコード
+    var beforeCategory: Category = Category.FOOD
     
-    func showOperationView(){
-        
-        let objWidth = self.operationView.frame.size.width
-        self.operationView.hidden = false
-        self.operationView.frame =
-            CGRectMake(
-                0,
-                self.screenSize!.height,
-                objWidth,
-                0
-        )
-        
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
-            self.operationView.frame =
+    func showOperationView(num : NSTimeInterval){
+        operation!.category = category
+        self.tackWriteView.hidden = false
+//        var time = num
+//        if(category == beforeCategory){
+//            //カテゴリに変更がなければ、なにもしない。
+//            //カテゴリに変更がある場合はアニメーションを２度行う。
+//            //・・・UIButtonの画像を変更するとUIViewAnimationがうまく動作しないので強引に対応。
+//            //機種依存がでそうで嫌だなぁ・・・
+//            //TODO 要確認
+//        }else{
+//            time = 0
+//        }
+        operation!.setColor({
+            UIView.animateWithDuration(num,
+                animations: {() -> Void in
+                    self.tackWriteView.frame =
+                        self.view.frame
+                }, completion: {(Bool) -> Void in
+//                    
+//                    if(self.operation!.frame.height > 100){
+//                        UIView.animateWithDuration(num,
+//                            animations: {() -> Void in
+//                                self.tackWriteView.frame =
+//                                    self.view.frame
+//                            }, completion: {(Bool) -> Void in
+//                        })
+//                    }
+//                    self.beforeCategory = self.category
+            })
+        })
+    }
+    
+    func hideOperationView(num : NSTimeInterval){
+        UIView.animateWithDuration(num, animations: {() -> Void in
+            self.tackWriteView.frame =
                 CGRectMake(
                     0,
-                    0,
-                    objWidth,
-                    self.screenSize!.height
+                    UIScreen.mainScreen().bounds.height,
+                    UIScreen.mainScreen().bounds.width,
+                    UIScreen.mainScreen().bounds.height
             )
             }, completion: {(Bool) -> Void in
-                
+                self.tackWriteView.hidden = true
         })
+    }
 
-    }
-    func hideOperationView(){
-        
-        let objWidth = self.operationView.frame.size.width
-        
-        UIView.animateWithDuration(0.3, animations: {() -> Void in
-            self.operationView.frame =
-                CGRectMake(
-                    0,
-                    self.screenSize!.height,
-                    objWidth,
-                    self.screenSize!.height
-            )
-            }, completion: {(Bool) -> Void in
-                self.operationView.hidden = true
-        })
-        
-    }
-    
-//MARK: - Picture Selector
-    
-    // 写真を撮ってそれを選択
-    func pickImageFromCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            let controller = UIImagePickerController()
-            controller.delegate = self
-            controller.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-    
-    // ライブラリから写真を選択する
-    func pickImageFromLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-            let controller = UIImagePickerController()
-            controller.delegate = self
-            controller.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-    
-    @IBOutlet weak var pictureView: UIImageView!
-    
-    @IBOutlet weak var removePictureButton: UIButton!
-    
-    // 写真を選択した時に呼ばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        if info[UIImagePickerControllerOriginalImage] != nil {
-            let image = info[UIImagePickerControllerOriginalImage] as UIImage
-            println(image)
-            self.pictureView.image = image
-            self.removePictureButton.hidden = false
-        }
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    @IBAction func removePicture(sender: AnyObject) {
-        self.pictureView.image = nil
-        self.removePictureButton.hidden = true
-    }
     
     //LeftBoard
     @IBAction func openLeftBoard(sender: AnyObject) {
@@ -633,6 +618,12 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     */
     @IBAction func update(sender: AnyObject) {
         getHTTPAppiaries()
+    }
+    
+    
+    func checkFrame(){
+        println(self.operation!.frame)
+        println(self.tackWriteView.frame)
     }
 }
 

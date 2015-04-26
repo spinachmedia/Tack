@@ -66,9 +66,9 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     var options = SlideMenuOption()
 
     
-    override init() {
-        super.init()
-    }
+//    override init() {
+//        super.init()
+//    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -814,7 +814,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     private func slideLeftForGestureRecognizer( gesture: UIGestureRecognizer, point:CGPoint) -> Bool{
         
         var slide = self.isLeftOpen()
-        slide |= self.options.panFromBezel && self.isLeftPointContainedWithinBezelRect(point)
+        slide || self.options.panFromBezel && self.isLeftPointContainedWithinBezelRect(point)
         return slide
     }
     
@@ -836,7 +836,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     private func slideRightViewForGestureRecognizer(gesture: UIGestureRecognizer, withTouchPoint point: CGPoint) -> Bool {
         
         var slide: Bool = self.isRightOpen()
-        slide |= self.options.rightPanFromBezel && self.isRightPointContainedWithinBezelRect(point)
+        slide || self.options.rightPanFromBezel && self.isRightPointContainedWithinBezelRect(point)
         return slide
     }
     
@@ -908,7 +908,8 @@ extension UIViewController {
     func addPriorityToMenuGesuture(targetScrollView: UIScrollView) {
         if let slideControlelr = self.slideMenuController() {
             let recognizers =  slideControlelr.view.gestureRecognizers
-            for recognizer in recognizers as [UIGestureRecognizer] {
+            
+            for recognizer in recognizers as! [UIGestureRecognizer] {
                 if recognizer is UIPanGestureRecognizer {
                     targetScrollView.panGestureRecognizer.requireGestureRecognizerToFail(recognizer)
                 }
