@@ -36,10 +36,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9QJ-qB-gXg">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPG-pH-ICK">
                                 <rect key="frame" x="22" y="57" width="72" height="67"/>
-                                <color key="backgroundColor" red="1" green="0.96533311349999995" blue="0.97553302249999996" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="アカウント登録無し" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OA-k7-a2y">
                                 <rect key="frame" x="22" y="28" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,11 +49,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tge-RU-lYD">
                                 <rect key="frame" x="121" y="70" width="132" height="42"/>
                                 <color key="backgroundColor" red="0.77167022129999996" green="1" blue="0.71648331210000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="アカウント登録">
+                                <state key="normal" title="ログアウト">
                                     <color key="titleColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="logoutButton:" destination="QCs-8r-tcg" eventType="touchUpInside" id="mzl-2f-AVW"/>
                                     <action selector="toRegisterAcount:" destination="QCs-8r-tcg" eventType="touchUpInside" id="cy8-zh-y3C"/>
                                 </connections>
                             </button>
@@ -132,6 +133,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="userImageView" destination="PPG-pH-ICK" id="q2A-Pu-yaT"/>
+                        <outlet property="userName" destination="9OA-k7-a2y" id="Izd-uf-ZL7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BV8-9P-rK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -318,14 +323,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="flN-Qk-Ee3" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="3" width="320" height="568"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWO-Tc-qoR">
-                                <rect key="frame" x="0.0" y="64" width="66" height="54"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWO-Tc-qoR">
+                                <rect key="frame" x="0.0" y="76" width="54" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="V6v-HU-ybf"/>
-                                    <constraint firstAttribute="width" constant="66" id="lkV-og-xIn"/>
+                                    <constraint firstAttribute="height" constant="42" id="O1j-fL-2ml"/>
+                                    <constraint firstAttribute="width" constant="54" id="fEP-9C-eKw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" title="≡">
+                                <state key="normal" image="left_menu-01.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -383,9 +387,6 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yac-V0-rdp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtS-Gd-AfB">
                                 <rect key="frame" x="0.0" y="487" width="320" height="81"/>
@@ -461,19 +462,22 @@
                                     <constraint firstAttribute="bottom" secondItem="8c5-OQ-ieD" secondAttribute="bottom" constant="1" id="xwx-yr-UX4"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yac-V0-rdp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="BWO-Tc-qoR" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="0Yt-6V-ckJ"/>
+                            <constraint firstItem="BWO-Tc-qoR" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" constant="12" id="1TQ-S9-3JI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PtS-Gd-AfB" secondAttribute="trailing" constant="-16" id="CL1-nW-8QJ"/>
                             <constraint firstItem="xtu-bm-cI7" firstAttribute="top" secondItem="PtS-Gd-AfB" secondAttribute="bottom" id="STp-nM-PI3"/>
-                            <constraint firstItem="BWO-Tc-qoR" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="Vun-kr-nYo"/>
                             <constraint firstItem="yac-V0-rdp" firstAttribute="width" secondItem="hJv-Uc-P0t" secondAttribute="width" id="Wsn-K7-We0"/>
                             <constraint firstAttribute="width" secondItem="PtS-Gd-AfB" secondAttribute="width" id="YT1-6I-Z1d"/>
                             <constraint firstItem="yac-V0-rdp" firstAttribute="height" secondItem="hJv-Uc-P0t" secondAttribute="height" id="dbE-bH-dfB"/>
                             <constraint firstItem="yac-V0-rdp" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="hgg-Sl-uSg"/>
                             <constraint firstItem="PtS-Gd-AfB" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="mXY-Gz-Psb"/>
-                            <constraint firstItem="BWO-Tc-qoR" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" id="szw-P3-1Cp"/>
                             <constraint firstItem="xtu-bm-cI7" firstAttribute="top" secondItem="yac-V0-rdp" secondAttribute="bottom" id="wAN-lN-gwe"/>
                             <constraint firstItem="Ew4-FM-veg" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" constant="1" id="wgv-fA-4f2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ew4-FM-veg" secondAttribute="trailing" constant="-16" id="xyZ-8f-904"/>
@@ -481,6 +485,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bll-vo-r69"/>
                     <connections>
+                        <outlet property="footerView" destination="PtS-Gd-AfB" id="7rS-fR-xYD"/>
                         <outlet property="mapView" destination="flN-Qk-Ee3" id="92j-2v-pFN"/>
                         <outlet property="selectorButtons" destination="C0M-8R-C2D" id="Pvl-uA-xWw"/>
                         <outlet property="tackButton" destination="8c5-OQ-ieD" id="daB-et-6gc"/>
@@ -822,6 +827,7 @@
         <image name="icon02_shopping.png" width="313" height="313"/>
         <image name="icon03_activity.png" width="313" height="313"/>
         <image name="icon04_mytack.png" width="313" height="313"/>
+        <image name="left_menu-01.png" width="100" height="77"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

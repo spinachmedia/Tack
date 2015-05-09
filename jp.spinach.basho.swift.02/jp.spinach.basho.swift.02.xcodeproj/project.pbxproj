@@ -67,6 +67,12 @@
 		18C8056D1A964FFB00310A0A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C8056C1A964FFB00310A0A /* CoreLocation.framework */; };
 		18C8056F1A96555900310A0A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8056E1A96555900310A0A /* SwiftyJSON.swift */; };
 		18C805711A97A15300310A0A /* GMSMarkerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C805701A97A15300310A0A /* GMSMarkerExt.swift */; };
+		18CFE9851AED3C7F00EECEC4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFE9841AED3C7F00EECEC4 /* SignUpViewController.swift */; };
+		18CFE9871AED3C9500EECEC4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CFE9861AED3C9500EECEC4 /* Login.storyboard */; };
+		18F0426D1AF1298700A5151C /* left_menu-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F0426C1AF1298700A5151C /* left_menu-01.png */; };
+		18F042701AF12E6A00A5151C /* icon00_tack_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F0426F1AF12E6A00A5151C /* icon00_tack_back.png */; };
+		18F042721AF4F6B400A5151C /* SceneLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F042711AF4F6B400A5151C /* SceneLogic.swift */; };
+		18F042741AF5336100A5151C /* fukidasi_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F042731AF5336100A5151C /* fukidasi_pink.png */; };
 		79CEBDBB6CD9A317ABEDE9FC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A397054802405404586870A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +152,12 @@
 		18C8056C1A964FFB00310A0A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		18C8056E1A96555900310A0A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
 		18C805701A97A15300310A0A /* GMSMarkerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSMarkerExt.swift; sourceTree = "<group>"; };
+		18CFE9841AED3C7F00EECEC4 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		18CFE9861AED3C9500EECEC4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		18F0426C1AF1298700A5151C /* left_menu-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu-01.png"; sourceTree = "<group>"; };
+		18F0426F1AF12E6A00A5151C /* icon00_tack_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon00_tack_back.png; sourceTree = "<group>"; };
+		18F042711AF4F6B400A5151C /* SceneLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLogic.swift; sourceTree = "<group>"; };
+		18F042731AF5336100A5151C /* fukidasi_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fukidasi_pink.png; sourceTree = "<group>"; };
 		1A397054802405404586870A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2E52A56C50BF63EB07CC17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC45FA1B2FF5A8270E8E3D39 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +209,8 @@
 		1840F4021AD1063D00FAEF5C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				18F042731AF5336100A5151C /* fukidasi_pink.png */,
+				18F0426E1AF1298F00A5151C /* COMMON_ICON */,
 				185E4A7D1AE6934E00A2F8B7 /* TACK_WRITE */,
 				185E4A7B1AE3E2A800A2F8B7 /* PIN */,
 				185E4A7C1AE3E2BF00A2F8B7 /* TOP_ICON */,
@@ -219,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				1840F40B1AD120F800FAEF5C /* icon00_tack.png */,
+				18F0426F1AF12E6A00A5151C /* icon00_tack_back.png */,
 				1840F4061AD11F0900FAEF5C /* icon01_food.png */,
 				1840F4051AD11F0900FAEF5C /* icon02_shopping.png */,
 				1840F4041AD11F0900FAEF5C /* icon03_activity.png */,
@@ -285,6 +300,7 @@
 		18BE01C41AAAB33B00AB8436 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18CFE9831AED3C5D00EECEC4 /* Login */,
 				1840F3F31ACFF71F00FAEF5C /* LeftBoard */,
 				18C8056A1A964FB600310A0A /* MainViewController.swift */,
 				18C5D92A1AAAE95E00AF7EBB /* SnapCameraViewController.swift */,
@@ -325,6 +341,7 @@
 				188D75DA1ABECB700004350C /* ImageLogic.swift */,
 				1840F3F61AD03CC100FAEF5C /* HTTPLogic.swift */,
 				18B7D3351AC84BEC009283B6 /* LocalDataLogic.swift */,
+				18F042711AF4F6B400A5151C /* SceneLogic.swift */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -402,6 +419,23 @@
 				18C8055C1A964E7600310A0A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18CFE9831AED3C5D00EECEC4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				18CFE9841AED3C7F00EECEC4 /* SignUpViewController.swift */,
+				18CFE9861AED3C9500EECEC4 /* Login.storyboard */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		18F0426E1AF1298F00A5151C /* COMMON_ICON */ = {
+			isa = PBXGroup;
+			children = (
+				18F0426C1AF1298700A5151C /* left_menu-01.png */,
+			);
+			name = COMMON_ICON;
 			sourceTree = "<group>";
 		};
 		37473ADF163BD3AEBDCA8D97 /* Frameworks */ = {
@@ -503,12 +537,14 @@
 				1840F40A1AD11F0900FAEF5C /* icon01_food.png in Resources */,
 				1840F4091AD11F0900FAEF5C /* icon02_shopping.png in Resources */,
 				1840F3F91AD0D30100FAEF5C /* SelfTackList.xib in Resources */,
+				18F042741AF5336100A5151C /* fukidasi_pink.png in Resources */,
 				185E4A8E1AE6937900A2F8B7 /* button03_picture_activity.png in Resources */,
 				18C805691A964FA400310A0A /* Main.storyboard in Resources */,
 				185E4A741AE3E29000A2F8B7 /* pin01_food.png in Resources */,
 				185E4A761AE3E29700A2F8B7 /* pin02_shopping.png in Resources */,
 				185E4A891AE6937900A2F8B7 /* button01_camera_food.png in Resources */,
 				185E4A781AE3E29A00A2F8B7 /* pin03_activity.png in Resources */,
+				18F042701AF12E6A00A5151C /* icon00_tack_back.png in Resources */,
 				185E4A951AE6945100A2F8B7 /* TackWriteView.xib in Resources */,
 				1840F40C1AD120F800FAEF5C /* icon00_tack.png in Resources */,
 				185E4A8D1AE6937900A2F8B7 /* button03_camera_activity.png in Resources */,
@@ -522,6 +558,8 @@
 				1840F4071AD11F0900FAEF5C /* icon04_mytack.png in Resources */,
 				185E4A911AE6937900A2F8B7 /* kakikomigamen_design-02.jpg in Resources */,
 				185E4A901AE6937900A2F8B7 /* button02_shopping.png in Resources */,
+				18F0426D1AF1298700A5151C /* left_menu-01.png in Resources */,
+				18CFE9871AED3C9500EECEC4 /* Login.storyboard in Resources */,
 				185E4A8C1AE6937900A2F8B7 /* button02_picture_shopping.png in Resources */,
 				1840F4081AD11F0900FAEF5C /* icon03_activity.png in Resources */,
 				185E4A7A1AE3E29F00A2F8B7 /* pin04_mytack.png in Resources */,
@@ -585,6 +623,7 @@
 				18C8054A1A964E7600310A0A /* ViewControllerExt.swift in Sources */,
 				18C5D9221AAAB92900AF7EBB /* MapLogic.swift in Sources */,
 				188D75D91ABEBBBC0004350C /* Random.swift in Sources */,
+				18F042721AF4F6B400A5151C /* SceneLogic.swift in Sources */,
 				1840F3EA1ACFE20900FAEF5C /* SlideMenuController.swift in Sources */,
 				188D75D51ABDAF680004350C /* Setting.swift in Sources */,
 				18C805711A97A15300310A0A /* GMSMarkerExt.swift in Sources */,
@@ -592,6 +631,7 @@
 				18C5D9291AAACD5200AF7EBB /* State.swift in Sources */,
 				18C805481A964E7600310A0A /* jp_spinach_basho_swift_02.xcdatamodeld in Sources */,
 				185E4A9B1AE6986000A2F8B7 /* TackWriteView.swift in Sources */,
+				18CFE9851AED3C7F00EECEC4 /* SignUpViewController.swift in Sources */,
 				18C805451A964E7600310A0A /* AppDelegate.swift in Sources */,
 				18C5D9271AAACCFC00AF7EBB /* Category.swift in Sources */,
 				18C8056F1A96555900310A0A /* SwiftyJSON.swift in Sources */,

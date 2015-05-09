@@ -69,4 +69,33 @@ struct ImageLogic {
         return UIImage(data: imageData)!
     }
     
+    /**
+    ピン用の画像圧縮
+    UIIMage(PNG)で返す
+    
+    :param: image <#image description#>
+    
+    :returns: <#return value description#>
+    */
+    static func resizeImageWidth80(image:UIImage?) -> UIImage{
+        
+        var resizePar = 80 / image!.size.width
+        
+        //リサイズ
+        var size:CGSize = CGSizeMake(
+            image!.size.width * resizePar,
+            image!.size.height * resizePar
+        )
+        
+        //画像の縮小
+        UIGraphicsBeginImageContext(size)
+        image!.drawInRect(CGRectMake(0,0,size.width,size.height))
+        var imageResized:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //画像の圧縮
+        let imageData :NSData = UIImagePNGRepresentation(imageResized)//UIImageJPEGRepresentation(imageResized, 0.4)
+        return UIImage(data: imageData)!
+    }
+    
 }

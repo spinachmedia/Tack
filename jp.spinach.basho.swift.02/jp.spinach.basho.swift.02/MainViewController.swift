@@ -81,6 +81,9 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         default:
             break;
         }
+        
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -322,8 +325,11 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        
         let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! InfoView
         let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
+        
+        //gmsMarker.icon = ImageLogic.resizeImageWidth80(UIImage(named: "pin02_shopping"))
         
         let json = JSON(self.markerList)
         
@@ -531,7 +537,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                 
                 CGRectMake(
                     self.selectorButtons.frame.origin.x,
-                    0,
+                    0 - 5,
                     self.selectorButtons.frame.size.width,
                     self.selectorButtons.frame.size.height
             )
@@ -556,43 +562,36 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
 //----------------
-    ///ひとつまえのカテゴリを記憶・・・。なんだこのコード
-    var beforeCategory: Category = Category.FOOD
+    
+    ///画面下部のボタン群
+    @IBOutlet weak var footerView: UIView!
     
     func showOperationView(num : NSTimeInterval){
+        
         operation!.category = category
         self.tackWriteView.hidden = false
-//        var time = num
-//        if(category == beforeCategory){
-//            //カテゴリに変更がなければ、なにもしない。
-//            //カテゴリに変更がある場合はアニメーションを２度行う。
-//            //・・・UIButtonの画像を変更するとUIViewAnimationがうまく動作しないので強引に対応。
-//            //機種依存がでそうで嫌だなぁ・・・
-//            //TODO 要確認
-//        }else{
-//            time = 0
-//        }
+//        self.tackButton.setBackgroundImage(
+//            UIImage(named:"icon00_tack_back.png"),
+//            forState: UIControlState.Normal)
+
+        self.view.bringSubviewToFront(self.footerView)
+        
         operation!.setColor({
             UIView.animateWithDuration(num,
                 animations: {() -> Void in
                     self.tackWriteView.frame =
                         self.view.frame
                 }, completion: {(Bool) -> Void in
-//                    
-//                    if(self.operation!.frame.height > 100){
-//                        UIView.animateWithDuration(num,
-//                            animations: {() -> Void in
-//                                self.tackWriteView.frame =
-//                                    self.view.frame
-//                            }, completion: {(Bool) -> Void in
-//                        })
-//                    }
-//                    self.beforeCategory = self.category
+                    self.view.bringSubviewToFront(self.footerView)
+                    self.operation!.startAnimation()
             })
         })
     }
     
     func hideOperationView(num : NSTimeInterval){
+//        self.tackButton.setBackgroundImage(
+//            UIImage(named:"icon00_tack.png"),
+//            forState: UIControlState.Normal)
         UIView.animateWithDuration(num, animations: {() -> Void in
             self.tackWriteView.frame =
                 CGRectMake(
@@ -609,6 +608,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
     //LeftBoard
     @IBAction func openLeftBoard(sender: AnyObject) {
+        //println(FBSDKAccessToken.currentAccessToken())
         self.slideMenuController()?.openLeft()
     }
     /**

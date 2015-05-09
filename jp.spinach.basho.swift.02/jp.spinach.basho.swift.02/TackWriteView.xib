@@ -20,7 +20,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         </view>
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRC-G6-rxH">
-                            <rect key="frame" x="16" y="121" width="285" height="346"/>
+                            <rect key="frame" x="16" y="146" width="285" height="321"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oyj-6g-c2s">
                                     <rect key="frame" x="0.0" y="0.0" width="285" height="40"/>
@@ -42,7 +42,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-TS-ClX">
-                                    <rect key="frame" x="0.0" y="174" width="285" height="107"/>
+                                    <rect key="frame" x="0.0" y="149" width="285" height="107"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6a-I7-chd">
                                             <rect key="frame" x="202" y="24" width="75" height="75"/>
@@ -53,6 +53,9 @@
                                             <state key="normal" image="button01_food.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="sendTack:" destination="iN0-l3-epB" eventType="touchUpInside" id="dog-f4-gHC"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bby-fU-jJI">
                                             <rect key="frame" x="8" y="8" width="143" height="91"/>
@@ -85,22 +88,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJs-XA-EJx">
-                                    <rect key="frame" x="0.0" y="282" width="285" height="64"/>
+                                    <rect key="frame" x="0.0" y="257" width="285" height="64"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHm-4b-U2G">
-                                            <rect key="frame" x="8" y="5" width="57" height="57"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="jHm-4b-U2G" secondAttribute="height" multiplier="1:1" id="kPr-ZX-nbG"/>
-                                            </constraints>
-                                            <state key="normal" image="button01_camera_food.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="goCamera:" destination="iN0-l3-epB" eventType="touchUpInside" id="eg3-gc-BQr"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQC-V6-6zz">
-                                            <rect key="frame" x="73" y="5" width="57" height="57"/>
+                                            <rect key="frame" x="59" y="5" width="43" height="43"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="GQC-V6-6zz" secondAttribute="height" multiplier="1:1" id="tSV-EJ-QRd"/>
                                             </constraints>
@@ -111,6 +102,18 @@
                                                 <action selector="goGallary:" destination="iN0-l3-epB" eventType="touchUpInside" id="MjD-Fb-2oi"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHm-4b-U2G">
+                                            <rect key="frame" x="8" y="5" width="43" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="jHm-4b-U2G" secondAttribute="height" multiplier="1:1" id="kPr-ZX-nbG"/>
+                                            </constraints>
+                                            <state key="normal" image="button01_camera_food.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="goCamera:" destination="iN0-l3-epB" eventType="touchUpInside" id="eg3-gc-BQr"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="GQC-V6-6zz" secondAttribute="bottom" constant="2" id="BPs-RD-HAZ"/>
@@ -118,12 +121,12 @@
                                         <constraint firstItem="GQC-V6-6zz" firstAttribute="leading" secondItem="jHm-4b-U2G" secondAttribute="trailing" constant="8" id="NIH-cB-kwg"/>
                                         <constraint firstItem="GQC-V6-6zz" firstAttribute="top" secondItem="MJs-XA-EJx" secondAttribute="top" constant="5" id="OER-kv-Qnh"/>
                                         <constraint firstAttribute="bottom" secondItem="jHm-4b-U2G" secondAttribute="bottom" constant="2" id="W4f-0I-zPv"/>
-                                        <constraint firstAttribute="height" constant="64" id="hx0-SP-Agk"/>
+                                        <constraint firstAttribute="height" constant="50" id="hx0-SP-Agk"/>
                                         <constraint firstItem="jHm-4b-U2G" firstAttribute="top" secondItem="MJs-XA-EJx" secondAttribute="top" constant="5" id="zxm-Xh-L2Q"/>
                                     </constraints>
                                 </view>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qUD-8m-G9B" customClass="UITextViewExt" customModule="jp_spinach_basho_swift_02" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="33" width="285" height="145"/>
+                                    <rect key="frame" x="0.0" y="48" width="285" height="104"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -155,11 +158,11 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="4HZ-TR-eJv" secondAttribute="trailing" id="1UV-10-BUo"/>
                         <constraint firstItem="4HZ-TR-eJv" firstAttribute="leading" secondItem="E2R-IC-9XI" secondAttribute="leading" id="LKT-xn-Lmo"/>
-                        <constraint firstAttribute="height" secondItem="YRC-G6-rxH" secondAttribute="height" multiplier="1.5" id="Lqg-8q-Ulv"/>
+                        <constraint firstAttribute="height" secondItem="YRC-G6-rxH" secondAttribute="height" multiplier="2" id="Lqg-8q-Ulv"/>
                         <constraint firstItem="4HZ-TR-eJv" firstAttribute="width" secondItem="E2R-IC-9XI" secondAttribute="width" id="TKv-RO-HOl"/>
                         <constraint firstAttribute="bottom" secondItem="4HZ-TR-eJv" secondAttribute="bottom" id="VDE-4N-CBu"/>
                         <constraint firstItem="4HZ-TR-eJv" firstAttribute="top" secondItem="E2R-IC-9XI" secondAttribute="top" id="eF4-BI-JaO"/>
-                        <constraint firstAttribute="centerY" secondItem="YRC-G6-rxH" secondAttribute="centerY" id="nYg-IW-WrF"/>
+                        <constraint firstAttribute="centerY" secondItem="YRC-G6-rxH" secondAttribute="centerY" constant="10" id="nYg-IW-WrF"/>
                         <constraint firstItem="YRC-G6-rxH" firstAttribute="leading" secondItem="E2R-IC-9XI" secondAttribute="leading" constant="16" id="tek-6r-Elw"/>
                         <constraint firstAttribute="trailing" secondItem="YRC-G6-rxH" secondAttribute="trailing" constant="19" id="viI-zI-CdM"/>
                         <constraint firstItem="4HZ-TR-eJv" firstAttribute="height" secondItem="E2R-IC-9XI" secondAttribute="height" id="zW0-Py-Hq6"/>

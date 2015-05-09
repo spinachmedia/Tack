@@ -19,6 +19,8 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     var endColor : UIColor?
     var bgColor : UIColor?
     
+    var alphaColor : UIColor? = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+    
     var controller : MainViewController?
     
     @IBOutlet weak var backgroundView: UIView!
@@ -50,16 +52,18 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     var activity_camera_button : UIImage?
     var activity_picture_button : UIImage?
     
+    
+    
 
     
     func setColor(callback : () -> Void){
         switch(category){
         case Category.FOOD:
             
-            self.colorTheme = UIColor(red: 240/255, green: 95/255, blue: 150/255, alpha: 1)
-            startColor = UIColor(red: 253/255, green: 209/255, blue: 225/255, alpha: 0.4)
-            endColor = UIColor(red: 240/255, green: 117/255, blue: 164/255, alpha: 0.4)
-            bgColor = UIColor(red: 253/255, green: 209/255, blue: 225/255, alpha: 0.4)
+            self.colorTheme = UIColor(red: 240/255, green: 180/255, blue: 210/255, alpha: 1)
+            startColor = UIColor(red: 240/255, green: 180/255, blue: 210/255, alpha: 0.4)
+            endColor = UIColor(red: 240/255, green: 180/255, blue: 210/255, alpha: 0.6)
+            bgColor = UIColor(red: 240/255, green: 180/255, blue: 210/255, alpha: 0.4)
             
             self.cameraButton.setImage(food_camera_button, forState: UIControlState.Normal)
             self.gallaryButton.setImage(food_picture_button, forState: UIControlState.Normal)
@@ -89,12 +93,14 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
             break;
         }
         
-        var grad : CAGradientLayer = CAGradientLayer()
-        grad.frame = self.bounds
-        grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
+//        var grad : CAGradientLayer = CAGradientLayer()
+//        grad.frame = self.bounds
+//        grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
+//        
+//        self.back.layer.sublayers = nil
+//        self.back.layer.insertSublayer(grad, atIndex: 0)
         
-        self.back.layer.sublayers = nil
-        self.back.layer.insertSublayer(grad, atIndex: 0)
+        self.back.backgroundColor = alphaColor!
         
         self.footerView.layer.borderColor = self.colorTheme!.CGColor
         self.footerView.layer.borderWidth = 1
@@ -139,6 +145,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardUp:", name: UIKeyboardWillShowNotification, object: nil)
     }
     
+    //画面領域のタップでキーボードを隠す
     func tap(){
         self.endEditing(true)
         UIView.animateWithDuration(0.3, animations: {() -> Void in
@@ -151,6 +158,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         })
     }
     
+    ///キーボードがでてきたときの処理
     func keyboardUp(notification : NSNotification){
         UIView.animateWithDuration(0.3, animations: {() -> Void in
             self.frame = CGRectMake(0,
@@ -210,6 +218,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         })
     }
     
+    ///添付した画像を削除する
     @IBAction func removePicture(sender: AnyObject) {
         self.removeButton.hidden = true
         var frameBk = self.imageView.frame
@@ -226,6 +235,26 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
                 self.imageView.image = nil
                 self.imageView.frame = frameBk
                 self.imageView.backgroundColor = UIColor.whiteColor()
+        })
+
+    }
+    
+    @IBAction func sendTack(sender: AnyObject) {
+        //Tack送信
+    }
+    
+    //グラデーションアニメ
+    func startAnimation(){
+        UIView.animateWithDuration(1.0, animations: {() -> Void in
+            
+            var grad : CAGradientLayer = CAGradientLayer()
+            grad.frame = self.bounds
+            grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
+            
+            self.back.layer.sublayers = nil
+            self.back.layer.insertSublayer(grad, atIndex: 0)
+            
+            }, completion: {(Bool) -> Void in
         })
 
     }
