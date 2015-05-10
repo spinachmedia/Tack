@@ -48,6 +48,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         mapView.myLocationEnabled = true
         mapView.delegate = self
         
+        
+        //座標を取得する感じにする
         lm = CLLocationManager()
         lm.delegate = self
         lm.desiredAccuracy = kCLLocationAccuracyBest
@@ -55,11 +57,13 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         lm.distanceFilter = 300
         lm.startUpdatingLocation()
         
-        getHTTPAppiaries()
+
         
-        
-        
+        //
         self.tackWriteView.hidden = true
+        
+        
+        self.getTack();
         
     }
 
@@ -129,167 +133,64 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     HTTPリクエストを送信。
     ピンのリストを取得する
     */
-    func getHTTPAppiaries(){
+    func getTack(){
         
-        //マネージャの生成
-        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
-        
-        manager.GET(Setting.GET_COMMENT_URL, parameters: nil,
-            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+        HTTPLogic.getTackRequest("test",
+            lat: self.lm.location.coordinate.latitude,
+            lng: self.lm.location.coordinate.longitude,
+            count: 30,
+            callBack:
+            { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
                 
-                //レスポンス処理---------------------------------
-                
-                println("response: \(responseObject)")
-                if(responseObject == nil){
+                    //レスポンス処理---------------------------------
+                    println("response: \(responseObject)")
+                    if(responseObject == nil){
+                    }else{
+                        self.markerList = responseObject
+                    }
+    
+                    //ピンを消去する
+                    MapLogic.clearMarkers(self.mapView)
+    
+                    //ピンを立てる。
+                    self.tackedMarkerList = MapLogic.setMarkers(self.markerList,mapView: self.mapView)
+    
+                    //ズーム具合の調整--------------------------------
+    
+                    //アプリの起動時のみ
+                    if(self.startFlg){
+                        self.startFlg = false
+                        var count = 0
+                        //マーカーが５個以上見えていない場合
+                        //ズームレベルが１５以上の場合
+                        while(count < 5 && self.mapView.camera.zoom > 15){
+                            count = 0
+    
+                            self.mapView.moveCamera(GMSCameraUpdate.zoomOut())
+
+                            //レスポンスがない場合は終了
+                            if(self.markerList == nil){
+                                return
+                            }
+                            
+                            //一件もない場合も処理しない
+                            let markerJson = JSON(self.markerList)
+                            let items = markerJson["_total"].stringValue.toInt()
+                            if(items == 0){
+                                return
+                            }
+                            
+                            for ( var i = 0 ; i < items ;i++  ){
+                                var marker : GMSMarkerExt = self.tackedMarkerList![i]
+                                if(self.mapView.projection.containsCoordinate(marker.position)){
+                                    count++
+                                    println(count)
+                                }//if
+                            }//for
+                        }//while
+                    }//if
                     
-                }else{
-                    self.markerList = responseObject
-                }
-                
-                //ピンを消去する
-                MapLogic.clearMarkers(self.mapView)
-                
-                //ピンを立てる。
-                self.tackedMarkerList = MapLogic.setMarkers(self.markerList,mapView: self.mapView)
-                
-                //ズーム具合の調整--------------------------------
-                
-                //起動時のみ
-                if(self.startFlg){
-                    self.startFlg = false
-                    var count = 0
-                    //マーカーが５個以上見えていない場合
-                    //ズームレベルが１５以上の場合
-                    while(count < 5 && self.mapView.camera.zoom > 15){
-                        count = 0
-                        
-                        self.mapView.moveCamera(GMSCameraUpdate.zoomOut())
-                        println("into the roop.")
-                        
-                        //レスポンスがない場合は終了
-                        if(self.markerList == nil){
-                            return
-                        }
-                        //一件もない場合も処理しない
-                        let markerJson = JSON(self.markerList)
-                        let items = markerJson["_total"].stringValue.toInt()
-                        if(items == 0){
-                            return
-                        }
-                        
-                        for ( var i = 0 ; i < items ;i++  ){
-                            var marker : GMSMarkerExt = self.tackedMarkerList![i]
-                            if(self.mapView.projection.containsCoordinate(marker.position)){
-                                count++
-                                println(count)
-                            }//if
-                        }//for
-                    }//while
-                }//if
-                
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                println("error: \(error)")
-            }
-        )
-    }
-    
-    /**
-    ピンを指す。
-    */
-    func sendHTTPAppiaries(){
-        
-//        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-//        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-//        loadingNotification.labelText = "Getting..."
-//        
-//        let img:UIImage? = self.tackWriteView.imageView.image
-//        
-//        var existImage = false
-//        
-//        if( img != nil ){
-//            existImage = true
-//        }else{
-//        }
-//        
-//        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
-//        
-//        //ObjectID生成
-//        //画像とコメント情報との紐付けに利用する。
-//        //FILEAPIではObjectIDとして登録
-//        //重複時はどうしようか・・・
-//        let uuid = Random.getObjectId();
-//        
-//        var commentParams: Dictionary = [
-//            "object_id": uuid,
-//            "user_id" : LocalDataLogic.getUUID(),
-//            "has_image": existImage,
-//            "category":     category.toString(),
-//            "place":        self.uPlaceText.text,
-//            "comment":      self.uCommentArea.text,
-//            "lat":          NSString(format: "%.15f", self.lm.location.coordinate.latitude),
-//            "lng":          NSString(format: "%.15f", self.lm.location.coordinate.longitude),
-//            "id":           "1",
-//            "tack_point":   0
-//        ]
-//        
-//        manager.POST(Setting.SET_COMMENT_URL, parameters: commentParams,
-//            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-//                
-//                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                self.getHTTPAppiaries()
-//                
-//            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-//                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                println("error: \(error)")
-//                //TODO:容量オーバーの時の処理
-//                //TODO:404の時の処理
-//                //TODO:タイムアウトの時の処理
-//                //TODO:その他エラーの時の処理
-//        })
-//        
-//        //画像を送信
-//        self.sendImage(uuid);
-    }
-    
-    /**
-    画像を送信する
-    */
-    func sendImage(objectId:String){
-        
-//        var manager : APISFileAPIClient = HTTPManager.getAppiariesSendFileManager()
-//        
-//        //画像の取り出し
-//        let img:UIImage? = self.tackWriteView.imageView.image
-//        if( img != nil ){
-//            
-//            //使いもしないメタデータ
-//            var meta: Dictionary = [
-//                "_tags": ""
-//            ]
-//            
-//            //リサイズ
-//            var imageData : NSData = ImageLogic.resizeIamgeWidth300(img);
-//            
-//            //送信
-//            manager.createBinaryObjectWithId(objectId, filename: "image.jpeg", binary: imageData, meta: meta,
-//                success: { (response : APISResponseObject!) in
-//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                    println(response)
-//                }, failure: { (error : NSError!) in
-//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                    println(error)
-//                    //TODO:容量オーバーの時の処理
-//                    //TODO:404の時の処理
-//                    //TODO:オブジェクトID重複時の処理
-//                    //TODO:タイムアウトの時の処理
-//                    //TODO:その他エラーの時の処理
-//                }
-//            )
-//            
-//        } else {
-//            //nilの場合
-//            println("nil");
-//        }
+                })
         
     }
     
@@ -305,21 +206,21 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
         
         
-        let json = JSON(self.markerList)
-        
-        nextController.objectId = json["_objs"][gmsMarker.id]["_id"].string!
-        nextController.placeText = json["_objs"][gmsMarker.id]["place"].string!
-        nextController.bodyText = json["_objs"][gmsMarker.id]["comment"].string!
-        nextController.counter = json["_objs"][gmsMarker.id]["tack_point"].stringValue
-        
-        if(json["_objs"][gmsMarker.id]["has_image"].int! == 1){
-            
-            var imageUrl:String = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/" + json["_objs"][gmsMarker.id]["object_id"].string! + "/_bin"
-            let url = NSURL(string: imageUrl)
-            let imageData = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: nil)
-            let uiImage = UIImage(data: imageData!)
-            nextController.image = uiImage
-        }
+//        let json = JSON(self.markerList)
+//        
+//        nextController.objectId = json["_objs"][gmsMarker.id]["_id"].string!
+//        nextController.placeText = json["_objs"][gmsMarker.id]["place"].string!
+//        nextController.bodyText = json["_objs"][gmsMarker.id]["comment"].string!
+//        nextController.counter = json["_objs"][gmsMarker.id]["tack_point"].stringValue
+//        
+//        if(json["_objs"][gmsMarker.id]["has_image"].int! == 1){
+//            
+//            var imageUrl:String = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/" + json["_objs"][gmsMarker.id]["object_id"].string! + "/_bin"
+//            let url = NSURL(string: imageUrl)
+//            let imageData = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: nil)
+//            let uiImage = UIImage(data: imageData!)
+//            nextController.image = uiImage
+//        }
         
         self.navigationController?.pushViewController(nextController as UIViewController, animated: true)
     }
@@ -333,19 +234,19 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         let json = JSON(self.markerList)
         
-        var imageUrl:String = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/" + json["_objs"][gmsMarker.id]["object_id"].string! + "/_bin"
-        
-        var imageFlg = false
-        if(json["_objs"][gmsMarker.id]["has_image"].int! == 1){
-            imageFlg = true
-        }
-            
-        infoView.setViews(
-            json["_objs"][gmsMarker.id]["place"].string!,
-            body: json["_objs"][gmsMarker.id]["comment"].string!,
-            imageUrl: imageUrl,
-            imageFlg: imageFlg
-        )
+//        var imageUrl:String = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/" + json["_objs"][gmsMarker.id]["object_id"].string! + "/_bin"
+//        
+//        var imageFlg = false
+//        if(json["_objs"][gmsMarker.id]["has_image"].int! == 1){
+//            imageFlg = true
+//        }
+//            
+//        infoView.setViews(
+//            json["_objs"][gmsMarker.id]["place"].string!,
+//            body: json["_objs"][gmsMarker.id]["comment"].string!,
+//            imageUrl: imageUrl,
+//            imageFlg: imageFlg
+//        )
         
         return infoView
     }
@@ -390,15 +291,6 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     @IBAction func selectActivityColor(sender: AnyObject) {
         category = Category.ACTIVITY
         toOperateState(0.3)
-    }
-    
-    @IBAction func tackTweet(sender: AnyObject) {
-        toNomalState(0.3)
-        
-        let loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.Indeterminate
-        loadingNotification.labelText = "Sending"
-        sendHTTPAppiaries()
     }
     
     //----------------------
@@ -576,6 +468,9 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
 
         self.view.bringSubviewToFront(self.footerView)
         
+        //座標データを渡す
+        operation!.lm = self.lm
+        
         operation!.setColor({
             UIView.animateWithDuration(num,
                 animations: {() -> Void in
@@ -604,6 +499,9 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                 self.tackWriteView.hidden = true
         })
     }
+    
+//---------
+    
 
     
     //LeftBoard
@@ -617,7 +515,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     :param: sender <#sender description#>
     */
     @IBAction func update(sender: AnyObject) {
-        getHTTPAppiaries()
+        
     }
     
     

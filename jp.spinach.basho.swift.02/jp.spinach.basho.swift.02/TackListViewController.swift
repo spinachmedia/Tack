@@ -18,17 +18,17 @@ class TackListViewController: UIViewController,UITableViewDataSource,UITableView
         super.viewDidLoad()
         
         //自分のタックリストの読み込み
-        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
-        var query = Setting.GET_COMMENT_URL + "user_id.eq." + LocalDataLogic.getUUID()
-        manager.GET(query , parameters: nil,
-            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-                println(responseObject)
-                self.jsonData = JSON(responseObject)
-                self.tableView.reloadData()
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                println("error: \(error)")
-            }
-        )
+//        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
+//        var query = Setting.GET_COMMENT_URL + "user_id.eq." + LocalDataLogic.getUUID()
+//        manager.GET(query , parameters: nil,
+//            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+//                println(responseObject)
+//                self.jsonData = JSON(responseObject)
+//                self.tableView.reloadData()
+//            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
+//                println("error: \(error)")
+//            }
+//        )
         
         self.tableView.delegate = self
         self.tableView.dataSource = self

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452245330.512846"
+            timestampString = "452963049.27446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "locationManager(_:didUpdateToLocation:fromLocation:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "selectActivityColor(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "toOperateState(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "MainViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "559"
-            endingLineNumber = "559"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "hideSelectorButtons(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
             landmarkName = "showSelectorButtons(_:)"
             landmarkType = "5">
             <Locations>
@@ -345,11 +345,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "hideWhichColorTackView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -361,11 +361,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "showWhichColorTackView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -377,11 +377,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "toOperateState(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,60 +568,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/InfoViewDetailViewController.swift"
-            timestampString = "449902317.466286"
+            timestampString = "452965344.123587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
             landmarkName = "InfoViewDetailViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -744,70 +696,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452245330.512846"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "getHTTPAppiaries()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452276049.585785"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "mapView(_:didTapInfoWindowOfMarker:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/SelfTackListCell.swift"
             timestampString = "449896402.370571"
             startingColumnNumber = "9223372036854775807"
@@ -832,22 +720,6 @@
             endingLineNumber = "25"
             landmarkName = "SelfTackListCell"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/TackListViewController.swift"
-            timestampString = "449896769.706306"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -889,114 +761,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/TackListViewController.swift"
-            timestampString = "449897663.572136"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "jp_spinach_basho_swift_02.TackListViewController.viewDidLoad (jp_spinach_basho_swift_02.TackListViewController)() -&gt; ()"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.725809"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "1352">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "jp_spinach_basho_swift_02.TackListViewController.(viewDidLoad (jp_spinach_basho_swift_02.TackListViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.726109"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "272">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "jp_spinach_basho_swift_02.TackListViewController.(viewDidLoad (jp_spinach_basho_swift_02.TackListViewController) -&gt; () -&gt; ()).(closure #2)"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.72631"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "reabstraction thunk helper from @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, @owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;) -&gt; (@unowned ()) to @callee_owned (@in (Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;)) -&gt; (@out ())"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.726521"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "reabstraction thunk helper from @callee_owned (@in (Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;)) -&gt; (@out ()) to @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, @owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;) -&gt; (@unowned ())"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.726744"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "reabstraction thunk helper from @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, @owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;) -&gt; (@unowned ()) to @callee_unowned @objc_block (@unowned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, @unowned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;) -&gt; (@unowned ())"
-                  moduleName = "jp.spinach.basho.swift.02"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/TackSwift/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/TackListViewController.swift"
-                  timestampString = "449897663.726939"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/TackListViewController.swift"
             timestampString = "449898297.80166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1012,28 +776,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "jp.spinach.basho.swift.02/InfoViewDetailViewController.swift"
-            timestampString = "449915124.728518"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "setReplyArea()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "showWhichColorTackView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1045,11 +793,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/TackWriteView.swift"
-            timestampString = "452282258.878129"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1061,11 +809,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452282258.878129"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "595"
-            endingLineNumber = "595"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
             landmarkName = "hideOperationView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1077,11 +825,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
             landmarkName = "showOperationView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1093,11 +841,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452282258.878129"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "597"
-            endingLineNumber = "597"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
             landmarkName = "hideOperationView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1109,11 +857,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "451751816.82068"
+            timestampString = "452963049.27446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1125,11 +873,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "451751816.82068"
+            timestampString = "452963049.27446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1141,11 +889,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "451751816.82068"
+            timestampString = "452963049.27446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1157,11 +905,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "451751816.82068"
+            timestampString = "452963049.27446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1189,11 +937,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452282258.878129"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "625"
-            endingLineNumber = "625"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "checkFrame()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1205,11 +953,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "showSelectorButtons(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1221,11 +969,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "hideSelectorButtons(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1253,11 +1001,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/MainViewController.swift"
-            timestampString = "452275852.602392"
+            timestampString = "452966329.179474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
             landmarkName = "showOperationView(_:)"
             landmarkType = "5">
             <Locations>
@@ -1361,7 +1109,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/SignUpViewController.swift"
@@ -1377,7 +1125,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "jp.spinach.basho.swift.02/SignUpViewController.swift"
@@ -1451,6 +1199,134 @@
             startingLineNumber = "89"
             endingLineNumber = "89"
             landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/HTTPLogic.swift"
+            timestampString = "452966916.974627"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "postTackRequest(_:category:placeName:comment:lat:lng:fileData:callBack:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/TackWriteView.swift"
+            timestampString = "452966922.607803"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "sendTack(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/TackWriteView.swift"
+            timestampString = "452966945.631957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "sendTack(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/HTTPLogic.swift"
+            timestampString = "452967325.677422"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "postTackRequest(_:category:placeName:comment:lat:lng:fileData:callBack:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static jp_spinach_basho_swift_02.HTTPLogic.postTackRequest (jp_spinach_basho_swift_02.HTTPLogic.Type)(Swift.String, category : jp_spinach_basho_swift_02.Category, placeName : Swift.String, comment : Swift.String, lat : Swift.Double, lng : Swift.Double, fileData : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSData&gt;, callBack : (operation : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, responseObject : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "jp.spinach.basho.swift.02"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Tack/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/HTTPLogic.swift"
+                  timestampString = "452967325.719803"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "3976">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static jp_spinach_basho_swift_02.HTTPLogic.(postTackRequest (jp_spinach_basho_swift_02.HTTPLogic.Type) -&gt; (Swift.String, category : jp_spinach_basho_swift_02.Category, placeName : Swift.String, comment : Swift.String, lat : Swift.Double, lng : Swift.Double, fileData : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSData&gt;, callBack : (operation : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.AFHTTPRequestOperation&gt;, responseObject : Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; ()) -&gt; ()).(closure #4)"
+                  moduleName = "jp.spinach.basho.swift.02"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Tack/jp.spinach.basho.swift.02/jp.spinach.basho.swift.02/HTTPLogic.swift"
+                  timestampString = "452967325.720126"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/HTTPLogic.swift"
+            timestampString = "452967325.940825"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "postTackRequest(_:category:placeName:comment:lat:lng:fileData:callBack:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "jp.spinach.basho.swift.02/HTTPLogic.swift"
+            timestampString = "452967327.5282"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "postTackRequest(_:category:placeName:comment:lat:lng:fileData:callBack:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

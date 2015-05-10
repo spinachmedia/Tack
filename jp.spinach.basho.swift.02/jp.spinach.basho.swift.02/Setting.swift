@@ -1,4 +1,3 @@
-//
 //  Setting.swift
 //  jp.spinach.basho.swift.02
 //
@@ -10,26 +9,17 @@ import Foundation
 
 struct Setting {
     
-    static let DATASTORE_ID         = "_sandbox";
-    static let APPLICATION_ID       = "Basho";
-    static let APPLICATION_TOKEN    = "app259a60881817bd612ac7c6fd10";
+    //20150510 サーバを変更
+    static let SERVER_URL = "http://tack.spinachmedia.info"
+    static let SERVER_PORT = "3000"
+
+    static let GET_TACK = "/api/getTack"
+    static let GET_MY_TACK = "/api/getMyTack"
+    static let GET_REPLY = "/api/getReply"
     
-    static let COMMENT_STORAGE      = "comment_latlng"
-    static let FILE_STORAGE         = "image_latlang"
+    static let POST_TACK = "/api/postTack"
+    static let POST_REPLY = "/api/postReply"
+    static let POST_GOOD = "/api/postGood"
     
-    static let GET_COMMENT_URL      = "https://api-datastore.appiaries.com/v1/dat/_sandbox/Basho/comment_latlng/-;"
-    
-    static let SET_COMMENT_URL      = "https://api-datastore.appiaries.com/v1/dat/_sandbox/Basho/comment_latlng"
-    
-    
-    static let GET_REPLY_URL      = "https://api-datastore.appiaries.com/v1/dat/_sandbox/Basho/reply_latlang/-;"
-    
-    static let SET_REPLY_URL      = "https://api-datastore.appiaries.com/v1/dat/_sandbox/Basho/reply_latlang"
-    
-    static let UPDATE_COMMENT_URL      = "https://api-datastore.appiaries.com/v1/dat/_sandbox/Basho/comment_latlng"
-    
-    static let SET_IMAGE_URL        = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang"
-    
-    static let IMAGE_URL_WITH_OBJECT_ID = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/"
     
 }

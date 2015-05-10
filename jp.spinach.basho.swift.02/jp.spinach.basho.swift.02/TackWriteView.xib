@@ -185,6 +185,7 @@
                 <outlet property="gallaryButton" destination="GQC-V6-6zz" id="Cik-7V-qIv"/>
                 <outlet property="imageView" destination="bby-fU-jJI" id="3SH-aC-qie"/>
                 <outlet property="placeAreaView" destination="Oyj-6g-c2s" id="MPn-hl-jDI"/>
+                <outlet property="placeText" destination="pj7-dX-e4n" id="2Xk-gD-HWd"/>
                 <outlet property="removeButton" destination="3FN-Xr-as2" id="x76-tJ-3Xd"/>
                 <outlet property="tackButton" destination="d6a-I7-chd" id="It1-XV-uly"/>
                 <outlet property="textView" destination="qUD-8m-G9B" id="SDx-vV-dYA"/>

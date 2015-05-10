@@ -25,9 +25,9 @@ class MapLogic {
         
         var markerList : [GMSMarkerExt] = [GMSMarkerExt]()
         
-        for (var i : Int = 0; i < json["_objs"].count; i++) {
+        for (var i : Int = 0; i < json["items"].count; i++) {
             
-            var oneRecord = json["_objs"][i]
+            var oneRecord = json["items"][i]
             let marker: GMSMarkerExt = GMSMarkerExt ()
             marker.id = i;
             marker.snippet = oneRecord["comment"].string
@@ -71,7 +71,7 @@ class MapLogic {
     :returns: <#return value description#>
     */
     class func isMyTack(oneRecord:JSON) -> Bool{
-        if(oneRecord["user_id"].string == LocalDataLogic.getUUID()){
+        if(oneRecord["sns_id"].string == LocalDataLogic.getUUID()){
             return true
         }
         return false

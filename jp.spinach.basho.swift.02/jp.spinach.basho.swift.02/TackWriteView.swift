@@ -12,7 +12,10 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     
     
     @IBOutlet weak var back: UIView!
-    var category : Category = Category.FOOD
+    
+    //座標情報
+    var lm: CLLocationManager!
+    
     
     var colorTheme : UIColor?
     var startColor : UIColor?
@@ -24,15 +27,18 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     var controller : MainViewController?
     
     @IBOutlet weak var backgroundView: UIView!
-    
     @IBOutlet weak var frameView: UIView!
-
     @IBOutlet weak var placeAreaView: UIView!
-    @IBOutlet weak var textView: UITextViewExt!
     @IBOutlet weak var footerView: UIView!
     
     
+    //入力項目
+    var category : Category = Category.FOOD
+    @IBOutlet weak var placeText: UITextField!
+    @IBOutlet weak var textView: UITextViewExt!
     @IBOutlet weak var imageView: UIImageView!
+    
+    
     @IBOutlet weak var removeButton: UIButton!
     
     //色を変えるボタン
@@ -220,14 +226,18 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     
     ///添付した画像を削除する
     @IBAction func removePicture(sender: AnyObject) {
+        rmPic()
+    }
+    
+    func rmPic(){
         self.removeButton.hidden = true
         var frameBk = self.imageView.frame
         UIView.animateWithDuration(0.3, animations: {() -> Void in
             self.imageView.frame = CGRect(
                 x: self.imageView.frame.origin.x +
-                self.imageView.frame.width / 2 ,
+                    self.imageView.frame.width / 2 ,
                 y: self.imageView.frame.origin.y +
-                self.imageView.frame.height / 2 ,
+                    self.imageView.frame.height / 2 ,
                 width: 0,
                 height: 0
             )
@@ -236,11 +246,36 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
                 self.imageView.frame = frameBk
                 self.imageView.backgroundColor = UIColor.whiteColor()
         })
-
     }
     
+    
+    //SEND!!!!!!!
+    
     @IBAction func sendTack(sender: AnyObject) {
-        //Tack送信
+        var imageData : NSData!;
+        if(imageView.image != nil){
+            imageData = ImageLogic.resizeIamgeWidth300(imageView.image)
+        }else{
+            imageData = nil;
+        }
+            
+            HTTPLogic.postTackRequest(
+                "sns_id",
+                category: category,
+                placeName: placeText.text,
+                comment: textView.text,
+                lat: self.lm.location.coordinate.latitude,
+                lng: self.lm.location.coordinate.longitude,
+                fileData: imageData,
+                callBack:{ (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+                    println(responseObject)
+                    
+                    self.placeText.text = ""
+                    self.textView.text = ""
+                    self.rmPic()
+                    
+                }
+            )
     }
     
     //グラデーションアニメ
