@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18383F8F1B04F6C5008FD8F2 /* fukidasi_brue.png in Resources */ = {isa = PBXBuildFile; fileRef = 18383F8D1B04F6C5008FD8F2 /* fukidasi_brue.png */; };
+		18383F901B04F6C5008FD8F2 /* fukidasi_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18383F8E1B04F6C5008FD8F2 /* fukidasi_yellow.png */; };
+		18383F921B04F6FF008FD8F2 /* Tack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18383F911B04F6FF008FD8F2 /* Tack.swift */; };
+		18383F941B04F71E008FD8F2 /* DateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18383F931B04F71E008FD8F2 /* DateLogic.swift */; };
 		1840F3EA1ACFE20900FAEF5C /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840F3E91ACFE20900FAEF5C /* SlideMenuController.swift */; };
 		1840F3EC1ACFE40E00FAEF5C /* LeftboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840F3EB1ACFE40E00FAEF5C /* LeftboardViewController.swift */; };
 		1840F3EE1ACFF3E000FAEF5C /* RegisterAcountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840F3ED1ACFF3E000FAEF5C /* RegisterAcountViewController.swift */; };
@@ -52,7 +56,6 @@
 		18B7D3341AC7DC33009283B6 /* InfoViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D3331AC7DC33009283B6 /* InfoViewDetailViewController.swift */; };
 		18B7D3361AC84BEC009283B6 /* LocalDataLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7D3351AC84BEC009283B6 /* LocalDataLogic.swift */; };
 		18C5D9221AAAB92900AF7EBB /* MapLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5D9211AAAB92900AF7EBB /* MapLogic.swift */; };
-		18C5D9241AAABB0300AF7EBB /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5D9231AAABB0300AF7EBB /* HTTPManager.swift */; };
 		18C5D9271AAACCFC00AF7EBB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5D9261AAACCFC00AF7EBB /* Category.swift */; };
 		18C5D9291AAACD5200AF7EBB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5D9281AAACD5200AF7EBB /* State.swift */; };
 		18C5D92B1AAAE95E00AF7EBB /* SnapCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5D92A1AAAE95E00AF7EBB /* SnapCameraViewController.swift */; };
@@ -87,6 +90,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18383F8D1B04F6C5008FD8F2 /* fukidasi_brue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fukidasi_brue.png; sourceTree = "<group>"; };
+		18383F8E1B04F6C5008FD8F2 /* fukidasi_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fukidasi_yellow.png; sourceTree = "<group>"; };
+		18383F911B04F6FF008FD8F2 /* Tack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tack.swift; sourceTree = "<group>"; };
+		18383F931B04F71E008FD8F2 /* DateLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLogic.swift; sourceTree = "<group>"; };
 		1840F3E91ACFE20900FAEF5C /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		1840F3EB1ACFE40E00FAEF5C /* LeftboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftboardViewController.swift; sourceTree = "<group>"; };
 		1840F3ED1ACFF3E000FAEF5C /* RegisterAcountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAcountViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +139,6 @@
 		18B7D3331AC7DC33009283B6 /* InfoViewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewDetailViewController.swift; sourceTree = "<group>"; };
 		18B7D3351AC84BEC009283B6 /* LocalDataLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataLogic.swift; sourceTree = "<group>"; };
 		18C5D9211AAAB92900AF7EBB /* MapLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLogic.swift; sourceTree = "<group>"; };
-		18C5D9231AAABB0300AF7EBB /* HTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		18C5D9261AAACCFC00AF7EBB /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		18C5D9281AAACD5200AF7EBB /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		18C5D92A1AAAE95E00AF7EBB /* SnapCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapCameraViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +200,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		18383F8C1B04F6B1008FD8F2 /* TACK_INFO */ = {
+			isa = PBXGroup;
+			children = (
+				18F042731AF5336100A5151C /* fukidasi_pink.png */,
+				18383F8D1B04F6C5008FD8F2 /* fukidasi_brue.png */,
+				18383F8E1B04F6C5008FD8F2 /* fukidasi_yellow.png */,
+			);
+			name = TACK_INFO;
+			sourceTree = "<group>";
+		};
 		1840F3F31ACFF71F00FAEF5C /* LeftBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +225,7 @@
 		1840F4021AD1063D00FAEF5C /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				18F042731AF5336100A5151C /* fukidasi_pink.png */,
+				18383F8C1B04F6B1008FD8F2 /* TACK_INFO */,
 				18F0426E1AF1298F00A5151C /* COMMON_ICON */,
 				185E4A7D1AE6934E00A2F8B7 /* TACK_WRITE */,
 				185E4A7B1AE3E2A800A2F8B7 /* PIN */,
@@ -336,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				18C5D9211AAAB92900AF7EBB /* MapLogic.swift */,
-				18C5D9231AAABB0300AF7EBB /* HTTPManager.swift */,
+				18383F931B04F71E008FD8F2 /* DateLogic.swift */,
 				188D75D81ABEBBBC0004350C /* Random.swift */,
 				188D75DA1ABECB700004350C /* ImageLogic.swift */,
 				1840F3F61AD03CC100FAEF5C /* HTTPLogic.swift */,
@@ -381,6 +397,7 @@
 				1840F4021AD1063D00FAEF5C /* Images */,
 				18BE01C51AAAB35800AB8436 /* lib */,
 				18C805701A97A15300310A0A /* GMSMarkerExt.swift */,
+				18383F911B04F6FF008FD8F2 /* Tack.swift */,
 				185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */,
 				188D75D41ABDAF680004350C /* Setting.swift */,
 				18C805441A964E7600310A0A /* AppDelegate.swift */,
@@ -552,12 +569,14 @@
 				185E4A9F1AECB4F900A2F8B7 /* noimage.png in Resources */,
 				185E4A8F1AE6937900A2F8B7 /* button01_food.png in Resources */,
 				185E4A8B1AE6937900A2F8B7 /* button02_camera_shopping.png in Resources */,
+				18383F8F1B04F6C5008FD8F2 /* fukidasi_brue.png in Resources */,
 				185E4A8A1AE6937900A2F8B7 /* button01_picture_food.png in Resources */,
 				18C805521A964E7600310A0A /* LaunchScreen.xib in Resources */,
 				18C8054F1A964E7600310A0A /* Images.xcassets in Resources */,
 				1840F4071AD11F0900FAEF5C /* icon04_mytack.png in Resources */,
 				185E4A911AE6937900A2F8B7 /* kakikomigamen_design-02.jpg in Resources */,
 				185E4A901AE6937900A2F8B7 /* button02_shopping.png in Resources */,
+				18383F901B04F6C5008FD8F2 /* fukidasi_yellow.png in Resources */,
 				18F0426D1AF1298700A5151C /* left_menu-01.png in Resources */,
 				18CFE9871AED3C9500EECEC4 /* Login.storyboard in Resources */,
 				185E4A8C1AE6937900A2F8B7 /* button02_picture_shopping.png in Resources */,
@@ -622,6 +641,7 @@
 				185E4AA11AECB96C00A2F8B7 /* UITextViewExt.swift in Sources */,
 				18C8054A1A964E7600310A0A /* ViewControllerExt.swift in Sources */,
 				18C5D9221AAAB92900AF7EBB /* MapLogic.swift in Sources */,
+				18383F921B04F6FF008FD8F2 /* Tack.swift in Sources */,
 				188D75D91ABEBBBC0004350C /* Random.swift in Sources */,
 				18F042721AF4F6B400A5151C /* SceneLogic.swift in Sources */,
 				1840F3EA1ACFE20900FAEF5C /* SlideMenuController.swift in Sources */,
@@ -639,11 +659,11 @@
 				18C5D92B1AAAE95E00AF7EBB /* SnapCameraViewController.swift in Sources */,
 				1840F3FD1AD104F700FAEF5C /* ReplyView.swift in Sources */,
 				18B7D3361AC84BEC009283B6 /* LocalDataLogic.swift in Sources */,
+				18383F941B04F71E008FD8F2 /* DateLogic.swift in Sources */,
 				1840F3EE1ACFF3E000FAEF5C /* RegisterAcountViewController.swift in Sources */,
 				18C8056B1A964FB600310A0A /* MainViewController.swift in Sources */,
 				188D75DF1AC19FED0004350C /* InfoView.swift in Sources */,
 				18B7D3341AC7DC33009283B6 /* InfoViewDetailViewController.swift in Sources */,
-				18C5D9241AAABB0300AF7EBB /* HTTPManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -108,6 +108,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backgroundView" destination="owu-WQ-E2B" id="UQF-am-6mv"/>
+                <outlet property="bgImage" destination="goO-DW-hKR" id="2cg-WS-KN7"/>
                 <outlet property="commentCount" destination="33Q-Rd-yX3" id="Kvl-uV-vcz"/>
                 <outlet property="goodTackCount" destination="WjD-cW-STG" id="HXc-0U-4jX"/>
                 <outlet property="snsIcon" destination="1vK-wY-h7c" id="GSw-18-wNa"/>
