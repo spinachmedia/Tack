@@ -39,6 +39,17 @@ class InfoView: UIView {
     
     func initialize(tack:Tack){
         self.tack = tack
+        
+        if tack.snsId != "" {
+            
+            if(tack.snsCategory == "FB" || tack.snsCategory == "fb" ){
+                //画像と表示名のセット
+                setFBProfile(tack.snsId);
+                self.snsName.text = tack.snsName
+                
+            }
+
+        }
 
         self.category = tack.category
         self.tackTitle.text = tack.placeName
@@ -47,10 +58,13 @@ class InfoView: UIView {
         self.commentCount.text = String(tack.commentCount)
         if(tack.hasFileFlg){
             self.tackImage.contentMode = UIViewContentMode.ScaleAspectFit
-            self.tackImage.image = HTTPLogic.getImage(tack.filePath)
+            if let image = HTTPLogic.getImage(tack.filePath) {
+               self.tackImage.image = HTTPLogic.getImage(tack.filePath)!
+            }
         }
         self.snsTime.text = DateLogic.date2StringForView(tack.date)
         
+
         switch self.category {
         case Category.FOOD:
             self.bgImage.image = UIImage(named: "fukidasi_pink.png")!
@@ -64,6 +78,20 @@ class InfoView: UIView {
         case Category.MYTACK:
             break;
         }
+    }
+    
+    
+    func setFBProfile(id:String){
+        
+        var urlString : String = "https://graph.facebook.com/" + id + "/picture"
+        var url : NSURL? = NSURL(string: urlString)
+        var data : NSData? = NSData(contentsOfURL: url!)
+        if let id = data {
+            //println("OK")
+            var snsImage : UIImage? = UIImage(data: data!)
+            snsIcon.image = snsImage!
+        }
+
     }
 
 }

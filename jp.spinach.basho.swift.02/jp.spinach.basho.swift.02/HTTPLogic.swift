@@ -76,7 +76,7 @@ struct HTTPLogic {
             var params: Dictionary = [
                 "sns_id": sns_id,
                 "category": category.toString(),
-                "placeName": placeName,
+                "place_name": placeName,
                 "comment": comment,
                 "lat": NSString(format: "%.15f", lat),
                 "lng": NSString(format: "%.15f", lng),
@@ -112,11 +112,15 @@ struct HTTPLogic {
             
     }
     
-    static func getImage(path : String) -> UIImage{
+    static func getImage(path : String) -> UIImage?{
         let url = NSURL(string: Setting.SERVER_URL + ":" + Setting.SERVER_PORT + "/" + path)
         let imageData = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: nil)
-        let uiImage = UIImage(data: imageData!)
-        return uiImage!
+        if let id = imageData {
+            let uiImage = UIImage(data: imageData!)
+            return uiImage
+        }else{
+            return nil
+        }
     }
     
     

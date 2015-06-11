@@ -267,7 +267,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         }
             
             HTTPLogic.postTackRequest(
-                "sns_id",
+                FBSDKProfile.currentProfile().userID,
                 category: category,
                 placeName: placeText.text,
                 comment: textView.text,
@@ -280,6 +280,8 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
                     self.placeText.text = ""
                     self.textView.text = ""
                     self.rmPic()
+                    
+                    self.controller?.close()
                     
                 }
             )

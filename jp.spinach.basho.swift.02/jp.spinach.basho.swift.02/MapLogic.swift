@@ -136,5 +136,6 @@ class MapLogic {
     class func clearMarkers(mapView:GMSMapView){
         mapView.clear();
     }
+    
 
 }

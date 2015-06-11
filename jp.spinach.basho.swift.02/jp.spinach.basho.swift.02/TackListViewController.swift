@@ -8,74 +8,101 @@
 
 import UIKit
 
-class TackListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class TackListViewController: UIViewController , UIWebViewDelegate{
     
-    var jsonData:JSON?
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //自分のタックリストの読み込み
-//        let manager:AFHTTPRequestOperationManager = HTTPManager.HTTPRequestManagerFactory()
-//        var query = Setting.GET_COMMENT_URL + "user_id.eq." + LocalDataLogic.getUUID()
-//        manager.GET(query , parameters: nil,
-//            success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-//                println(responseObject)
-//                self.jsonData = JSON(responseObject)
-//                self.tableView.reloadData()
-//            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-//                println("error: \(error)")
-//            }
-//        )
+        let urlString = NSBundle.mainBundle().pathForResource(Setting.LOCAL_HTML_TACKLIST, ofType: "html");
+        let requestURL = NSURL(string: urlString!)
+        let req = NSURLRequest(URL: requestURL!)
+        self.webView.loadRequest(req)
+        self.webView.delegate = self
+        self.webView.scrollView.bounces = false
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        self.tableView.registerNib(UINib(nibName: "SelfTackList", bundle:nil), forCellReuseIdentifier: "SelfTackList")
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
     }
     
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 189
+    func webViewDidFinishLoad(webView: UIWebView) {
+        getMyTackList("FB");
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : SelfTackListCell = tableView.dequeueReusableCellWithIdentifier("SelfTackList", forIndexPath: indexPath) as! SelfTackListCell
+    func getMyTackList(sns:String){
         
+        //GET先のURLをHTMLに渡す
+        var urlSetDomeinMethod = "setDomain('http://tack.spinachmedia.info:3000/')";
+        webView.stringByEvaluatingJavaScriptFromString(urlSetDomeinMethod)
         
-        if(jsonData == nil){
-            
-        }else{
-            cell.placeLabel.text = self.jsonData!["_objs"][indexPath.row]["place"].string
-            cell.bodyTextView.text = self.jsonData!["_objs"][indexPath.row]["comment"].string
-            cell.goodTackCount.text = self.jsonData!["_objs"][indexPath.row]["tack_point"].stringValue
-            
-            if(self.jsonData!["_objs"][indexPath.row]["has_image"]){
-                var imageUrl:String = "https://api-datastore.appiaries.com/v1/bin/_sandbox/Basho/image_latlang/" + self.jsonData!["_objs"][indexPath.row]["object_id"].string! + "/_bin"
-                let url = NSURL(string: imageUrl)
-                let imageData = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: nil)
-                let uiImage = UIImage(data: imageData!)
-                
-                cell.imagePicture.image = uiImage
-            }
-        }
+        var urlSetBgImage = "setUrlGetBgImage('http://tack.spinachmedia.info:3000/api/getLastImage');"
+        webView.stringByEvaluatingJavaScriptFromString(urlSetBgImage)
         
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(jsonData == nil){
-            return 1
-        }else{
-            var count : String? = self.jsonData!["_total"].stringValue
-            return count!.toInt()!
-        }
-    }
-    
+        var urlSetMethod = "setUrlGetList('http://tack.spinachmedia.info:3000/api/getMyTack');"
+        webView.stringByEvaluatingJavaScriptFromString(urlSetMethod)
+        
+        switch(sns){
+            case "FB":
 
+                var snsIdSetMethod = "setSNSID('" + FBSDKProfile.currentProfile().userID + "');"
+                webView.stringByEvaluatingJavaScriptFromString(snsIdSetMethod)
+                
+                println(FBSDKProfile.currentProfile().userID)
+                
+                var snsTypeSetMethod = "setSNSType('" + sns + "');"
+                webView.stringByEvaluatingJavaScriptFromString(snsTypeSetMethod)
+                
+                var snsNameSetMethod = "setName('" + FBSDKProfile.currentProfile().name + "');"
+                webView.stringByEvaluatingJavaScriptFromString(snsNameSetMethod)
+                
+                var snsImageSetMethod = "setImage('" +
+                    "https://graph.facebook.com/" +
+                    FBSDKProfile.currentProfile().imagePathForPictureMode(
+                        FBSDKProfilePictureMode.Normal,
+                        size: CGSizeMake(100,100)
+                    ) +
+                "');"
+                webView.stringByEvaluatingJavaScriptFromString( snsImageSetMethod )
+                
+                var snsGetTack = "getTackList();"
+                webView.stringByEvaluatingJavaScriptFromString( snsGetTack )
+                
+                var getBgImage = "getBgImage();"
+                webView.stringByEvaluatingJavaScriptFromString( getBgImage )
+
+                
+                break;
+            case "TWITTER":
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let kScheme = "native://";
+        let url = request.URL!.absoluteString
+        println(url!);
+        
+        if url!.hasPrefix(kScheme) {
+            println(request.URL!.host!);
+            switch request.URL!.host! {
+                case "loadFinished":
+                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                    return false;
+                    break;
+                case "toDetail":
+                    return false;
+                    break;
+                default:
+                break;
+            }
+            return false  // ページ遷移を行わないようにfalseを返す
+        }
+        return true
+    }
     
     //LeftBoard
     @IBAction func openLeftBoard(sender: AnyObject) {

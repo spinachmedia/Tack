@@ -25,6 +25,10 @@ class Tack{
     var hasFileFlg : Bool = false
     var filePath : String = "http://tack.spinachmedia.info:3000/img.png"
     var date : NSDate = NSDate();
+    
+    
+    //addingparams
+    var snsName : String = ""
 
     
     func initialize(json : JSON){
@@ -62,8 +66,8 @@ class Tack{
         if let id = json["lng"].float {
             lng = Double(json["lng"].float!)
         }
-        if let id = json["has_file_flg"].string {
-            hasFileFlg = json["has_file_flg"].string! == "1" ? true : false
+        if let id = json["has_file_flg"].int {
+            hasFileFlg = json["has_file_flg"].int! == 1 ? true : false
         }
         if let id = json["file_path"].string {
             filePath = json["file_path"].string!
@@ -71,6 +75,23 @@ class Tack{
         if let id = json["date"].string {
             date = DateLogic.string2Date(json["date"].string!)
         }
+        
+        
+        //名前を取得しておく。
+        //InfoWindow描画後にUIを変更できないため、この段階で情報を取得しておく。
+        if(snsCategory == "FB" || snsCategory == "fb"){
+            var req = FBSDKGraphRequest(graphPath: "/" + snsId ,
+                parameters: nil,
+                HTTPMethod: "GET")
+
+            req.startWithCompletionHandler(
+                { (connection, result, err) -> Void in
+                    var json : JSON = JSON(result)
+                    self.snsName = json["name"].stringValue
+                }
+            )
+        }
+
         
     }
     
@@ -85,6 +106,30 @@ class Tack{
         return tackList
     }
     
-    
+    //TODO ダミーメソッド
+    static func getNearTackList(count : Int,lat : Double, lng: Double, list : [Tack]) -> [Int]{
+        
+        var result : [Int] = []
+        
+        //ID:距離
+        var tmp : [Double] = []
+        
+        //距離を配列に格納
+        for var i = 0 ;i < list.count ; i++ {
+            var tack : Tack = list[i]
+            //距離を算出
+            var dist : Double = ( (lat - tack.lat) * (lat - tack.lat) + (lng - tack.lng) * (lng - tack.lng) )
+            tmp[i] = dist;
+        }
+        
+        //近い順にIDを取り出す
+        for var i = 0 ;i < list.count ; i++ {
+            result.append(i)
+        }
+        
+        println(tmp)
+        
+        return result
+    }
     
 }

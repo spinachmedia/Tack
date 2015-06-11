@@ -22,4 +22,16 @@ struct Setting {
     static let POST_GOOD = "/api/postGood"
     
     
+    /// Local Html Path etc...
+    static let LOCAL_TAG_HTML = "html"
+    static let LOCAL_HTML_TACKLIST = "html/selfTack"
+    
+    static let LOCAL_INFOWINDOW_FB_NAME = "html/faceBookName"
+    
+    ///LocalHtmlMethodName
+//    static let JS_TACKLIST_GET_TACK = "getTackList"
+//    static let JS_LEFT = "("
+//    static let JS_RIGHT = ")"
+    
+    
 }

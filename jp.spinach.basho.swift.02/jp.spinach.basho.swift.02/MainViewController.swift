@@ -2,7 +2,13 @@
 import UIKit
 import CoreLocation
 
+protocol MainViewControllerDelegate{
+    func closeTackWriteView()
+}
+
 class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate,  UINavigationControllerDelegate  {
+    
+    var delegate: MainViewControllerDelegate! = nil
     
     var screenSize:CGSize? = UIScreen.mainScreen().applicationFrame.size
 
@@ -24,17 +30,18 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     var markerList: AnyObject!
     var tackedMarkerList : [GMSMarkerExt]?
     
-    
     /// MAP
     @IBOutlet weak var mapView: GMSMapView!
-    
     
     //受信したtackのリストを格納するリスト
     var tackList : [Tack]?
     
-    
-    
+    //画面下部に表示する近いTackのリスト
+    var nearListView : NearTackListView?
+    @IBOutlet weak var nearView: UIView!
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,11 +49,16 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         //投稿用のViewの座標情報を取得
         operation = UINib(nibName: "TackWriteView",
-            bundle: nil)
-            .instantiateWithOwner(self, options: nil)[0] as? TackWriteView
+            bundle: nil).instantiateWithOwner(self, options: nil)[0] as? TackWriteView
         self.tackWriteView.addSubview(operation!);
         operation!.setup()
         operation!.controller = self
+        
+        //周囲のViewを表示するようのUIViewをセット
+        nearListView = UINib(nibName: "NearTackListView",
+            bundle: nil).instantiateWithOwner(self, options: nil)[0] as? NearTackListView
+        nearListView!.frame.size = self.nearView.frame.size
+        self.nearView.addSubview(nearListView!)
         
         mapView.myLocationEnabled = true
         mapView.delegate = self
@@ -59,12 +71,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         lm.requestAlwaysAuthorization()
         lm.distanceFilter = 300
         lm.startUpdatingLocation()
-        
 
-        
-        //
         self.tackWriteView.hidden = true
-        
         
         self.getTack();
         
@@ -108,18 +116,6 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
     
-    /**
-    座標の取得を開始する
-    */
-    func startLocation(){
-        lm.startUpdatingLocation()
-    }
-    
-    func stopLocation(){
-        
-    }
-    
-    
     //座標の取得を開始する
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
         //NSLog("bbb")
@@ -127,6 +123,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         var now :GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(coordinate.latitude,longitude:coordinate.longitude,zoom:30)
         
         mapView.camera = now
+        
+        getTack()
         
     }
     
@@ -138,15 +136,16 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     */
     func getTack(){
         
-        
-        //非同期通信とコールバックの設定
-        HTTPLogic.getTackRequest("test",
-            lat: self.lm.location.coordinate.latitude,
-            lng: self.lm.location.coordinate.longitude,
-            count: 30,
-            callBack:
-            { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-                
+        if let id = self.lm.location {
+            
+            //非同期通信とコールバックの設定
+            HTTPLogic.getTackRequest("test",
+                lat: self.lm.location.coordinate.latitude,
+                lng: self.lm.location.coordinate.longitude,
+                count: 30,
+                callBack:{
+                    (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+                    
                     //レスポンス処理---------------------------------
                     println("response: \(responseObject)")
                     if(responseObject == nil){
@@ -155,19 +154,21 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                         //Tackインスタンスのリストに変換して保持しておく
                         self.tackList = Tack.tackListFactory(responseObject)
                     }
-    
+                    
                     //ピンを消去する。ピンを立てる。
                     MapLogic.clearMarkers(self.mapView)
                     self.tackedMarkerList = MapLogic.setMarkers(self.tackList!,mapView: self.mapView)
-    
+                    
                     //アプリの起動時のみ、ズーム具合の調整
                     if(self.startFlg){
                         self.startFlg = false
                         MapLogic.ajustZoomPoint(self.tackedMarkerList!, mapView: self.mapView)
                     }
+                    
                 }
-        )
-        
+            )
+
+        }
     }
     
 //MARK: - showToolTip Delegate
@@ -189,14 +190,26 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! InfoView
         let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         
-        //ピンをでかくする
-        //gmsMarker.icon = ImageLogic.resizeImageWidth80(UIImage(named: "pin02_shopping"))
-        
         infoView.initialize(self.tackList![gmsMarker.id])
+        
+        self.nearView.hidden = false
+        self.nearView.userInteractionEnabled = true
+        
+        //近い順にTackのインデックスを取得
+        var items : [Int] = Tack.getNearTackList(30, lat: self.lm.location.coordinate.latitude, lng: self.lm.location.coordinate.longitude, list: self.tackList!)
+        
+        self.nearListView!.initialize(self.tackList!,indexies: items)
+        
         return infoView
     }
     
-    
+    //地図をタップしたときの処理
+    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        self.nearView.hidden = true
+        self.nearView.userInteractionEnabled = false
+
+    }
     
     //-------------------
     //-------------------
@@ -450,6 +463,11 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     }
     
 //---------
+    
+    
+    func close(){
+        toNomalState(0.3);
+    }
     
 
     
