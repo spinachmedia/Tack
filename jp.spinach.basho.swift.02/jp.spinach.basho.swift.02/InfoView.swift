@@ -38,6 +38,15 @@ class InfoView: UIView {
     @IBOutlet weak var commentCount: UILabel!
     
     func initialize(tack:Tack){
+
+        self.setUp(tack)
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+//            
+//        })
+    }
+    
+    func setUp(tack:Tack){
+        Log.debugStartLog()
         self.tack = tack
         
         if tack.snsId != "" {
@@ -78,11 +87,14 @@ class InfoView: UIView {
         case Category.MYTACK:
             break;
         }
+        
+        Log.debugEndLog()
+        
     }
     
     
     func setFBProfile(id:String){
-        
+        Log.debugStartLog()
         var urlString : String = "https://graph.facebook.com/" + id + "/picture"
         var url : NSURL? = NSURL(string: urlString)
         var data : NSData? = NSData(contentsOfURL: url!)
@@ -91,7 +103,7 @@ class InfoView: UIView {
             var snsImage : UIImage? = UIImage(data: data!)
             snsIcon.image = snsImage!
         }
-
+        Log.debugEndLog()
     }
 
 }

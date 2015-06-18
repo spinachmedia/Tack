@@ -48,8 +48,6 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
                 var snsIdSetMethod = "setSNSID('" + FBSDKProfile.currentProfile().userID + "');"
                 webView.stringByEvaluatingJavaScriptFromString(snsIdSetMethod)
                 
-                println(FBSDKProfile.currentProfile().userID)
-                
                 var snsTypeSetMethod = "setSNSType('" + sns + "');"
                 webView.stringByEvaluatingJavaScriptFromString(snsTypeSetMethod)
                 
@@ -92,10 +90,8 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
                 case "loadFinished":
                     MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                     return false;
-                    break;
                 case "toDetail":
                     return false;
-                    break;
                 default:
                 break;
             }

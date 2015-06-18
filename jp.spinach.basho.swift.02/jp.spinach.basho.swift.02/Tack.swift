@@ -119,16 +119,16 @@ class Tack{
             var tack : Tack = list[i]
             //距離を算出
             var dist : Double = ( (lat - tack.lat) * (lat - tack.lat) + (lng - tack.lng) * (lng - tack.lng) )
-            tmp[i] = dist;
+            tmp.append(dist);
         }
+        
+        //距離順でソート
         
         //近い順にIDを取り出す
         for var i = 0 ;i < list.count ; i++ {
             result.append(i)
         }
-        
-        println(tmp)
-        
+
         return result
     }
     

@@ -9,16 +9,6 @@
 import UIKit
 
 class SelfTackListCell: UITableViewCell {
-
-//    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-//        
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        contentView.autoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth
-//    }
-//
-//    required init(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     @IBOutlet weak var placeLabel: UILabel!
     

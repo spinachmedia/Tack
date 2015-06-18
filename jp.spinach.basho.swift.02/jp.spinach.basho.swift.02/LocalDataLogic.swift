@@ -43,7 +43,7 @@ struct LocalDataLogic {
     static func getUUID() -> String{
         var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let result : String? = defaults.stringForKey("user_id")!
-        println(result!)
+        //println(result!)
         return result!
     }
 }

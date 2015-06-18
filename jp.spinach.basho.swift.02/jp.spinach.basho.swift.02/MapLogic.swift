@@ -126,7 +126,6 @@ class MapLogic {
                 var marker : GMSMarkerExt = markerList[i]
                 if(mapView.projection.containsCoordinate(marker.position)){
                     count++
-                    println(count)
                 }//if
             }//for
         }//while

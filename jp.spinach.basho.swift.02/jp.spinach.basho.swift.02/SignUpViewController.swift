@@ -16,7 +16,6 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
         FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
         
         var token : FBSDKAccessToken? = FBSDKAccessToken.currentAccessToken()
-        println(FBSDKAccessToken.currentAccessToken())
         
         var keyValues : NSMutableDictionary = NSMutableDictionary()
         keyValues.setObject("", forKey: "access_token")
@@ -25,21 +24,17 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
         
         if(token != nil){
             //アクセストークンが有効
-            println("OK!")
             toTopViewController()
         }else{
             //アクセストークンが無効
-            println("NG!")
             
             //ローカルから取得
             var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
             var result : String? = defaults.stringForKey("access_token")
             
             if(result != ""){
-                println("OK!")
                 toTopViewController()
             }else{
-                println("NG!")
             }
             
             
@@ -49,17 +44,13 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
     
     
     @IBAction func login(sender: AnyObject) {
-        
-         println("login")
-        
         var loginManager : FBSDKLoginManager = FBSDKLoginManager()
         loginManager.loginBehavior = FBSDKLoginBehavior.Native
         
         loginManager.logInWithReadPermissions(
             ["public_profile","user_friends"] as [String],
             handler: {( result : FBSDKLoginManagerLoginResult!, error : NSError!) -> Void in
-                
-                println("logInWithReadPermissions")
+
                 if((error) != nil){
                     //エラー
                     println("login-error")
@@ -75,8 +66,6 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
                     defaults.setObject(result.token.tokenString, forKey: "access_token")
                     
                     FBSDKAccessToken.setCurrentAccessToken(result.token)
-                    
-                    //FBSDKProfile.currentProfile(FBSDKProfile(result.token))
                     
                     self.toTopViewController()
                 

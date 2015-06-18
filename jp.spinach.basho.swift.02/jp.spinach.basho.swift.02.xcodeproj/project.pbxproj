@@ -77,6 +77,10 @@
 		18F042721AF4F6B400A5151C /* SceneLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F042711AF4F6B400A5151C /* SceneLogic.swift */; };
 		18F042741AF5336100A5151C /* fukidasi_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F042731AF5336100A5151C /* fukidasi_pink.png */; };
 		79CEBDBB6CD9A317ABEDE9FC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A397054802405404586870A /* libPods.a */; };
+		F50075BA1B32F13000B545C6 /* BenchMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50075B91B32F13000B545C6 /* BenchMark.swift */; };
+		F50075BC1B32F31600B545C6 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50075BB1B32F31600B545C6 /* Log.swift */; };
+		F50075C01B32FD9900B545C6 /* AsyncLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50075BF1B32FD9900B545C6 /* AsyncLogic.swift */; };
+		F50075C21B330C0800B545C6 /* TackImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50075C11B330C0800B545C6 /* TackImageView.swift */; };
 		F56939421B14C8F6002D3A3D /* html in Resources */ = {isa = PBXBuildFile; fileRef = F56939411B14C8F6002D3A3D /* html */; };
 		F56939441B18C38B002D3A3D /* pin03_activity.png in Resources */ = {isa = PBXBuildFile; fileRef = F56939431B18C38B002D3A3D /* pin03_activity.png */; };
 		F56939461B18C39B002D3A3D /* pin01_food.png in Resources */ = {isa = PBXBuildFile; fileRef = F56939451B18C39B002D3A3D /* pin01_food.png */; };
@@ -174,6 +178,10 @@
 		1A397054802405404586870A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2E52A56C50BF63EB07CC17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DC45FA1B2FF5A8270E8E3D39 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F50075B91B32F13000B545C6 /* BenchMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchMark.swift; sourceTree = "<group>"; };
+		F50075BB1B32F31600B545C6 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		F50075BF1B32FD9900B545C6 /* AsyncLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncLogic.swift; sourceTree = "<group>"; };
+		F50075C11B330C0800B545C6 /* TackImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TackImageView.swift; sourceTree = "<group>"; };
 		F56939411B14C8F6002D3A3D /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		F56939431B18C38B002D3A3D /* pin03_activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin03_activity.png; sourceTree = "<group>"; };
 		F56939451B18C39B002D3A3D /* pin01_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin01_food.png; sourceTree = "<group>"; };
@@ -372,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				18C5D9211AAAB92900AF7EBB /* MapLogic.swift */,
+				F50075BF1B32FD9900B545C6 /* AsyncLogic.swift */,
 				18383F931B04F71E008FD8F2 /* DateLogic.swift */,
 				188D75D81ABEBBBC0004350C /* Random.swift */,
 				188D75DA1ABECB700004350C /* ImageLogic.swift */,
@@ -417,12 +426,10 @@
 			children = (
 				1840F4021AD1063D00FAEF5C /* Images */,
 				18BE01C51AAAB35800AB8436 /* lib */,
-				18C805701A97A15300310A0A /* GMSMarkerExt.swift */,
-				18383F911B04F6FF008FD8F2 /* Tack.swift */,
-				185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */,
-				188D75D41ABDAF680004350C /* Setting.swift */,
+				F50075B81B32F11A00B545C6 /* Debug */,
+				F50075BD1B32F50F00B545C6 /* Common */,
+				F50075BE1B32F52200B545C6 /* Ext */,
 				18C805441A964E7600310A0A /* AppDelegate.swift */,
-				18C805491A964E7600310A0A /* ViewControllerExt.swift */,
 				18C5D9251AAACCEE00AF7EBB /* Enum */,
 				18C5D9201AAAB8BD00AF7EBB /* Logic */,
 				18BE01C41AAAB33B00AB8436 /* Controller */,
@@ -485,6 +492,35 @@
 				1A397054802405404586870A /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F50075B81B32F11A00B545C6 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				F50075B91B32F13000B545C6 /* BenchMark.swift */,
+				F50075BB1B32F31600B545C6 /* Log.swift */,
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		F50075BD1B32F50F00B545C6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				18383F911B04F6FF008FD8F2 /* Tack.swift */,
+				188D75D41ABDAF680004350C /* Setting.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		F50075BE1B32F52200B545C6 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				18C805701A97A15300310A0A /* GMSMarkerExt.swift */,
+				F50075C11B330C0800B545C6 /* TackImageView.swift */,
+				185E4AA01AECB96C00A2F8B7 /* UITextViewExt.swift */,
+				18C805491A964E7600310A0A /* ViewControllerExt.swift */,
+			);
+			name = Ext;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -668,8 +704,10 @@
 				185E4AA11AECB96C00A2F8B7 /* UITextViewExt.swift in Sources */,
 				18C8054A1A964E7600310A0A /* ViewControllerExt.swift in Sources */,
 				18C5D9221AAAB92900AF7EBB /* MapLogic.swift in Sources */,
+				F50075BC1B32F31600B545C6 /* Log.swift in Sources */,
 				18383F921B04F6FF008FD8F2 /* Tack.swift in Sources */,
 				188D75D91ABEBBBC0004350C /* Random.swift in Sources */,
+				F50075BA1B32F13000B545C6 /* BenchMark.swift in Sources */,
 				18F042721AF4F6B400A5151C /* SceneLogic.swift in Sources */,
 				1840F3EA1ACFE20900FAEF5C /* SlideMenuController.swift in Sources */,
 				188D75D51ABDAF680004350C /* Setting.swift in Sources */,
@@ -681,11 +719,13 @@
 				185E4A9B1AE6986000A2F8B7 /* TackWriteView.swift in Sources */,
 				18CFE9851AED3C7F00EECEC4 /* SignUpViewController.swift in Sources */,
 				18C805451A964E7600310A0A /* AppDelegate.swift in Sources */,
+				F50075C21B330C0800B545C6 /* TackImageView.swift in Sources */,
 				18C5D9271AAACCFC00AF7EBB /* Category.swift in Sources */,
 				18C8056F1A96555900310A0A /* SwiftyJSON.swift in Sources */,
 				1840F3EC1ACFE40E00FAEF5C /* LeftboardViewController.swift in Sources */,
 				18C5D92B1AAAE95E00AF7EBB /* SnapCameraViewController.swift in Sources */,
 				1840F3FD1AD104F700FAEF5C /* ReplyView.swift in Sources */,
+				F50075C01B32FD9900B545C6 /* AsyncLogic.swift in Sources */,
 				18B7D3361AC84BEC009283B6 /* LocalDataLogic.swift in Sources */,
 				18383F941B04F71E008FD8F2 /* DateLogic.swift in Sources */,
 				1840F3EE1ACFF3E000FAEF5C /* RegisterAcountViewController.swift in Sources */,
@@ -814,9 +854,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = jp.spinach.basho.swift.02/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/build/Debug-iphoneos";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "jp.spinach.basho.swift.02/jp.spinach.basho.swift.02-Bridging-Header.h";
@@ -835,9 +876,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = jp.spinach.basho.swift.02/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Pods/build/Debug-iphoneos";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "jp.spinach.basho.swift.02/jp.spinach.basho.swift.02-Bridging-Header.h";

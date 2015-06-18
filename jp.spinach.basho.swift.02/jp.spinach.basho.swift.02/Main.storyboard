@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A4q-vw-FHB">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -194,7 +193,7 @@
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHk-YF-7bp">
                                         <rect key="frame" x="0.0" y="23" width="320" height="115"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cw4-vw-KEk">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cw4-vw-KEk">
                                                 <rect key="frame" x="251" y="47" width="51" height="31"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="近くのTack通知の有無" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrC-Ww-eiQ">
@@ -203,21 +202,12 @@
                                                 <color key="textColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tackに近づいた時、このアプリに通知します。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwd-Z6-ePC">
-                                                <rect key="frame" x="38" y="42" width="189" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="cw4-vw-KEk" secondAttribute="trailing" constant="20" id="9rR-4B-VwZ"/>
-                                            <constraint firstItem="cw4-vw-KEk" firstAttribute="leading" secondItem="xwd-Z6-ePC" secondAttribute="trailing" constant="24" id="XZL-hg-gfn"/>
                                             <constraint firstAttribute="centerY" secondItem="cw4-vw-KEk" secondAttribute="centerY" id="kno-ZS-eCB"/>
                                             <constraint firstAttribute="height" constant="115" id="tts-Sb-nEd"/>
-                                            <constraint firstAttribute="centerY" secondItem="xwd-Z6-ePC" secondAttribute="centerY" id="vrC-TT-fld"/>
-                                            <constraint firstItem="xwd-Z6-ePC" firstAttribute="leading" secondItem="tHk-YF-7bp" secondAttribute="leading" constant="38" id="xcM-wj-lpD"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc6-Sd-iJk">
@@ -229,17 +219,17 @@
                                                     <constraint firstAttribute="height" constant="30" id="JVc-Gj-TXB"/>
                                                 </constraints>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pm-qm-ZMD">
-                                                <rect key="frame" x="8" y="43" width="304" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="検索範囲" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjy-Au-rmz">
                                                 <rect key="frame" x="18" y="8" width="68" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fjy-Au-rmz" secondAttribute="height" multiplier="68:21" id="GcF-NH-5v8"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pm-qm-ZMD">
+                                                <rect key="frame" x="8" y="43" width="304" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.2576546717" green="0.2576546717" blue="0.2576546717" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

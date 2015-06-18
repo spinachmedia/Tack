@@ -43,6 +43,9 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
     
     override func viewDidLoad() {
+        
+        Log.debugStartLog()
+        
         super.viewDidLoad()
 
         screenSize! = UIScreen.mainScreen().applicationFrame.size
@@ -76,9 +79,14 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         self.getTack();
         
+        Log.debugEndLog()
+        
     }
 
     override func viewWillAppear(animated: Bool) {
+        
+        Log.debugStartLog()
+        
         super.viewWillAppear(animated);
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -97,7 +105,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
             break;
         }
         
-        
+        Log.debugEndLog()
         
     }
     
@@ -118,13 +126,17 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
     //座標の取得を開始する
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
-        //NSLog("bbb")
+    
+        Log.debugStartLog()
+        
         var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:newLocation.coordinate.latitude,longitude:newLocation.coordinate.longitude)
         var now :GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(coordinate.latitude,longitude:coordinate.longitude,zoom:30)
         
         mapView.camera = now
         
         getTack()
+        
+        Log.debugEndLog()
         
     }
     
@@ -135,6 +147,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     ピンのリストを取得する
     */
     func getTack(){
+        
+        Log.debugStartLog()
         
         if let id = self.lm.location {
             
@@ -147,7 +161,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                     (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
                     
                     //レスポンス処理---------------------------------
-                    println("response: \(responseObject)")
+                    //Log.debugLog(responseObject)
                     if(responseObject == nil){
                         return
                     }else{
@@ -169,6 +183,9 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
             )
 
         }
+        
+        Log.debugEndLog()
+        
     }
     
 //MARK: - showToolTip Delegate
@@ -176,39 +193,53 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     //InfoWindowをタップした場合の処理。
     //tackの詳細画面に飛びます
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
-        println("tap!")
-        
+        Log.debugStartLog()
         let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
         nextController.tack = self.tackList![gmsMarker.id]
         self.navigationController?.pushViewController(nextController as UIViewController, animated: true)
+        Log.debugEndLog()
     }
     
     //InfoWindowを表示するときの処理
+    //すぐに重くなるので注意
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        Log.debugStartLog()
+        
+        
+        //Tackの情報をSetする
+        Log.debugLogWithTime("infoViewSetUpBefore")
         let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! InfoView
+        Log.debugLogWithTime("infoViewSetUpAfter")
         let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         
         infoView.initialize(self.tackList![gmsMarker.id])
         
+        //近隣tackを表示するViewを表示する/操作可能にする
         self.nearView.hidden = false
         self.nearView.userInteractionEnabled = true
         
         //近い順にTackのインデックスを取得
-        var items : [Int] = Tack.getNearTackList(30, lat: self.lm.location.coordinate.latitude, lng: self.lm.location.coordinate.longitude, list: self.tackList!)
+        var items : [Int] = Tack.getNearTackList(30,
+            lat: self.lm.location.coordinate.latitude,
+            lng: self.lm.location.coordinate.longitude,
+            list: self.tackList!
+        )
         
         self.nearListView!.initialize(self.tackList!,indexies: items)
+        
+        Log.debugEndLog()
         
         return infoView
     }
     
     //地図をタップしたときの処理
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-        
+        Log.debugStartLog()
         self.nearView.hidden = true
         self.nearView.userInteractionEnabled = false
-
+        Log.debugEndLog()
     }
     
     //-------------------
@@ -424,9 +455,6 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         operation!.category = category
         self.tackWriteView.hidden = false
-//        self.tackButton.setBackgroundImage(
-//            UIImage(named:"icon00_tack_back.png"),
-//            forState: UIControlState.Normal)
 
         self.view.bringSubviewToFront(self.footerView)
         
@@ -440,15 +468,12 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
                         self.view.frame
                 }, completion: {(Bool) -> Void in
                     self.view.bringSubviewToFront(self.footerView)
-                    self.operation!.startAnimation()
             })
         })
     }
     
     func hideOperationView(num : NSTimeInterval){
-//        self.tackButton.setBackgroundImage(
-//            UIImage(named:"icon00_tack.png"),
-//            forState: UIControlState.Normal)
+
         UIView.animateWithDuration(num, animations: {() -> Void in
             self.tackWriteView.frame =
                 CGRectMake(
@@ -473,7 +498,6 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
     //LeftBoard
     @IBAction func openLeftBoard(sender: AnyObject) {
-        //println(FBSDKAccessToken.currentAccessToken())
         self.slideMenuController()?.openLeft()
     }
     /**
@@ -484,11 +508,6 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     @IBAction func update(sender: AnyObject) {
         
     }
-    
-    
-    func checkFrame(){
-        println(self.operation!.frame)
-        println(self.tackWriteView.frame)
-    }
+
 }
 

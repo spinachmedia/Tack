@@ -98,14 +98,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         default:
             break;
         }
-        
-//        var grad : CAGradientLayer = CAGradientLayer()
-//        grad.frame = self.bounds
-//        grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
-//        
-//        self.back.layer.sublayers = nil
-//        self.back.layer.insertSublayer(grad, atIndex: 0)
-        
+
         self.back.backgroundColor = alphaColor!
         
         self.footerView.layer.borderColor = self.colorTheme!.CGColor
@@ -222,7 +215,6 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if info[UIImagePickerControllerOriginalImage] != nil {
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-            println(image)
             self.imageView.image = image
             self.imageView.backgroundColor = self.bgColor
             self.removeButton.hidden = false
@@ -275,33 +267,13 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
                 lng: self.lm.location.coordinate.longitude,
                 fileData: imageData,
                 callBack:{ (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
-                    println(responseObject)
-                    
                     self.placeText.text = ""
                     self.textView.text = ""
                     self.rmPic()
-                    
                     self.controller?.close()
-                    
                 }
             )
     }
     
-    //グラデーションアニメ
-    func startAnimation(){
-        
-//        UIView.animateWithDuration(1.0, animations: {() -> Void in
-//            
-//            var grad : CAGradientLayer = CAGradientLayer()
-//            grad.frame = self.bounds
-//            grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
-//            
-//            self.back.layer.sublayers = nil
-//            self.back.layer.insertSublayer(grad, atIndex: 0)
-//            
-//            }, completion: {(Bool) -> Void in
-//        })
-
-    }
     
 }
