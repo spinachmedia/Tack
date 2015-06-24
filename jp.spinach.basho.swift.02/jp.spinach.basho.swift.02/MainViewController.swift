@@ -207,6 +207,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         Log.debugStartLog()
         
+        //タッチ直後にクルクル
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         //Tackの情報をSetする
         Log.debugLogWithTime("infoViewSetUpBefore")
@@ -228,6 +230,8 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         )
         
         self.nearListView!.initialize(self.tackList!,indexies: items)
+        
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         
         Log.debugEndLog()
         

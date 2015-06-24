@@ -1,0 +1,18 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+    font-size: 80%;    
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    /* 画面選択を禁止するCSS */
+    user-select: none;         /* CSS3 */
+    -moz-user-select: none;    /* Firefox */
+    -webkit-user-select: none; /* Safari、Chrome */
+    -ms-user-select: none;     /* IE10～ */
+}
+

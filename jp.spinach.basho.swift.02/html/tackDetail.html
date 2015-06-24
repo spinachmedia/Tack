@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+        <link rel="stylesheet" type="text/css" href="./css/tackDetail.css">
+        <script src="./js/jquery.js"></script>
+        <script src="./js/tap.js"></script>
+        <script src="./js/tackDetail.js"></script>
+        
+        <script>
+            $(function(){
+                $("#send_button").tap(function(e){
+                    $.ajax({
+                        type: "POST",
+                        url: urlSendReply,
+                        dataType: 'json', 
+                        data: { 
+                            tack_id  : tackId   ,
+                            sns_id   : "test"   , 
+                            comment  : "test",
+                        }
+                    }).done(function( items ) {
+
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <br>
+        <br>
+        <div class="wrapper">
+            <div class="contents">
+                <div id="sns_id"></div>
+                <div id="sns_name"></div>
+                <div id="sns_image"></div>
+                <div id="sns_category"></div>
+                <div id="category"></div>
+                <div id="place_name"></div>
+                <div id="comment"></div>
+                <div id="good_tack"></div>
+                <div id="city_code"></div>
+                <div id="lat"></div>
+                <div id="lng"></div>
+                <div id="has_file_flg"></div>
+                <div id="file_path"></div>
+                <div id="date"></div>
+                <div id="reply_form">
+                    <input id="reply_text_form" type="text" />
+                    <div style="padding:30px;background-color:#DDD;" id="send_button">送信</div>
+                </div>
+                <div id="reply_list">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

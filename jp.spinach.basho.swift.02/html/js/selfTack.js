@@ -5,6 +5,8 @@ var urlGetBgImage = "";
 var snsId = "";
 var snsType = "";
 
+var getSelfTackCount = 0;
+
 var article = "<article tack_id=''>\
     <div class='tack_date_time'></div>\
     <div class='tack food'>\
@@ -103,9 +105,6 @@ var getBgImage = function(){
 
 //自身のTackを取得する
 var getTackList = function(){
-//    var urlGetList = "http://tack.spinachmedia.info:3000/api/getMyTack";
-//    var snsId = "827102510712914";
-//    var snsType = "FB";
     $.ajax({
         type: "GET",
         url: urlGetList,
@@ -121,7 +120,7 @@ var getTackList = function(){
             createArticle(items["items"][i]);
         }
         location.href = "native://loadFinished"
-        //window.open("native://loadFinished");
+        getSelfTackCount = 30;
     });
 }
 
@@ -163,4 +162,24 @@ var createArticle = function(tackData){
 }
 
 
-
+var getNextTack = function(){
+    
+    $.ajax({
+        type: "GET",
+        url: urlGetList,
+        dataType: 'json', 
+        data: { 
+            sns_id   : snsId   ,
+            sns_type : snsType ,
+            start   : getSelfTackCount + 1, 
+            count   : 30      ,
+        }
+    }).done(function( items ) {
+        for(var i = 0 ; i < items["items"].length ; i++){
+            createArticle(items["items"][i]);
+        }
+        //location.href = "native://loadFinished"
+        getSelfTackCount = getSelfTackCount + 30;
+    });
+    
+}

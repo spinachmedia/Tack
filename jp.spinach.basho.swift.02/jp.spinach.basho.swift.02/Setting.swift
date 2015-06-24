@@ -25,6 +25,7 @@ struct Setting {
     /// Local Html Path etc...
     static let LOCAL_TAG_HTML = "html"
     static let LOCAL_HTML_TACKLIST = "html/selfTack"
+    static let LOCAL_HTML_TACKDETAIL = "html/tackDetail"
     
     static let LOCAL_INFOWINDOW_FB_NAME = "html/faceBookName"
     

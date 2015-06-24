@@ -10,8 +10,6 @@ import Foundation
 
 class Log {
     
-    
-    
     static func debugLog(obj: AnyObject?,
         function: String = __FUNCTION__,
         line: Int = __LINE__) {
