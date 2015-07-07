@@ -6,7 +6,12 @@ protocol MainViewControllerDelegate{
     func closeTackWriteView()
 }
 
-class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate,  UINavigationControllerDelegate  {
+class MainViewController: UIViewController,
+    GMSMapViewDelegate,
+    CLLocationManagerDelegate,
+    UINavigationControllerDelegate,
+    TackImageViewDelegate
+{
     
     var delegate: MainViewControllerDelegate! = nil
     
@@ -40,6 +45,10 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     var nearListView : NearTackListView?
     @IBOutlet weak var nearView: UIView!
 
+    
+    //Tackを読み込んだ時のカメラポジション
+    var tackLoadedPositionLat : Double = 0.0
+    var tackLoadedPositionLng : Double = 0.0
     
     
     override func viewDidLoad() {
@@ -77,6 +86,7 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
 
         self.tackWriteView.hidden = true
         
+        //近辺のTackを取得
         self.getTack();
         
         Log.debugEndLog()
@@ -152,6 +162,10 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         
         if let id = self.lm.location {
             
+            //Tack取得時の座標を保存しておく
+            tackLoadedPositionLat = self.lm.location.coordinate.latitude
+            tackLoadedPositionLng = self.lm.location.coordinate.longitude
+            
             //非同期通信とコールバックの設定
             HTTPLogic.getTackRequest("test",
                 lat: self.lm.location.coordinate.latitude,
@@ -190,30 +204,73 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
     
 //MARK: - showToolTip Delegate
     
-    //InfoWindowをタップした場合の処理。
-    //tackの詳細画面に飛びます
-    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+    //infoWindowフラグ
+    //InfoWindow表示中はtrueになる
+    var showingInfoWindow = false
+    
+    
+    
+    //マーカーをタップした場合の処理
+    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
         Log.debugStartLog()
-        let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
-        nextController.tack = self.tackList![gmsMarker.id]
-        self.navigationController?.pushViewController(nextController as UIViewController, animated: true)
-        Log.debugEndLog()
+        Log.debugLog("didTapMarker")
+        Log.debugLog(showingInfoWindow)
+        
+        //InfoWindowが表示中の場合
+        if(showingInfoWindow){
+            
+            //タップしたマーカーの取り出し
+            var tappedMarker = marker as! GMSMarkerExt
+            Log.debugLog("tappedMarker.tackId = " + tappedMarker.tackId)
+            
+            //開いているマーカの取り出し
+            var selectedMarker = mapView.selectedMarker as! GMSMarkerExt
+            Log.debugLog("selectedmarker.tackId = " + selectedMarker.tackId)
+            
+            //もしも、開いている状態のTackを取得した時
+            if(tappedMarker.tackId == selectedMarker.tackId){
+                Log.debugLog("一致")
+                
+                //近隣tackを表示するViewを非表示にする/操作不能にする
+                self.nearView.hidden = true
+                self.nearView.userInteractionEnabled = false
+                
+                //InfoWindowを閉じる
+                mapView.selectedMarker = nil
+                
+                showingInfoWindow = false
+                return true
+            }else{
+                Log.debugLog("不一致")
+                showingInfoWindow = true
+                //新しいInfoWindowを開く
+                return false
+            }
+
+        //InfoWindow非表示の場合
+        }else{
+            
+            showingInfoWindow = true
+            
+            //infoWindow呼び出し直前
+            //タッチ直後にクルクル
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
+            Log.debugEndLog()
+            //カスタムInfoWindowを表示
+            return false
+        }
+        
     }
     
+    //ピンをタップした場合の処理
     //InfoWindowを表示するときの処理
     //すぐに重くなるので注意
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         Log.debugStartLog()
         
-        //タッチ直後にクルクル
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        
         //Tackの情報をSetする
-        Log.debugLogWithTime("infoViewSetUpBefore")
         let infoView:InfoView = UINib(nibName: "InfoView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! InfoView
-        Log.debugLogWithTime("infoViewSetUpAfter")
         let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
         
         infoView.initialize(self.tackList![gmsMarker.id])
@@ -229,14 +286,29 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
             list: self.tackList!
         )
         
-        self.nearListView!.initialize(self.tackList!,indexies: items)
+        self.nearListView!.initialize(self.tackList!,indexies: items,controller: self)
         
+        //クルクルを消す
         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         
         Log.debugEndLog()
         
         return infoView
     }
+    
+    //InfoWindowをタップした場合の処理。
+    //tackの詳細画面に飛びます
+    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        Log.debugStartLog()
+        let gmsMarker : GMSMarkerExt = marker as! GMSMarkerExt
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
+        nextController.tack = self.tackList![gmsMarker.id]
+        self.navigationController?.pushViewController(nextController as UIViewController, animated: true)
+        Log.debugEndLog()
+    }
+    
+    
     
     //地図をタップしたときの処理
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
@@ -245,6 +317,50 @@ class MainViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerD
         self.nearView.userInteractionEnabled = false
         Log.debugEndLog()
     }
+    
+
+    //Delegateメソッド。
+    //近隣のTackリストの画像をタップした際に呼ばれる。
+    func moveCameraToMarker(tackId : String, lat :Double,lng: Double) {
+        Log.debugStartLog()
+        Log.debugLog("tackId : " + tackId)
+        
+        //tackIdからマーカーを取得
+        var tack :Tack? = Tack.getTackFromListWithTackId(tackList!,tackId: tackId)
+        Log.debugLog(tack)
+        
+        //GMSMarkerを生成する
+        var marker : GMSMarkerExt? = GMSMarkerExt.getGMSMarkerExtFromList(tackedMarkerList!,tackId: tackId)
+        
+        //InfoWindowの表示
+        mapView.selectedMarker = marker!
+        
+        //座標を取得
+        var target : CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lng);
+        
+        //カメラデータを生成
+        var camera : GMSCameraUpdate = GMSCameraUpdate.setTarget(target)
+        
+        //カメラを移動
+        mapView.animateWithCameraUpdate(camera)
+        
+        Log.debugEndLog()
+    }
+    
+    //マップのカメラが動いた時に呼び出される。
+    //大きく動いた時に新たにTackを取得する
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        Log.debugLog("idleAtCameraPosition")
+        Log.debugLog(position)
+        
+        var nouLat = position.target.latitude
+        var nouLng = position.target.longitude
+        
+        //tackLoadedPositionLat = self.lm.location.coordinate.latitude
+        //tackLoadedPositionLng = self.lm.location.coordinate.longitude
+    }
+    
+    
     
     //-------------------
     //-------------------

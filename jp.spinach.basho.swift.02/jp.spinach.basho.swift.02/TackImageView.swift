@@ -8,8 +8,42 @@
 
 import UIKit
 
+
+//タップの結果をメイン画面に伝播するためのデリゲートプロトコル
+protocol TackImageViewDelegate{
+    func moveCameraToMarker(tackId : String ,lat : Double ,lng : Double)
+}
+
 class TackImageView: UIImageView {
     
+    var delegate : TackImageViewDelegate?
+    
     var tackId : String = ""
+    
+    var lat : Double = 0.0
+    var lng : Double = 0.0
+    
+    
+    var touchX : Double = 0.0
+    var touchY : Double = 0.0
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        Log.debugStartLog()
+        
+        if let i = delegate {
+            delegate!.moveCameraToMarker(tackId,lat: lat,lng: lng)
+        }
+        
+        Log.debugEndLog()
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        Log.debugStartLog()
+        
+        
+        
+        Log.debugEndLog()
+    }
+    
 
 }

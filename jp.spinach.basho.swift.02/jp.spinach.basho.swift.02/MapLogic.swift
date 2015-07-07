@@ -29,7 +29,7 @@ class MapLogic {
             var tack : Tack = tackList[i]
             let marker: GMSMarkerExt = GMSMarkerExt ()
             marker.id = i;
-            //marker.snippet = oneRecord.comment
+            marker.tackId = tackList[i].tackId
             marker.position = CLLocationCoordinate2DMake(tack.lat, tack.lng)
             marker.appearAnimation = kGMSMarkerAnimationPop;
             marker.category = tack.category

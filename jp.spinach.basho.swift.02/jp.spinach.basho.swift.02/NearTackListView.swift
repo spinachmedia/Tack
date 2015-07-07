@@ -10,22 +10,36 @@ import UIKit
 
 class NearTackListView: UIView {
     
+    var parentController : MainViewController?
+    
     @IBOutlet var selfView: NearTackListView!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var scView: UIScrollView!
     
     //Listの中身をindexiesの順番に取り出してScrolleViewに登録する
-    func initialize (list: [Tack], indexies : [Int]) {
+    func initialize (list: [Tack], indexies : [Int], controller : MainViewController) {
         Log.debugStartLog()
+        
+        parentController = controller
         
         for view in self.scView.subviews {
             view.removeFromSuperview()
         }
         
+        //くるくるを表示
         MBProgressHUD.showHUDAddedTo(self, animated: true)
+        
+        //スクロールビューをリセットする
+        dispatch_async(dispatch_get_main_queue(),{
+            self.scView.contentSize = CGSizeMake(
+                0,
+                0
+            )
+        })
         
         //別スレッドで実行
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            //セットアップ
             self.setUp(list,indexies:indexies)
         })
         
@@ -39,9 +53,11 @@ class NearTackListView: UIView {
         var x : CGFloat = 0
         var y : CGFloat = 0
         
+        //ScrollViewの左と上の隙間
         var leftPadding : CGFloat = 5.0
         var topPadding : CGFloat = 5.0
         
+        //
         var scHeight : CGFloat = scView.frame.height
         var scWidth : CGFloat = scView.frame.width
         
@@ -50,6 +66,7 @@ class NearTackListView: UIView {
         
         for tack in list {
             
+            //画像があるならば。
             if(tack.hasFileFlg){
                 
                 if let image = HTTPLogic.getImage(tack.filePath) {
@@ -66,11 +83,11 @@ class NearTackListView: UIView {
                         tackImage.image = image
                         tackImage.frame = CGRectMake(
                         //x
-                            leftPadding + count * 50 + adjust,
+                            leftPadding + count * 80 + adjust,
                         //y
                             topPadding,
                         //width
-                            50,
+                            80,
                         //height
                             scHeight - topPadding * 2.0
                         );
@@ -80,6 +97,11 @@ class NearTackListView: UIView {
                         
                         //Viewに追加
                         self.scView.addSubview(tackImage)
+                        tackImage.userInteractionEnabled = true
+                        tackImage.lat = tack.lat
+                        tackImage.lng = tack.lng
+                        tackImage.delegate = self.parentController
+                        
                         //クルクルを消す
                         MBProgressHUD.hideAllHUDsForView(self, animated: true)
 
@@ -103,4 +125,10 @@ class NearTackListView: UIView {
         
         Log.debugEndLog()
     }
+    
+    //近辺のTackリストがタップされたときの処理
+    func toucheEvent(){
+        
+    }
+    
 }

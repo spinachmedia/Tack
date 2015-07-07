@@ -106,6 +106,16 @@ class Tack{
         return tackList
     }
     
+    //TackListからTackIdを元にデータを取り出す
+    static func getTackFromListWithTackId(list:[Tack],tackId:String) -> Tack?{
+        for (var i : Int = 0; i < list.count; i++) {
+            if(list[i].tackId == tackId){
+                return list[i]
+            }
+        }
+        return nil
+    }
+    
     //TODO ダミーメソッド
     static func getNearTackList(count : Int,lat : Double, lng: Double, list : [Tack]) -> [Int]{
         
