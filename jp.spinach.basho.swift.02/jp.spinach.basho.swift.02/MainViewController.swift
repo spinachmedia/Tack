@@ -79,8 +79,10 @@ class MainViewController: UIViewController,
         //座標を取得する感じにする
         lm = CLLocationManager()
         lm.delegate = self
+        //座標取得の精度を最大に
         lm.desiredAccuracy = kCLLocationAccuracyBest
         lm.requestAlwaysAuthorization()
+        //300m移動したら位置情報を更新する
         lm.distanceFilter = 300
         lm.startUpdatingLocation()
 
@@ -136,6 +138,8 @@ class MainViewController: UIViewController,
     
     //座標の取得を開始する
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
+        
+        Log.debugLog("locationManager")
     
         Log.debugStartLog()
         
@@ -147,6 +151,14 @@ class MainViewController: UIViewController,
         getTack()
         
         Log.debugEndLog()
+        
+        //テストコード!!!!!!!!
+        var toast : MBProgressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        toast.mode = MBProgressHUDMode.Text
+        toast.labelText = "debug:座標を更新します"
+        toast.show(true)
+        toast.hide(true, afterDelay: 3)
+        
         
     }
     
@@ -185,14 +197,34 @@ class MainViewController: UIViewController,
                     
                     //ピンを消去する。ピンを立てる。
                     MapLogic.clearMarkers(self.mapView)
+                    
+                    //ピンを立てる
                     self.tackedMarkerList = MapLogic.setMarkers(self.tackList!,mapView: self.mapView)
                     
                     //アプリの起動時のみ、ズーム具合の調整
                     if(self.startFlg){
                         self.startFlg = false
-                        MapLogic.ajustZoomPoint(self.tackedMarkerList!, mapView: self.mapView)
+                        var visibleMarkerCount = MapLogic.ajustZoomPoint(self.tackedMarkerList!, mapView: self.mapView)
+                        
+                        //近くにピンがない場合
+                        if(visibleMarkerCount == 0){
+                            //ピンがないですよ的なメッセージ
+                            var toast : MBProgressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                            toast.mode = MBProgressHUDMode.Text
+                            toast.labelText = "近くにTackされたメッセージがありません"
+                            toast.show(true)
+                            toast.hide(true, afterDelay: 1.2)
+                        }
                     }
                     
+                    //非同期にすべてのタックのFB画像と、画像を取りに行く処理。
+                    for tack : Tack in self.tackList! {
+                        dispatch_async(
+                            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                            tack.getImages()
+                        })
+                        
+                    }
                 }
             )
 
@@ -217,6 +249,7 @@ class MainViewController: UIViewController,
         Log.debugLog(showingInfoWindow)
         
         //InfoWindowが表示中の場合
+        //Tackを閉じるだけの処理を入れるかもしれないんだ
         if(showingInfoWindow){
             
             //タップしたマーカーの取り出し
@@ -266,6 +299,9 @@ class MainViewController: UIViewController,
     //ピンをタップした場合の処理
     //InfoWindowを表示するときの処理
     //すぐに重くなるので注意
+    //Facebookとの通信がボトルネック……。
+    //画像を取りに行くところも・・・。
+    //事前に非同期で取らないと話にならない。
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         Log.debugStartLog()
         
@@ -275,10 +311,6 @@ class MainViewController: UIViewController,
         
         infoView.initialize(self.tackList![gmsMarker.id])
         
-        //近隣tackを表示するViewを表示する/操作可能にする
-        self.nearView.hidden = false
-        self.nearView.userInteractionEnabled = true
-        
         //近い順にTackのインデックスを取得
         var items : [Int] = Tack.getNearTackList(30,
             lat: self.lm.location.coordinate.latitude,
@@ -286,7 +318,15 @@ class MainViewController: UIViewController,
             list: self.tackList!
         )
         
-        self.nearListView!.initialize(self.tackList!,indexies: items,controller: self)
+        //非表示状態からタップした時のみ、以下の処理を行う。
+        //近隣のタックリストからのタップでは以下の処理は呼ばれない。
+        if(self.nearView.hidden){
+            self.nearListView!.initialize(self.tackList!,indexies: items,controller: self)
+        }
+        
+        //近隣tackを表示するViewを表示する/操作可能にする
+        self.nearView.hidden = false
+        self.nearView.userInteractionEnabled = true
         
         //クルクルを消す
         MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
@@ -313,8 +353,12 @@ class MainViewController: UIViewController,
     //地図をタップしたときの処理
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         Log.debugStartLog()
+        //近隣のTackリストを閉じる
         self.nearView.hidden = true
+        //近隣のTackリストのタッチ判定を無効化する。
         self.nearView.userInteractionEnabled = false
+        //Tackは開いてないよ、という状態にする
+        showingInfoWindow = false
         Log.debugEndLog()
     }
     
@@ -356,8 +400,6 @@ class MainViewController: UIViewController,
         var nouLat = position.target.latitude
         var nouLng = position.target.longitude
         
-        //tackLoadedPositionLat = self.lm.location.coordinate.latitude
-        //tackLoadedPositionLng = self.lm.location.coordinate.longitude
     }
     
     

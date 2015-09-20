@@ -107,28 +107,36 @@ class MapLogic {
     }
     
     
-    //ズームを調整する
-    class func ajustZoomPoint(markerList:[GMSMarkerExt],mapView:GMSMapView){
+    //ズーム具合を調整する
+    //可能なかぎりピンが画面内に収まるレベルまでズームアウトする
+    class func ajustZoomPoint(markerList:[GMSMarkerExt],mapView:GMSMapView) -> Int{
         var count = 0
         //マーカーが５個以上見えていない場合
         //ズームレベルが１５以上の場合
-        while(count < 5 && mapView.camera.zoom > 15){
+        while(count < 5 && mapView.camera.zoom > 10){
             count = 0
             
             mapView.moveCamera(GMSCameraUpdate.zoomOut())
             
             //レスポンスがない場合は終了
             if(markerList.count == 0){
-                return
+                return 0
             }
             
             for ( var i = 0 ; i < markerList.count ;i++  ){
                 var marker : GMSMarkerExt = markerList[i]
+                //ピンが画面内に収まっていますか？ひとつでもというループにしたい
                 if(mapView.projection.containsCoordinate(marker.position)){
                     count++
                 }//if
             }//for
+            
+            println(count)
+            
         }//while
+        
+        return count;
+        
     }
 
 

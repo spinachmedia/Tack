@@ -53,26 +53,24 @@ class InfoView: UIView {
             
             if(tack.snsCategory == "FB" || tack.snsCategory == "fb" ){
                 //画像と表示名のセット
-                setFBProfile(tack.snsId);
+                //ここで800msかかる
+//                setFBProfile(tack.snsId);
+                self.snsIcon.image = tack.snsImage
                 self.snsName.text = tack.snsName
-                
             }
-
         }
-
+    
         self.category = tack.category
         self.tackTitle.text = tack.placeName
         self.tackBody.text = tack.comment
         self.goodTackCount.text = String(tack.goodTackCount)
         self.commentCount.text = String(tack.commentCount)
-        if(tack.hasFileFlg){
-            self.tackImage.contentMode = UIViewContentMode.ScaleAspectFit
-            if let image = HTTPLogic.getImage(tack.filePath) {
-               self.tackImage.image = HTTPLogic.getImage(tack.filePath)!
-            }
-        }
         self.snsTime.text = DateLogic.date2StringForView(tack.date)
         
+        if(tack.hasFileFlg){
+            self.tackImage.contentMode = UIViewContentMode.ScaleAspectFit
+            self.tackImage.image = tack.image
+        }
 
         switch self.category {
         case Category.FOOD:
@@ -88,22 +86,10 @@ class InfoView: UIView {
             break;
         }
         
+        Log.debugLogWithTime("C");
+        
         Log.debugEndLog()
         
-    }
-    
-    
-    func setFBProfile(id:String){
-        Log.debugStartLog()
-        var urlString : String = "https://graph.facebook.com/" + id + "/picture"
-        var url : NSURL? = NSURL(string: urlString)
-        var data : NSData? = NSData(contentsOfURL: url!)
-        if let id = data {
-            //println("OK")
-            var snsImage : UIImage? = UIImage(data: data!)
-            snsIcon.image = snsImage!
-        }
-        Log.debugEndLog()
     }
 
 }

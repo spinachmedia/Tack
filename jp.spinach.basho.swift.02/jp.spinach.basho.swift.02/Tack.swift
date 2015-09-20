@@ -12,8 +12,12 @@ class Tack{
     
     var objectId : String = ""
     var tackId : String = ""
+    
+    //FBのIDなど
     var snsId : String = ""
     var snsCategory : String = "fb"
+    var snsImage : UIImage = UIImage();
+    
     var category : Category = Category.FOOD
     var placeName : String = ""
     var comment : String = ""
@@ -22,8 +26,12 @@ class Tack{
     var cityCode : String = "00000"
     var lat : Double = 30.0
     var lng : Double = 130.0
+    
+    //写真を持っているかどうか
     var hasFileFlg : Bool = false
     var filePath : String = "http://tack.spinachmedia.info:3000/img.png"
+    var image : UIImage = UIImage()
+    
     var date : NSDate = NSDate();
     
     
@@ -95,6 +103,51 @@ class Tack{
         
     }
     
+    
+    //非同期で画像を取りに行く
+    func getImages(){
+        getSNSImage()
+        getImage()
+    }
+    
+    func getSNSImage(){
+        if(self.snsCategory == "FB" || self.snsCategory == "fb" ){
+            setFBProfile(self.snsId);
+        }else{
+            //twitterなどの画像取得…？
+            
+        }
+    }
+    
+    
+    func getImage(){
+        if(self.hasFileFlg){
+            if let image = HTTPLogic.getImage(self.filePath) {
+               self.image = image
+            }
+        }
+    }
+    
+    
+    //ここか地獄のように重い。
+    //タップしてからの取得ではユーザビリティが非常に悪くなる。
+    //事前に非同期で取得しておく必要がある。
+    func setFBProfile(id:String){
+        Log.debugStartLog()
+        var urlString : String = "https://graph.facebook.com/" + id + "/picture"
+        var url : NSURL? = NSURL(string: urlString)
+        var data : NSData? = NSData(contentsOfURL: url!)
+        if let id = data {
+            var snsImage : UIImage? = UIImage(data: data!)
+            self.snsImage = snsImage!
+        }
+        Log.debugEndLog()
+    }
+    
+    
+    //
+    
+    
     static func tackListFactory(responseObject:AnyObject!) -> [Tack] {
         var tackList : [Tack] = [Tack]()
         let json = JSON(responseObject)
@@ -141,5 +194,6 @@ class Tack{
 
         return result
     }
+    
     
 }

@@ -112,16 +112,24 @@ class NearTackListView: UIView {
                     adjust = 15 * count
                     
                 }
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.scView.contentSize = CGSizeMake(
+                        leftPadding + count * 80 + adjust + leftPadding,
+                        scHeight
+                    )
+                })
+                
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(),{
-            self.scView.contentSize = CGSizeMake(
-                leftPadding + count * 50 + adjust + leftPadding,
-                scHeight
-            )
-        })
-        
+//        dispatch_async(dispatch_get_main_queue(),{
+//            self.scView.contentSize = CGSizeMake(
+//                leftPadding + count * 80 + adjust + leftPadding,
+//                scHeight
+//            )
+//        })
+//        
         
         Log.debugEndLog()
     }

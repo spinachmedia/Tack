@@ -29,6 +29,7 @@ class TackImageView: UIImageView {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         Log.debugStartLog()
+        Log.debugLogWithTime("近隣のタックリストのタップ")
         
         if let i = delegate {
             delegate!.moveCameraToMarker(tackId,lat: lat,lng: lng)
