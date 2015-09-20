@@ -10,6 +10,13 @@ import UIKit
 
 class NearTackListView: UIView {
     
+    
+    //ScrollViewの左と上の隙間
+    var leftPadding : CGFloat = 5.0
+    var topPadding : CGFloat = 5.0
+    var tackImageWidth : CGFloat = 80
+    
+    
     var parentController : MainViewController?
     
     @IBOutlet var selfView: NearTackListView!
@@ -53,16 +60,10 @@ class NearTackListView: UIView {
         var x : CGFloat = 0
         var y : CGFloat = 0
         
-        //ScrollViewの左と上の隙間
-        var leftPadding : CGFloat = 5.0
-        var topPadding : CGFloat = 5.0
-        
-        //
         var scHeight : CGFloat = scView.frame.height
         var scWidth : CGFloat = scView.frame.width
         
         var count : CGFloat = 0
-        var adjust : CGFloat = 0
         
         for tack in list {
             
@@ -83,13 +84,13 @@ class NearTackListView: UIView {
                         tackImage.image = image
                         tackImage.frame = CGRectMake(
                         //x
-                            leftPadding + count * 80 + adjust,
+                            count * (self.leftPadding + self.tackImageWidth),
                         //y
-                            topPadding,
+                            self.topPadding,
                         //width
-                            80,
+                            self.tackImageWidth,
                         //height
-                            scHeight - topPadding * 2.0
+                            scHeight - self.topPadding * 2.0
                         );
                     
                         tackImage.layer.borderWidth = 2
@@ -108,14 +109,11 @@ class NearTackListView: UIView {
                     })
                     
                     count++
-                    //座標調整
-                    adjust = 15 * count
-                    
                 }
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     self.scView.contentSize = CGSizeMake(
-                        leftPadding + count * 80 + adjust + leftPadding,
+                        count * (self.leftPadding + self.tackImageWidth) + self.leftPadding,
                         scHeight
                     )
                 })
@@ -123,19 +121,25 @@ class NearTackListView: UIView {
             }
         }
         
-//        dispatch_async(dispatch_get_main_queue(),{
-//            self.scView.contentSize = CGSizeMake(
-//                leftPadding + count * 80 + adjust + leftPadding,
-//                scHeight
-//            )
-//        })
-//        
-        
         Log.debugEndLog()
     }
     
     //近辺のTackリストがタップされたときの処理
     func toucheEvent(){
+        
+    }
+    
+    //タップされたタックを、「近隣のタックリスト」の中央にスクロールする
+    func adjustCenter(index : Int){
+        Log.debugLogWithTime("====adjustCenter====")
+        Log.debugLogWithTime(index)
+        
+        var offset : CGPoint = CGPoint()
+        offset.x = CGFloat(index) * (self.leftPadding + self.tackImageWidth) - UIScreen.mainScreen().bounds.size.width / 2 + self.tackImageWidth / 2
+        offset.y = 0
+        
+        self.scView.setContentOffset(offset, animated: true)
+        
         
     }
     

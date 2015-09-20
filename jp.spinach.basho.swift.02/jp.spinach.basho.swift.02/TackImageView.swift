@@ -14,6 +14,7 @@ protocol TackImageViewDelegate{
     func moveCameraToMarker(tackId : String ,lat : Double ,lng : Double)
 }
 
+//近隣のタックリストの内部に表示するUIImageViewの拡張クラス
 class TackImageView: UIImageView {
     
     var delegate : TackImageViewDelegate?

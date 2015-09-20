@@ -373,6 +373,7 @@ class MainViewController: UIViewController,
         var tack :Tack? = Tack.getTackFromListWithTackId(tackList!,tackId: tackId)
         Log.debugLog(tack)
         
+        
         //GMSMarkerを生成する
         var marker : GMSMarkerExt? = GMSMarkerExt.getGMSMarkerExtFromList(tackedMarkerList!,tackId: tackId)
         
@@ -387,6 +388,13 @@ class MainViewController: UIViewController,
         
         //カメラを移動
         mapView.animateWithCameraUpdate(camera)
+        
+        //tackIdからIndexを取得
+        var nearTackListIndex :Int? = Tack.getNearTackListIndexFromListWithTackId(self.tackList!,tackId: tackId)
+        
+        
+        //近隣のタックリストをスクロールし、選択したタックを中央に動かす
+        self.nearListView!.adjustCenter(nearTackListIndex!)
         
         Log.debugEndLog()
     }

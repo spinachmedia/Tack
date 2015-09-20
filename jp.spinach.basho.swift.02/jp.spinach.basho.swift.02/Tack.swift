@@ -169,6 +169,21 @@ class Tack{
         return nil
     }
     
+    //tackIDを元に近隣のタックリストのインデックスを取得。当然画像を持たないタックは無視する
+    static func getNearTackListIndexFromListWithTackId(list:[Tack],tackId:String) -> Int?{
+        var count = 0
+        for (var i : Int = 0; i < list.count; i++) {
+            
+            if(list[i].tackId == tackId){
+                return count
+            }
+            if(list[i].hasFileFlg){
+                count++
+            }
+        }
+        return nil
+    }
+    
     //TODO ダミーメソッド
     static func getNearTackList(count : Int,lat : Double, lng: Double, list : [Tack]) -> [Int]{
         
