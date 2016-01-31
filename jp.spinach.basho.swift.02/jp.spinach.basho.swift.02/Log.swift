@@ -14,25 +14,25 @@ class Log {
         function: String = __FUNCTION__,
         line: Int = __LINE__) {
             #if DEBUG
-                println("[Function:\(function) Line:\(line)] : \(obj)")
+                print("[Function:\(function) Line:\(line)] : \(obj)")
             #endif
     }
     
     static func debugStartLog(function: String = __FUNCTION__,
         line: Int = __LINE__) {
             #if DEBUG
-                var format : NSDateFormatter = NSDateFormatter()
+                let format : NSDateFormatter = NSDateFormatter()
                 format.dateFormat = "HH:mm:ss.SSS"
-                println("[Function:\(function) Line:\(line)] - start - " + format.stringFromDate(NSDate()))
+                print("[Function:\(function) Line:\(line)] - start - " + format.stringFromDate(NSDate()))
             #endif
     }
     
     static func debugEndLog(function: String = __FUNCTION__,
         line: Int = __LINE__) {
             #if DEBUG
-                var format : NSDateFormatter = NSDateFormatter()
+                let format : NSDateFormatter = NSDateFormatter()
                 format.dateFormat = "HH:mm:ss.SSS"
-                println("[Function:\(function) Line:\(line)] - end - " + format.stringFromDate(NSDate()))
+                print("[Function:\(function) Line:\(line)] - end - " + format.stringFromDate(NSDate()))
             #endif
     }
     
@@ -40,9 +40,9 @@ class Log {
         function: String = __FUNCTION__,
         line: Int = __LINE__) {
             #if DEBUG
-                var format : NSDateFormatter = NSDateFormatter()
+                let format : NSDateFormatter = NSDateFormatter()
                 format.dateFormat = "HH:mm:ss.SSS"
-                println("[Function:\(function) Line:\(line)] : \(obj) :" + format.stringFromDate(NSDate()))
+                print("[Function:\(function) Line:\(line)] : \(obj) :" + format.stringFromDate(NSDate()))
             #endif
     }
     

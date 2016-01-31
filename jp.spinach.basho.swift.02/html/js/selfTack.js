@@ -4,6 +4,7 @@ var urlGetList = "";
 var urlGetBgImage = "";
 var snsId = "";
 var snsType = "";
+var snsToken = "";
 
 var getSelfTackCount = 0;
 
@@ -53,6 +54,7 @@ var tack = {
     hasFileFlg : "",
     filePath : "",
     date : "",
+    token : ""
     
 };
 
@@ -89,6 +91,10 @@ var setSNSType = function(snsType){
     this.snsType = snsType
 }
 
+var setSNSToken = function(token){
+    this.token = token
+}
+
 var getBgImage = function(){
     $.ajax({
         type: "GET",
@@ -96,6 +102,7 @@ var getBgImage = function(){
         dataType: 'json', 
         data: { 
             sns_id   : snsId   ,
+            token : token,
         }
     }).done(function( items ) {
         $(".bg_blue").css("background",'url(' + domain + items["items"][0]["file_path"] + ")");
@@ -114,6 +121,7 @@ var getTackList = function(){
             sns_type : snsType ,
             start   : 0       , 
             count   : 30      ,
+            token : token,
         }
     }).done(function( items ) {
         for(var i = 0 ; i < items["items"].length ; i++){
@@ -173,6 +181,7 @@ var getNextTack = function(){
             sns_type : snsType ,
             start   : getSelfTackCount + 1, 
             count   : 30      ,
+            token : token,
         }
     }).done(function( items ) {
         for(var i = 0 ; i < items["items"].length ; i++){

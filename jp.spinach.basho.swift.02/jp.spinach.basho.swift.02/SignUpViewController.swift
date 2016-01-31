@@ -15,28 +15,45 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
         
         FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
         
-        var token : FBSDKAccessToken? = FBSDKAccessToken.currentAccessToken()
-        
-        var keyValues : NSMutableDictionary = NSMutableDictionary()
-        keyValues.setObject("", forKey: "access_token")
-        
-        NSUserDefaults .standardUserDefaults().registerDefaults(keyValues as [NSObject : AnyObject])
+        //アクセストークンをローカルから取得
+        let token : NSDictionary? = LocalDataLogic.getFBAccessTokenDictionary()
         
         if(token != nil){
-            //アクセストークンが有効
-            toTopViewController()
-        }else{
-            //アクセストークンが無効
             
-            //ローカルから取得
-            var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            var result : String? = defaults.stringForKey("access_token")
+            Log.debugLogWithTime("======アクセストークンを保持している======")
             
-            if(result != ""){
-                toTopViewController()
+            //ローカルからアクセストークンを取得
+            //アクセストークンをセット
+            FBSDKAccessToken.setCurrentAccessToken(
+                FBSDKAccessToken(
+                    tokenString: token?.objectForKey("access_token") as! String!,
+                    permissions: Array(arrayLiteral: token?.objectForKey("permissions") as! Set<NSObject>) as [AnyObject]!,
+                    declinedPermissions:  Array(arrayLiteral: token?.objectForKey("declinedPermissions") as! Set<NSObject>) as [AnyObject]!,
+                    appID: token?.objectForKey("appID") as! String!,
+                    userID: token?.objectForKey("userID") as! String!,
+                    expirationDate: token?.objectForKey("expiration_date") as! NSDate!,
+                    refreshDate: token?.objectForKey("refreshDate") as! NSDate!
+                )
+            )
+            
+            //アクセストークンが有効か確認をする。
+            Log.debugLogWithTime(FBSDKAccessToken.currentAccessToken().expirationDate);
+            if(FBSDKAccessToken.currentAccessToken().expirationDate.compare(NSDate()) == NSComparisonResult.OrderedDescending){
+                Log.debugLog("有効")
             }else{
+                Log.debugLog("無効")
             }
             
+            
+            //自動でマップの画面に遷移
+            toTopViewController()
+            
+        }else{
+            
+            //アクセストークンが無効
+            Log.debugLogWithTime("======アクセストークンが空======")
+            
+            //表示のログインボタンからログインしてもらう
             
         }
 
@@ -44,7 +61,7 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
     
     
     @IBAction func login(sender: AnyObject) {
-        var loginManager : FBSDKLoginManager = FBSDKLoginManager()
+        let loginManager : FBSDKLoginManager = FBSDKLoginManager()
         loginManager.loginBehavior = FBSDKLoginBehavior.Native
         
         loginManager.logInWithReadPermissions(
@@ -53,19 +70,30 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
 
                 if((error) != nil){
                     //エラー
-                    println("login-error")
+                    print("login-error")
                 }else if(result.isCancelled){
                     //キャンセルされたとき
-                    println("login-cansel")
+                    print("login-cansel")
                 }else{
                     
                     //他の画面に遷移してしまう？
-                    println("login-ok")
+                    print("login-ok")
 
-                    var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setObject(result.token.tokenString, forKey: "access_token")
-                    
                     FBSDKAccessToken.setCurrentAccessToken(result.token)
+                    
+                    let authData : NSDictionary = [
+                        "access_token" : result.token.tokenString,
+                        "permissions" : result.token.permissions,
+                        "declinedPermissions" : result.token.declinedPermissions,
+                        "appID" : result.token.appID,
+                        "userID" : result.token.userID,
+                        "expiration_date" : result.token.expirationDate,
+                        "refreshDate" : result.token.refreshDate
+                    ]
+                    
+                    LocalDataLogic.setFBAccessTokenDictionary(authData)
+                    
+                    LocalDataLogic.setSnsId(result.token.userID!)
                     
                     self.toTopViewController()
                 
@@ -75,11 +103,9 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        println("loginButton")
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
     }
     
     ///TOP画面に遷移する

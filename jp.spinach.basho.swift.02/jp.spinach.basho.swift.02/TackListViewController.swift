@@ -33,28 +33,31 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
     func getMyTackList(sns:String){
         
         //GET先のURLをHTMLに渡す
-        var urlSetDomeinMethod = "setDomain('http://tack.spinachmedia.info:3000/')";
+        let urlSetDomeinMethod = "setDomain('http://tack.spinachmedia.info:3000/')";
         webView.stringByEvaluatingJavaScriptFromString(urlSetDomeinMethod)
         
-        var urlSetBgImage = "setUrlGetBgImage('http://tack.spinachmedia.info:3000/api/getLastImage');"
+        let urlSetBgImage = "setUrlGetBgImage('http://tack.spinachmedia.info:3000/api/getLastImage');"
         webView.stringByEvaluatingJavaScriptFromString(urlSetBgImage)
         
-        var urlSetMethod = "setUrlGetList('http://tack.spinachmedia.info:3000/api/getMyTack');"
+        let urlSetMethod = "setUrlGetList('http://tack.spinachmedia.info:3000/api/getMyTack');"
         webView.stringByEvaluatingJavaScriptFromString(urlSetMethod)
+        
+        let token = "setSNSToken('" + SNSLogic.getSNSToken() + "');"
+        webView.stringByEvaluatingJavaScriptFromString(token)
         
         switch(sns){
             case "FB":
 
-                var snsIdSetMethod = "setSNSID('" + FBSDKProfile.currentProfile().userID + "');"
+                let snsIdSetMethod = "setSNSID('" + FBSDKProfile.currentProfile().userID + "');"
                 webView.stringByEvaluatingJavaScriptFromString(snsIdSetMethod)
                 
-                var snsTypeSetMethod = "setSNSType('" + sns + "');"
+                let snsTypeSetMethod = "setSNSType('" + sns + "');"
                 webView.stringByEvaluatingJavaScriptFromString(snsTypeSetMethod)
                 
-                var snsNameSetMethod = "setName('" + FBSDKProfile.currentProfile().name + "');"
+                let snsNameSetMethod = "setName('" + FBSDKProfile.currentProfile().name + "');"
                 webView.stringByEvaluatingJavaScriptFromString(snsNameSetMethod)
                 
-                var snsImageSetMethod = "setImage('" +
+                let snsImageSetMethod = "setImage('" +
                     "https://graph.facebook.com/" +
                     FBSDKProfile.currentProfile().imagePathForPictureMode(
                         FBSDKProfilePictureMode.Normal,
@@ -63,10 +66,10 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
                 "');"
                 webView.stringByEvaluatingJavaScriptFromString( snsImageSetMethod )
                 
-                var snsGetTack = "getTackList();"
+                let snsGetTack = "getTackList();"
                 webView.stringByEvaluatingJavaScriptFromString( snsGetTack )
                 
-                var getBgImage = "getBgImage();"
+                let getBgImage = "getBgImage();"
                 webView.stringByEvaluatingJavaScriptFromString( getBgImage )
 
                 
@@ -82,10 +85,10 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let kScheme = "native://";
         let url = request.URL!.absoluteString
-        println(url!);
+        print(url);
         
-        if url!.hasPrefix(kScheme) {
-            println(request.URL!.host!);
+        if url.hasPrefix(kScheme) {
+            print(request.URL!.host!);
             switch request.URL!.host! {
                 case "loadFinished":
                     MBProgressHUD.hideAllHUDsForView(self.view, animated: true)

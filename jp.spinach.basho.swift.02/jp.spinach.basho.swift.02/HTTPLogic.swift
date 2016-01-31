@@ -24,22 +24,25 @@ struct HTTPLogic {
     
     ///Tackリストを取得する
     static func getTackRequest(
-        sns_id:String,
         lat:CLLocationDegrees,
         lng:CLLocationDegrees,
         count:Int,
         callBack:(operation: AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void
         ){
+            let sns_id = LocalDataLogic.getSnsId();
             
             let url = Setting.SERVER_URL + ":" + Setting.SERVER_PORT + Setting.GET_TACK
             
-            var manager : AFHTTPRequestOperationManager = HTTPRequestManagerFactory();
+            let manager : AFHTTPRequestOperationManager = HTTPRequestManagerFactory();
             manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
             //パラメータ生成
-            var params: Dictionary = [
+            let params: Dictionary = [
                 "sns_id": sns_id,
                 "lat": NSString(format: "%.15f", lat),
                 "lng": NSString(format: "%.15f", lng),
+                "SNSType": SNSLogic.getLoginedSNSType(),
+                "token": SNSLogic.getSNSToken(),
                 "count": count
             ]
             
@@ -49,15 +52,14 @@ struct HTTPLogic {
                     //クロージャの呼び出し
                     callBack(operation: operation,responseObject: responseObject)
                     
-                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                    println("error: \(error)")
+                }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) in
+                    print("error: \(error)")
                 }
             )
     }
     
     //Tackする
     static func postTackRequest(
-        sns_id:String,
         category: Category,
         placeName: String,
         comment: String,
@@ -66,23 +68,33 @@ struct HTTPLogic {
         fileData: NSData!,
         callBack:(operation: AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void
         ){
+            let sns_id = LocalDataLogic.getSnsId();
             
             let url = Setting.SERVER_URL + ":" + Setting.SERVER_PORT + Setting.POST_TACK
             
-            var manager : AFHTTPRequestOperationManager = HTTPRequestManagerFactory();
+            let manager : AFHTTPRequestOperationManager = HTTPRequestManagerFactory();
             manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            manager.responseSerializer.setValue("text/html", forKey: <#String#>)
+            var set : Set<NSObject> = Set<NSObject>()
+            set.insert("text/html")
+            set.insert("application/json")
+            manager.responseSerializer.acceptableContentTypes = set
             
             //パラメータ生成
-            var params: Dictionary = [
+            let params: Dictionary = [
                 "sns_id": sns_id,
                 "category": category.toString(),
                 "place_name": placeName,
                 "comment": comment,
                 "lat": NSString(format: "%.15f", lat),
                 "lng": NSString(format: "%.15f", lng),
+                "SNSType": SNSLogic.getLoginedSNSType(),
+                "token": SNSLogic.getSNSToken(),
             ]
             
-            var fileName = NSUUID().UUIDString + ".png"
+            let fileName = NSUUID().UUIDString + ".png"
+            
+//            manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes.//("text/html");
             
             if(fileData != nil){
                 //リクエスト送信
@@ -93,8 +105,8 @@ struct HTTPLogic {
                     success: { (operation:AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void in
                         callBack(operation: operation,responseObject: responseObject)
                     },
-                    failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        println("error: \(error)")
+                    failure: { (operation: AFHTTPRequestOperation?, error: NSError!) in
+                        print("error: \(error)")
                     }
                 )
             }else{
@@ -103,8 +115,8 @@ struct HTTPLogic {
                     success: { (operation:AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void in
                         callBack(operation: operation,responseObject: responseObject)
                     },
-                    failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        println("error: \(error)")
+                    failure: { (operation: AFHTTPRequestOperation?, error: NSError!) in
+                        print("error: \(error)")
                     }
                 )
             }
@@ -114,7 +126,7 @@ struct HTTPLogic {
     
     static func getImage(path : String) -> UIImage?{
         let url = NSURL(string: Setting.SERVER_URL + ":" + Setting.SERVER_PORT + "/" + path)
-        let imageData = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: nil)
+        let imageData = try? NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingMappedIfSafe)
         if let id = imageData {
             let uiImage = UIImage(data: imageData!)
             return uiImage

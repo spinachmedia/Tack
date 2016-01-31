@@ -28,6 +28,12 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         
         //ロード中を示す
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        // 色を変数に用意しておく
+        let color = UIColor(red: 255/255, green: 158/255, blue: 35/255, alpha: 1.0)
+        
+        // 背景の色を変えたい。
+        self.navigationController?.navigationBar.barTintColor = color
 
     }
     
@@ -36,54 +42,57 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         setParamater()
         //リプライの取得をWebViewにさせる。
         setReply()
+        //読み込みを完了させる。
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
     }
     
     func setParamater(){
         
         //GET先のURLをHTMLに渡す
-        var urlSetDomeinMethod = "setDomain('http://tack.spinachmedia.info:3000/')";
+        let urlSetDomeinMethod = "setDomain('http://tack.spinachmedia.info:3000/')";
         webView.stringByEvaluatingJavaScriptFromString(urlSetDomeinMethod)
         
-        var urlSetMethod = "setUrlGetList('http://tack.spinachmedia.info:3000/api/getReply');"
+        let urlSetMethod = "setUrlGetList('http://tack.spinachmedia.info:3000/api/getReply');"
         webView.stringByEvaluatingJavaScriptFromString(urlSetMethod)
         
-        var urlSendReply = "setUrlSendReply('http://tack.spinachmedia.info:3000/api/postReply');"
+        let urlSendReply = "setUrlSendReply('http://tack.spinachmedia.info:3000/api/postReply');"
         webView.stringByEvaluatingJavaScriptFromString(urlSendReply)
         
-        var setTackId = "setTackId('" + tack!.tackId + "');";
+        let setTackId = "setTackId('" + tack!.tackId + "');";
         webView.stringByEvaluatingJavaScriptFromString( setTackId )
         
-        var setSnsId = "setSnsId('" + tack!.snsId + "');";
+        let setSnsId = "setSnsId('" + tack!.snsId + "');";
         webView.stringByEvaluatingJavaScriptFromString( setSnsId )
         
-        var setSnsName = "setSnsName('" + tack!.snsName + "');";
+        let setSnsName = "setSnsName('" + tack!.snsName + "');";
         webView.stringByEvaluatingJavaScriptFromString( setSnsName )
         
-//        var setSnsImage = "setSnsImage('" +  + "');";
-//        webView.stringByEvaluatingJavaScriptFromString( setSnsImage )
         
-        var setSnsCategory = "setSnsCategory('" + tack!.snsCategory + "');";
+        let setImage = "setImage('https://graph.facebook.com/" + tack!.snsId + "/picture');";
+        webView.stringByEvaluatingJavaScriptFromString( setImage )
+        
+        let setSnsCategory = "setSnsCategory('" + tack!.snsCategory + "');";
         webView.stringByEvaluatingJavaScriptFromString( setSnsCategory )
         
-        var setCategory = "setCategory('" + tack!.category.toString() + "');";
+        let setCategory = "setCategory('" + tack!.category.toString() + "');";
         webView.stringByEvaluatingJavaScriptFromString( setCategory )
         
-        var setPlaceName = "setPlaceName('" + tack!.placeName + "');";
+        let setPlaceName = "setPlaceName('" + tack!.placeName + "');";
         webView.stringByEvaluatingJavaScriptFromString( setPlaceName )
         
-        var setComment = "setComment('" + tack!.comment + "');";
+        let setComment = "setComment('" + tack!.comment + "');";
         webView.stringByEvaluatingJavaScriptFromString( setComment )
         
-        var setGoodTack = "setGoodTack('" + String(tack!.goodTackCount) + "');";
+        let setGoodTack = "setGoodTack('" + String(tack!.goodTackCount) + "');";
         webView.stringByEvaluatingJavaScriptFromString( setGoodTack )
         
-        var setCityCode = "setCityCode('" + tack!.cityCode + "');";
+        let setCityCode = "setCityCode('" + tack!.cityCode + "');";
         webView.stringByEvaluatingJavaScriptFromString( setCityCode )
         
-        var setLat = "setLat('" +  String(stringInterpolationSegment: tack!.lat) + "');";
+        let setLat = "setLat('" +  String(stringInterpolationSegment: tack!.lat) + "');";
         webView.stringByEvaluatingJavaScriptFromString( setLat )
         
-        var setLng = "setLng('" + String(stringInterpolationSegment: tack!.lng) + "');";
+        let setLng = "setLng('" + String(stringInterpolationSegment: tack!.lng) + "');";
         webView.stringByEvaluatingJavaScriptFromString( setLng )
         
         var setHasFileFlg = ""
@@ -94,17 +103,17 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         }
         webView.stringByEvaluatingJavaScriptFromString( setHasFileFlg )
         
-        var setFilePath = "setFilePath('" + tack!.filePath + "');";
+        let setFilePath = "setFilePath('http://tack.spinachmedia.info:3000/" + tack!.filePath + "');";
         webView.stringByEvaluatingJavaScriptFromString( setFilePath )
         
-        var setDate = "setDate('" + DateLogic.date2String(tack!.date) + "');";
+        let setDate = "setDate('" + DateLogic.date2StringForView(tack!.date) + "');";
         webView.stringByEvaluatingJavaScriptFromString( setDate )
         
     }
     
     //WEBViewに対してリプライのリストを取得するように仕向ける
     func setReply(){
-        var getReplayList = "getReplyList();"
+        let getReplayList = "getReplyList();"
         webView.stringByEvaluatingJavaScriptFromString( getReplayList )
     }
     
@@ -113,10 +122,10 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         let kScheme = "native://";
         
         let url = request.URL!.absoluteString
-        println(url!);
+        print(url);
         
-        if url!.hasPrefix(kScheme) {
-            println(request.URL!.host!);
+        if url.hasPrefix(kScheme) {
+            print(request.URL!.host!);
             switch request.URL!.host! {
             case "loadFinished":
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)

@@ -77,13 +77,14 @@ var setSNSId = function(snsId){
     this.snsId = snsId;
 }
 
-var setName = function(snsName){
+var setSnsName = function(snsName){
     this.snsName = snsName;
-    $("#sns_name").append(this.snsName);
+    $(".sns_name_text").append(this.snsName);
 }
 
 var setImage = function(imageUrl){
     this.snsImage = imageUrl;
+    $(".sns_icon").attr("src",this.snsImage);
 }
 
 var setSNSCategory = function(snsType){
@@ -102,7 +103,7 @@ var setComment = function(comment){
 
 var setGoodTack = function(goodTack){
     this.goodTack = goodTack
-    $("#good_tack").append(this.goodTack);
+    $("#good_tack_count").append(this.goodTack);
 }
 
 var setCityCode = function(cityCode){
@@ -123,11 +124,12 @@ var setHasFileFlg = function(hasFileFlg){
 
 var setFilePath = function(filePath){
     this.filePath = filePath
-    $("#file_path").append(this.filePath);
+    $("#tack_image").attr("src",this.filePath);
 }
 
 var setDate = function(date){
     this.date = date
+    $("#date").append(this.date);
 }
 
 

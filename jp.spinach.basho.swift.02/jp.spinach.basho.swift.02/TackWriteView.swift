@@ -117,7 +117,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         
         callback()
         
-        var grad : CAGradientLayer = CAGradientLayer()
+        let grad : CAGradientLayer = CAGradientLayer()
         grad.frame = self.bounds
         grad.colors = [self.startColor!.CGColor,self.endColor!.CGColor]
         
@@ -144,7 +144,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         self.textView.placeHolder = "この場所にコメントを残してください"
         self.textView.placeHolderColor = UIColor.lightGrayColor()
         
-        var gesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tap")
+        let gesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tap")
         self.addGestureRecognizer(gesture)
         
         
@@ -212,7 +212,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     }
     
     // 写真を選択した時に呼ばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if info[UIImagePickerControllerOriginalImage] != nil {
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
             self.imageView.image = image
@@ -230,7 +230,7 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
     
     func rmPic(){
         self.removeButton.hidden = true
-        var frameBk = self.imageView.frame
+        let frameBk = self.imageView.frame
         UIView.animateWithDuration(0.3, animations: {() -> Void in
             self.imageView.frame = CGRect(
                 x: self.imageView.frame.origin.x +
@@ -259,12 +259,11 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
         }
             
             HTTPLogic.postTackRequest(
-                FBSDKProfile.currentProfile().userID,
-                category: category,
-                placeName: placeText.text,
+                category,
+                placeName: placeText.text!,
                 comment: textView.text,
-                lat: self.lm.location.coordinate.latitude,
-                lng: self.lm.location.coordinate.longitude,
+                lat: self.lm.location!.coordinate.latitude,
+                lng: self.lm.location!.coordinate.longitude,
                 fileData: imageData,
                 callBack:{ (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
                     self.placeText.text = ""
@@ -273,6 +272,9 @@ class TackWriteView: UIView ,UIImagePickerControllerDelegate ,UINavigationContro
                     self.controller?.close()
                 }
             )
+        //キーボードを閉じる
+        placeText.resignFirstResponder()
+        textView.resignFirstResponder()
     }
     
     

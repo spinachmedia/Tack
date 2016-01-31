@@ -14,7 +14,7 @@ struct Random{
     /**
     ユーザIDを生成する
     
-    :returns: <#return value description#>
+    - returns: <#return value description#>
     */
     static func getObjectId() -> String{
         

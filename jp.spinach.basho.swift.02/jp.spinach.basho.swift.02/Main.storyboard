@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A4q-vw-FHB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="A4q-vw-FHB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -187,7 +187,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQy-Q1-DAu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQy-Q1-DAu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHk-YF-7bp">
@@ -331,19 +331,6 @@
                                 </state>
                                 <connections>
                                     <action selector="openLeftBoard:" destination="CoE-50-UEg" eventType="touchUpInside" id="ulB-IP-i6Q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew4-FM-veg">
-                                <rect key="frame" x="258" y="65" width="63" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="WKN-1s-gvz"/>
-                                    <constraint firstAttribute="width" constant="66" id="qm8-UX-ZZW"/>
-                                </constraints>
-                                <state key="normal" title="Update">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="update:" destination="CoE-50-UEg" eventType="touchUpInside" id="BfT-JX-XVE"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFd-Xz-9Rb">
@@ -516,8 +503,6 @@
                             <constraint firstItem="PtS-Gd-AfB" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="mXY-Gz-Psb"/>
                             <constraint firstItem="flN-Qk-Ee3" firstAttribute="leading" secondItem="hJv-Uc-P0t" secondAttribute="leadingMargin" constant="-16" id="pef-eo-h3J"/>
                             <constraint firstItem="LFd-Xz-9Rb" firstAttribute="width" secondItem="flN-Qk-Ee3" secondAttribute="width" id="wCK-Hm-qyr"/>
-                            <constraint firstItem="Ew4-FM-veg" firstAttribute="top" secondItem="qJD-1I-fC7" secondAttribute="bottom" constant="1" id="wgv-fA-4f2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ew4-FM-veg" secondAttribute="trailing" constant="-16" id="xyZ-8f-904"/>
                             <constraint firstItem="oRn-Gs-85h" firstAttribute="width" secondItem="hJv-Uc-P0t" secondAttribute="width" id="ylL-b8-fjg"/>
                             <constraint firstItem="xtu-bm-cI7" firstAttribute="top" secondItem="yac-V0-rdp" secondAttribute="bottom" id="zql-VG-hXT"/>
                         </constraints>
@@ -571,19 +556,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2F-Y0-s1e">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t2F-Y0-s1e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="t2F-Y0-s1e" firstAttribute="leading" secondItem="10a-v0-QYC" secondAttribute="leadingMargin" constant="-16" id="64V-43-YSQ"/>
-                            <constraint firstItem="t2F-Y0-s1e" firstAttribute="top" secondItem="10a-v0-QYC" secondAttribute="topMargin" id="8kd-qq-4XY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="t2F-Y0-s1e" secondAttribute="trailing" constant="-16" id="9j5-pJ-9ip"/>
-                            <constraint firstItem="zJn-i0-dyF" firstAttribute="top" secondItem="t2F-Y0-s1e" secondAttribute="bottom" id="vXw-m9-HfJ"/>
+                            <constraint firstItem="zJn-i0-dyF" firstAttribute="top" secondItem="t2F-Y0-s1e" secondAttribute="bottom" id="TT4-Fd-Uds"/>
+                            <constraint firstItem="t2F-Y0-s1e" firstAttribute="leading" secondItem="10a-v0-QYC" secondAttribute="leadingMargin" constant="-20" id="Y3L-mW-l5b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t2F-Y0-s1e" secondAttribute="trailing" constant="-20" id="ok1-qW-B4B"/>
+                            <constraint firstItem="t2F-Y0-s1e" firstAttribute="top" secondItem="10a-v0-QYC" secondAttribute="topMargin" id="tmA-NP-MRd"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="webView" destination="t2F-Y0-s1e" id="ihO-p4-TPq"/>
                     </connections>
@@ -683,9 +669,4 @@
         <image name="icon04_mytack.png" width="313" height="313"/>
         <image name="left_menu-01.png" width="100" height="77"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

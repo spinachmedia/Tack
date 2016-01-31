@@ -60,7 +60,7 @@ class NearTackListView: UIView {
         var x : CGFloat = 0
         var y : CGFloat = 0
         
-        var scHeight : CGFloat = scView.frame.height
+        let scHeight : CGFloat = scView.frame.height
         var scWidth : CGFloat = scView.frame.width
         
         var count : CGFloat = 0
@@ -72,7 +72,7 @@ class NearTackListView: UIView {
                 
                 if let image = HTTPLogic.getImage(tack.filePath) {
                     
-                    var tackImage : TackImageView = TackImageView()
+                    let tackImage : TackImageView = TackImageView()
                     tackImage.tackId = tack.tackId
                     tackImage.contentMode = UIViewContentMode.ScaleAspectFit
                     var image: UIImage = HTTPLogic.getImage(tack.filePath)!
@@ -80,6 +80,8 @@ class NearTackListView: UIView {
                     
                     //メインスレッドでUIの操作
                     dispatch_sync(dispatch_get_main_queue(),{
+                        
+                        //　画像をスクロールビューに乗せる----------------------
                         
                         tackImage.image = image
                         tackImage.frame = CGRectMake(
@@ -102,6 +104,31 @@ class NearTackListView: UIView {
                         tackImage.lat = tack.lat
                         tackImage.lng = tack.lng
                         tackImage.delegate = self.parentController
+                        
+                        //テキストも載せる----------------------
+                        
+                        let textView = UITextView()
+                        textView.text = tack.placeName
+                        textView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+                        textView.textColor = UIColor.whiteColor()
+                        textView.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
+                        textView.clipsToBounds = true
+                        
+                        
+                        
+                        textView.frame = CGRectMake(
+                            //x
+                            count * (self.leftPadding + self.tackImageWidth),
+                            //y
+                            self.topPadding + scHeight - self.topPadding * 2.0 - (self.topPadding + scHeight - self.topPadding * 2.0) / 5,
+                            //width
+                            self.tackImageWidth,
+                            //height
+                            (self.topPadding + scHeight - self.topPadding * 2.0) / 5
+                        );
+                        
+                        self.scView.addSubview(textView)
+                        
                         
                         //クルクルを消す
                         MBProgressHUD.hideAllHUDsForView(self, animated: true)

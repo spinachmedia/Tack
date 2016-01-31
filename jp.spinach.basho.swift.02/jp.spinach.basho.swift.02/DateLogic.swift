@@ -12,7 +12,7 @@ struct DateLogic {
     
     static func string2Date (str :String) -> NSDate{
         
-        var df : NSDateFormatter = NSDateFormatter()
+        let df : NSDateFormatter = NSDateFormatter()
         df.locale = NSLocale(localeIdentifier: "ja")
         df.timeZone = NSTimeZone(abbreviation: "GMT")
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -22,7 +22,7 @@ struct DateLogic {
     
     static func date2String (date :NSDate) -> String{
         
-        var df : NSDateFormatter = NSDateFormatter()
+        let df : NSDateFormatter = NSDateFormatter()
         df.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         df.timeZone = NSTimeZone.localTimeZone()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
@@ -32,7 +32,7 @@ struct DateLogic {
     
     static func date2StringForView (date :NSDate) -> String{
         
-        var df : NSDateFormatter = NSDateFormatter()
+        let df : NSDateFormatter = NSDateFormatter()
         df.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         df.timeZone = NSTimeZone.localTimeZone()
         df.dateFormat = "yyyy/MM/dd HH:mm"

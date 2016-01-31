@@ -14,9 +14,9 @@ struct ImageLogic {
     画像を圧縮して返す。
     横幅を400以下にする
     
-    :param: image <#image description#>
+    - parameter image: <#image description#>
     
-    :returns: <#return value description#>
+    - returns: <#return value description#>
     */
     static func resizeIamgeWidth300(image:UIImage?) -> NSData{
         
@@ -35,7 +35,7 @@ struct ImageLogic {
         UIGraphicsEndImageContext()
         
         //画像の圧縮
-        let imageData :NSData = UIImageJPEGRepresentation(imageResized, 0.4)
+        let imageData :NSData = UIImageJPEGRepresentation(imageResized, 0.4)!
 
         return imageData
     }
@@ -44,16 +44,16 @@ struct ImageLogic {
     ピン用の画像圧縮
     UIIMage(PNG)で返す
     
-    :param: image <#image description#>
+    - parameter image: <#image description#>
     
-    :returns: <#return value description#>
+    - returns: <#return value description#>
     */
     static func resizeImageWidth50(image:UIImage?) -> UIImage{
         
-        var resizePar = 50 / image!.size.width
+        let resizePar = 50 / image!.size.width
         
         //リサイズ
-        var size:CGSize = CGSizeMake(
+        let size:CGSize = CGSizeMake(
             image!.size.width * resizePar,
             image!.size.height * resizePar
         )
@@ -61,11 +61,11 @@ struct ImageLogic {
         //画像の縮小
         UIGraphicsBeginImageContext(size)
         image!.drawInRect(CGRectMake(0,0,size.width,size.height))
-        var imageResized:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let imageResized:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
         //画像の圧縮
-        let imageData :NSData = UIImagePNGRepresentation(imageResized)//UIImageJPEGRepresentation(imageResized, 0.4)
+        let imageData :NSData = UIImagePNGRepresentation(imageResized)!//UIImageJPEGRepresentation(imageResized, 0.4)
         return UIImage(data: imageData)!
     }
     
@@ -73,16 +73,16 @@ struct ImageLogic {
     ピン用の画像圧縮
     UIIMage(PNG)で返す
     
-    :param: image <#image description#>
+    - parameter image: <#image description#>
     
-    :returns: <#return value description#>
+    - returns: <#return value description#>
     */
     static func resizeImageWidth80(image:UIImage?) -> UIImage{
         
-        var resizePar = 80 / image!.size.width
+        let resizePar = 80 / image!.size.width
         
         //リサイズ
-        var size:CGSize = CGSizeMake(
+        let size:CGSize = CGSizeMake(
             image!.size.width * resizePar,
             image!.size.height * resizePar
         )
@@ -90,11 +90,11 @@ struct ImageLogic {
         //画像の縮小
         UIGraphicsBeginImageContext(size)
         image!.drawInRect(CGRectMake(0,0,size.width,size.height))
-        var imageResized:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let imageResized:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         //画像の圧縮
-        let imageData :NSData = UIImagePNGRepresentation(imageResized)//UIImageJPEGRepresentation(imageResized, 0.4)
+        let imageData :NSData = UIImagePNGRepresentation(imageResized)!//UIImageJPEGRepresentation(imageResized, 0.4)
         return UIImage(data: imageData)!
     }
     

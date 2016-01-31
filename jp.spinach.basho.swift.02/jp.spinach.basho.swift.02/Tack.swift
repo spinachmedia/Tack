@@ -27,6 +27,8 @@ class Tack{
     var lat : Double = 30.0
     var lng : Double = 130.0
     
+    var snsUrl : String = ""
+    
     //写真を持っているかどうか
     var hasFileFlg : Bool = false
     var filePath : String = "http://tack.spinachmedia.info:3000/img.png"
@@ -88,7 +90,7 @@ class Tack{
         //名前を取得しておく。
         //InfoWindow描画後にUIを変更できないため、この段階で情報を取得しておく。
         if(snsCategory == "FB" || snsCategory == "fb"){
-            var req = FBSDKGraphRequest(graphPath: "/" + snsId ,
+            let req = FBSDKGraphRequest(graphPath: "/" + snsId ,
                 parameters: nil,
                 HTTPMethod: "GET")
 
@@ -98,13 +100,16 @@ class Tack{
                     self.snsName = json["name"].stringValue
                 }
             )
+            
+            
         }
 
         
     }
     
     
-    //非同期で画像を取りに行く
+    //画像を取りに行く
+    //他のクラスから非同期に呼ばせている
     func getImages(){
         getSNSImage()
         getImage()
@@ -134,11 +139,11 @@ class Tack{
     //事前に非同期で取得しておく必要がある。
     func setFBProfile(id:String){
         Log.debugStartLog()
-        var urlString : String = "https://graph.facebook.com/" + id + "/picture"
-        var url : NSURL? = NSURL(string: urlString)
-        var data : NSData? = NSData(contentsOfURL: url!)
+        let urlString : String = "https://graph.facebook.com/" + id + "/picture"
+        let url : NSURL? = NSURL(string: urlString)
+        let data : NSData? = NSData(contentsOfURL: url!)
         if let id = data {
-            var snsImage : UIImage? = UIImage(data: data!)
+            let snsImage : UIImage? = UIImage(data: data!)
             self.snsImage = snsImage!
         }
         Log.debugEndLog()
@@ -152,7 +157,7 @@ class Tack{
         var tackList : [Tack] = [Tack]()
         let json = JSON(responseObject)
         for (var i : Int = 0; i < json["items"].count; i++) {
-            var tack : Tack = Tack()
+            let tack : Tack = Tack()
             tack.initialize(json["items"][i])
             tackList.append(tack)
         }
@@ -194,9 +199,9 @@ class Tack{
         
         //距離を配列に格納
         for var i = 0 ;i < list.count ; i++ {
-            var tack : Tack = list[i]
+            let tack : Tack = list[i]
             //距離を算出
-            var dist : Double = ( (lat - tack.lat) * (lat - tack.lat) + (lng - tack.lng) * (lng - tack.lng) )
+            let dist : Double = ( (lat - tack.lat) * (lat - tack.lat) + (lng - tack.lng) * (lng - tack.lng) )
             tmp.append(dist);
         }
         

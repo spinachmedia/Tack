@@ -14,7 +14,7 @@ public class UITextViewExt: UITextView {
     var placeHolderColor:UIColor      = UIColor.lightGrayColor()
     var placeHolder:NSString          = ""
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -52,7 +52,7 @@ public class UITextViewExt: UITextView {
         
         self.sendSubviewToBack(placeHolderLabel)
         
-        if(count(self.text.utf16) == 0 && self.placeHolder.length > 0){
+        if(self.text.utf16.count == 0 && self.placeHolder.length > 0){
             self.viewWithTag(999)?.alpha = 1
         }
         
@@ -64,7 +64,7 @@ public class UITextViewExt: UITextView {
             return
         }
         
-        if(count(self.text) == 0) {
+        if(self.text.characters.count == 0) {
             self.viewWithTag(999)?.alpha = 1
         }else{
             self.viewWithTag(999)?.alpha = 0

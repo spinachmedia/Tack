@@ -16,8 +16,8 @@ class MapLogic {
     /**
     JSONで渡した値でピンを立てる。
     
-    :param: jsonStr <#jsonStr description#>
-    :param: mapView <#mapView description#>
+    - parameter jsonStr: <#jsonStr description#>
+    - parameter mapView: <#mapView description#>
     */
     class func setMarkers(tackList:[Tack],mapView:GMSMapView) -> [GMSMarkerExt]{
         
@@ -26,7 +26,7 @@ class MapLogic {
         
         for (var i : Int = 0; i < tackList.count; i++) {
             
-            var tack : Tack = tackList[i]
+            let tack : Tack = tackList[i]
             let marker: GMSMarkerExt = GMSMarkerExt ()
             marker.id = i;
             marker.tackId = tackList[i].tackId
@@ -45,6 +45,7 @@ class MapLogic {
                 marker.icon = ImageLogic.resizeImageWidth50(UIImage(named: "pin03_activity"))
                 break
             case Category.MYTACK:
+                marker.icon = ImageLogic.resizeImageWidth50(UIImage(named: "pin04_mytack"))
                 break
             default :
                 break
@@ -68,12 +69,12 @@ class MapLogic {
     /**
     自分のピンかどうかを確認する
     
-    :param: oneRecord <#oneRecord description#>
+    - parameter oneRecord: <#oneRecord description#>
     
-    :returns: <#return value description#>
+    - returns: <#return value description#>
     */
     class func isMyTack(tack:Tack) -> Bool{
-        if(tack.snsId == LocalDataLogic.getUUID()){
+        if(tack.snsId == FBSDKProfile.currentProfile().userID){
             return true
         }
         return false
@@ -124,14 +125,14 @@ class MapLogic {
             }
             
             for ( var i = 0 ; i < markerList.count ;i++  ){
-                var marker : GMSMarkerExt = markerList[i]
+                let marker : GMSMarkerExt = markerList[i]
                 //ピンが画面内に収まっていますか？ひとつでもというループにしたい
                 if(mapView.projection.containsCoordinate(marker.position)){
                     count++
                 }//if
             }//for
             
-            println(count)
+            print(count)
             
         }//while
         

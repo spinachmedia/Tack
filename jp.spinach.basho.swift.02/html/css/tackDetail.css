@@ -16,3 +16,146 @@ body {
     -ms-user-select: none;     /* IE10～ */
 }
 
+
+#sns_id {
+    display: none;
+}
+#file_path {
+    position: relative;
+    width: 100%;
+}
+#sns_name_wrap {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 70%;
+}
+#image_area {
+    position: relative;
+    min-height: 70px;
+    background-color: #ffc7c7;
+}
+.bottom_bar{
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    bottom: 0px;
+    background-color: rgba(255,255,255,0.8);
+    color: #666;
+}
+
+#good_button {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    width: 40%;
+    font-size: 200%;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+#good_tack {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    width: 40%;
+    font-size: 200%;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bottom_bar_wrap {
+    position: relative;
+    height: 100%;
+}
+
+#good_tack_count {
+    color: #ff1e1e;
+}
+
+.button_bg {
+    background-color: #ff1e1e;
+    border-radius: 5px;
+    width: 80%;
+    padding: 4px;
+    padding-bottom: 0px;
+    color: #FFF;
+    border-bottom: 4px solid #a00f0f;
+}
+
+#place_name {
+    font-size: 220%;
+    padding: 5px 15px;
+    font-weight: bold;
+    color: #666;
+}
+
+.sns_icon {
+    width: 50px;
+    margin: 5px 15px;
+}
+
+.sns_name_text {
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    font-size: 180%;
+    color: #666;
+}
+
+#sns_category {
+    display: none;
+}
+
+#category {
+    display: none;
+}
+
+#comment {
+    padding: 5px 15px;
+    word-wrap: break-word;
+}
+
+#city_code {
+    display: none;
+}
+
+#lat {
+    display: none;
+}
+
+#lng {
+    display: none;
+}
+
+#has_file_flg {
+    display: none;
+}
+
+#date {
+    text-align: right;
+    padding: 5px 15px;
+}
+
+#tack_image {
+    width: 100%;
+}
+
+.wrapper {
+    padding-bottom: 80px;
+}

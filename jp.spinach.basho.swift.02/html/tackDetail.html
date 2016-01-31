@@ -7,7 +7,6 @@
         <script src="./js/jquery.js"></script>
         <script src="./js/tap.js"></script>
         <script src="./js/tackDetail.js"></script>
-        
         <script>
             $(function(){
                 $("#send_button").tap(function(e){
@@ -15,9 +14,9 @@
                         type: "POST",
                         url: urlSendReply,
                         dataType: 'json', 
-                        data: { 
-                            tack_id  : tackId   ,
-                            sns_id   : "test"   , 
+                        data: {
+                            tack_id  : tackId,
+                            sns_id   : "test", 
                             comment  : "test",
                         }
                     }).done(function( items ) {
@@ -28,28 +27,55 @@
         </script>
     </head>
     <body>
-        <br>
-        <br>
         <div class="wrapper">
             <div class="contents">
-                <div id="sns_id"></div>
-                <div id="sns_name"></div>
-                <div id="sns_image"></div>
-                <div id="sns_category"></div>
-                <div id="category"></div>
+                <!-- hidden area -->
+                    <div id="sns_id"></div>
+                    <div id="sns_category"></div>
+                    <div id="category"></div>
+                    <div id="city_code"></div>
+                    <div id="lat"></div>
+                    <div id="lng"></div>
+                    <div id="has_file_flg"></div>
+                <!-- hidden area -->
+                <div id="image_area">
+                    <img id="tack_image" src ="">
+                    <div class="bottom_bar">
+                        <div class="bottom_bar_wrap">
+                            <div id="good_tack">
+                                Good
+                                <span id="good_tack_count">
+                                    
+                                </span>
+                            </div>
+                            <div id="good_button">
+                                <div class="button_bg">
+                                    Good!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="place_name"></div>
+                <div id="sns_area">
+                    <div id="sns_image">
+                        <img class="sns_icon"  src="">
+                        <span id="sns_name_wrap">
+                            <div class="sns_name_text">
+                                
+                            </div>
+                        </span>
+                    </div>
+                    
+                </div>
                 <div id="comment"></div>
-                <div id="good_tack"></div>
-                <div id="city_code"></div>
-                <div id="lat"></div>
-                <div id="lng"></div>
-                <div id="has_file_flg"></div>
-                <div id="file_path"></div>
                 <div id="date"></div>
+<!--
                 <div id="reply_form">
                     <input id="reply_text_form" type="text" />
                     <div style="padding:30px;background-color:#DDD;" id="send_button">送信</div>
                 </div>
+-->
                 <div id="reply_list">
                 </div>
             </div>

@@ -14,7 +14,7 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com/)
+			<string>Copyright (c) 2011&#8211;2015 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -110,7 +110,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
  
  This software is based in part on Google Toolbox For Mac:
- Copyright © 2006-2013 Google Inc.
+ Copyright &#169; 2006-2013 Google Inc.
  Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).
  Google Toolbox For Mac (https://code.google.com/p/google-toolbox-for-mac)
  
@@ -118,20 +118,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  iGLU (https://code.google.com/p/iphone-glu/) is an implementation of the OpenGL Utility Library (GLU) (http://www.opengl.org/documentation/specs/) for iPhone OS (http://developer.apple.com/iphone/). iGLU is based on the GLU source included with Mesa 7.2 (http://mesa3d.sourceforge.net/), which in turn derives from the SGI OpenGL Sample Implementation (http://oss.sgi.com/projects/ogl-sample/). All code derived from SGI's source is licensed under the SGI Free Software License B version 2.0 (http://oss.sgi.com/projects/FreeB/). All other code is licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php).
  
  This software is based in part on Objective C Protocol Buffers:
- Copyright © 2008 Cyrus Najmabadi.
- Copyright © 2010 Booyah Inc.
- Copyright © 2011-2013 Google Inc.
+ Copyright &#169; 2008 Cyrus Najmabadi.
+ Copyright &#169; 2010 Booyah Inc.
+ Copyright &#169; 2011-2013 Google Inc.
  Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).
  Objective C Protocol Buffers (https://code.google.com/p/metasyntactic/wiki/ProtocolBuffers)
  
  This software is based in part on zlib:
- Copyright © 1995-2013 Jean-loup Gailly and Mark Adler
+ Copyright &#169; 1995-2013 Jean-loup Gailly and Mark Adler
  Licensed under the zlib license (http://zlib.net/zlib_license.html).
  zlib (http://zlib.net/)
  
  This software is based in part on JQuery Easing:
- Copyright © 2008 George McGinley Smith.
- Copyright © 2001 Robert Penner All rights reserved.
+ Copyright &#169; 2008 George McGinley Smith.
+ Copyright &#169; 2001 Robert Penner All rights reserved.
  Licensed under the BSD license (http://www.robertpenner.com/easing_terms_of_use.html).
  jQuery Easing Plugin (http://gsgd.co.uk/sandbox/jquery/easing/)
  Robert Penner's Easing Functions (http://www.robertpenner.com/easing/)

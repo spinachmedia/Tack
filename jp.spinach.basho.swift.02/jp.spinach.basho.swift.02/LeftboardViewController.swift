@@ -14,7 +14,14 @@ class LeftboardViewController: UIViewController {
 
     @IBAction func toHome(sender: AnyObject) {
         
-        self.slideMenuController()?.mainViewController = homeviewController
+//        self.slideMenuController()?.mainViewController = homeviewController
+//        
+        //次の画面を生成
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let centerViewController : UINavigationController = storyBoard.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController
+        
+        self.slideMenuController()?.mainViewController = centerViewController
+
         
         //スライドを閉じる
         self.slideMenuController()?.closeLeft()
@@ -86,7 +93,7 @@ class LeftboardViewController: UIViewController {
             userName.text = FBSDKProfile.currentProfile().name
             
             //画像の取得
-            var pictureView = FBSDKProfilePictureView()
+            let pictureView = FBSDKProfilePictureView()
             
             pictureView.profileID = FBSDKProfile.currentProfile().userID
             pictureView.pictureMode = FBSDKProfilePictureMode.Square
@@ -102,9 +109,9 @@ class LeftboardViewController: UIViewController {
     
     @IBAction func logoutButton(sender: AnyObject) {
         
-        var loginManager : FBSDKLoginManager = FBSDKLoginManager()
+        let loginManager : FBSDKLoginManager = FBSDKLoginManager()
         
-        var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         defaults.setObject("", forKey: "access_token")
         

@@ -28,7 +28,7 @@ class TackImageView: UIImageView {
     var touchX : Double = 0.0
     var touchY : Double = 0.0
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         Log.debugStartLog()
         Log.debugLogWithTime("近隣のタックリストのタップ")
         
@@ -39,7 +39,7 @@ class TackImageView: UIImageView {
         Log.debugEndLog()
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         Log.debugStartLog()
         
         

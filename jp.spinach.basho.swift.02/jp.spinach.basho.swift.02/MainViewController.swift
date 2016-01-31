@@ -143,8 +143,8 @@ class MainViewController: UIViewController,
     
         Log.debugStartLog()
         
-        var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:newLocation.coordinate.latitude,longitude:newLocation.coordinate.longitude)
-        var now :GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(coordinate.latitude,longitude:coordinate.longitude,zoom:30)
+        let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:newLocation.coordinate.latitude,longitude:newLocation.coordinate.longitude)
+        let now :GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(coordinate.latitude,longitude:coordinate.longitude,zoom:30)
         
         mapView.camera = now
         
@@ -153,7 +153,7 @@ class MainViewController: UIViewController,
         Log.debugEndLog()
         
         //テストコード!!!!!!!!
-        var toast : MBProgressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let toast : MBProgressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         toast.mode = MBProgressHUDMode.Text
         toast.labelText = "debug:座標を更新します"
         toast.show(true)
@@ -175,13 +175,13 @@ class MainViewController: UIViewController,
         if let id = self.lm.location {
             
             //Tack取得時の座標を保存しておく
-            tackLoadedPositionLat = self.lm.location.coordinate.latitude
-            tackLoadedPositionLng = self.lm.location.coordinate.longitude
+            tackLoadedPositionLat = self.lm.location!.coordinate.latitude
+            tackLoadedPositionLng = self.lm.location!.coordinate.longitude
             
             //非同期通信とコールバックの設定
-            HTTPLogic.getTackRequest("test",
-                lat: self.lm.location.coordinate.latitude,
-                lng: self.lm.location.coordinate.longitude,
+            HTTPLogic.getTackRequest(
+                self.lm.location!.coordinate.latitude,
+                lng: self.lm.location!.coordinate.longitude,
                 count: 30,
                 callBack:{
                     (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
@@ -253,11 +253,11 @@ class MainViewController: UIViewController,
         if(showingInfoWindow){
             
             //タップしたマーカーの取り出し
-            var tappedMarker = marker as! GMSMarkerExt
+            let tappedMarker = marker as! GMSMarkerExt
             Log.debugLog("tappedMarker.tackId = " + tappedMarker.tackId)
             
             //開いているマーカの取り出し
-            var selectedMarker = mapView.selectedMarker as! GMSMarkerExt
+            let selectedMarker = mapView.selectedMarker as! GMSMarkerExt
             Log.debugLog("selectedmarker.tackId = " + selectedMarker.tackId)
             
             //もしも、開いている状態のTackを取得した時
@@ -313,8 +313,8 @@ class MainViewController: UIViewController,
         
         //近い順にTackのインデックスを取得
         var items : [Int] = Tack.getNearTackList(30,
-            lat: self.lm.location.coordinate.latitude,
-            lng: self.lm.location.coordinate.longitude,
+            lat: self.lm.location!.coordinate.latitude,
+            lng: self.lm.location!.coordinate.longitude,
             list: self.tackList!
         )
         
@@ -370,27 +370,27 @@ class MainViewController: UIViewController,
         Log.debugLog("tackId : " + tackId)
         
         //tackIdからマーカーを取得
-        var tack :Tack? = Tack.getTackFromListWithTackId(tackList!,tackId: tackId)
+        let tack :Tack? = Tack.getTackFromListWithTackId(tackList!,tackId: tackId)
         Log.debugLog(tack)
         
         
         //GMSMarkerを生成する
-        var marker : GMSMarkerExt? = GMSMarkerExt.getGMSMarkerExtFromList(tackedMarkerList!,tackId: tackId)
+        let marker : GMSMarkerExt? = GMSMarkerExt.getGMSMarkerExtFromList(tackedMarkerList!,tackId: tackId)
         
         //InfoWindowの表示
         mapView.selectedMarker = marker!
         
         //座標を取得
-        var target : CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lng);
+        let target : CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lng);
         
         //カメラデータを生成
-        var camera : GMSCameraUpdate = GMSCameraUpdate.setTarget(target)
+        let camera : GMSCameraUpdate = GMSCameraUpdate.setTarget(target)
         
         //カメラを移動
         mapView.animateWithCameraUpdate(camera)
         
         //tackIdからIndexを取得
-        var nearTackListIndex :Int? = Tack.getNearTackListIndexFromListWithTackId(self.tackList!,tackId: tackId)
+        let nearTackListIndex :Int? = Tack.getNearTackListIndexFromListWithTackId(self.tackList!,tackId: tackId)
         
         
         //近隣のタックリストをスクロールし、選択したタックを中央に動かす
@@ -673,7 +673,7 @@ class MainViewController: UIViewController,
     /**
     Tackの更新
     
-    :param: sender <#sender description#>
+    - parameter sender: <#sender description#>
     */
     @IBAction func update(sender: AnyObject) {
         

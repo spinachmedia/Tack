@@ -15,8 +15,8 @@ struct LocalDataLogic {
     初回起動ならtrue
     */
     static func isStartUp() -> Bool{
-        var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        var result : Bool = defaults.boolForKey("start_up")
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let result : Bool = defaults.boolForKey("start_up")
 
         if(result){
             return false
@@ -29,19 +29,48 @@ struct LocalDataLogic {
     起動
     */
     static func startUped(){
-        var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(true, forKey: "start_up")
     }
+    
+    static func getFBAccessTokenDictionary() -> NSDictionary? {
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let data : NSData? = defaults.dataForKey("accsess_token")
+        if let a = data {
+            let token : NSDictionary? = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! NSDictionary?
+            return token
+        }else{
+            return nil
+        }
+    }
+    
+    static func setFBAccessTokenDictionary(token : NSDictionary?){
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let classData : NSData = NSKeyedArchiver.archivedDataWithRootObject(token!)
+        defaults.setObject(classData,forKey: "accsess_token")
+        defaults.synchronize()
+    }
+    
+    static func setSnsId(snsId:String!){
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(snsId!, forKey: "sns_id")
+    }
+    static func getSnsId() -> String{
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let result : String? = defaults.stringForKey("sns_id")!
+        return result!
+    }
+    
     
     static func setUUID(){
         if(isStartUp()){
         }else{
-            var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(NSUUID().UUIDString, forKey: "user_id")
         }
     }
     static func getUUID() -> String{
-        var defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let result : String? = defaults.stringForKey("user_id")!
         //println(result!)
         return result!
