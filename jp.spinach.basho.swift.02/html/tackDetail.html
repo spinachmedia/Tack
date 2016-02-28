@@ -9,6 +9,7 @@
         <script src="./js/tackDetail.js"></script>
         <script>
             $(function(){
+                getReplyList();
                 $("#send_button").tap(function(e){
                     $.ajax({
                         type: "POST",
@@ -18,10 +19,11 @@
                             tack_id  : tackId,
                             sns_id   : ownerSnsId, 
                             token : ownerToken,
-                            comment  : "test",
+                            comment  : $("#reply_text_form").val(),
                         }
                     }).done(function( items ) {
-
+                        //location.reload();
+                        location.href = "native://reload"
                     });
                 });
                 
@@ -36,9 +38,31 @@
                             sns_id   : ownerSnsId, 
                         }
                     }).done(function( items ) {
-
+                        //画面の更新
+                        //location.reload();
+                        location.href = "native://reload"
                     });
                 });
+                
+                
+                
+                $("#reply_text_form").height(30);//init
+                $("#reply_text_form").css("lineHeight","20px");//init
+                $("#reply_text_form").on("input",function(evt){
+                    if(evt.target.scrollHeight > evt.target.offsetHeight){   
+                        $(evt.target).height(evt.target.scrollHeight);
+                    }else{          
+                        var lineHeight = Number($(evt.target).css("lineHeight").split("px")[0]);
+                        while (true){
+                            $(evt.target).height($(evt.target).height() - lineHeight); 
+                            if(evt.target.scrollHeight > evt.target.offsetHeight){
+                                $(evt.target).height(evt.target.scrollHeight);
+                                break;
+                            }
+                        }
+                    }
+                });
+
             });
         </script>
     </head>
@@ -72,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="place_name"></div>
+<!--                <div id="place_name"></div>-->
                 <div id="sns_area">
                     <div id="sns_image">
                         <img class="sns_icon"  src="">
@@ -87,12 +111,16 @@
                 <div id="comment"></div>
                 <div id="date"></div>
                 <div id="reply_form">
-                    <div class="left">
-                        <input id="reply_text_form" type="text" />
-                    </div>
-                    <div class="right">
-                        <span id="send_button">送信</span>
-                    </div>
+                    <table class="send_area">
+                        <tr>
+                            <td class="left">
+                                <textarea id="reply_text_form"></textarea>
+                            </td>
+                            <td class="right">
+                                <span id="send_button">送信</span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div id="reply_list">
                 </div>

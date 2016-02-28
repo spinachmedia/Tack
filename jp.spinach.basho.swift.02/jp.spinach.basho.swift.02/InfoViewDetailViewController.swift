@@ -30,10 +30,16 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         // 色を変数に用意しておく
-        let color = UIColor(red: 255/255, green: 158/255, blue: 35/255, alpha: 1.0)
+        let color = UIColor(red: 255/255, green: 30/255, blue: 30/255, alpha: 1.0)
         
         // 背景の色を変えたい。
         self.navigationController?.navigationBar.barTintColor = color
+        
+        //テキストを変更する
+        self.title = tack!.placeName
+        
+        //テキストの色を指定する
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
 
     }
     
@@ -138,6 +144,19 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
             switch request.URL!.host! {
             case "loadFinished":
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                return false;
+            case "reload":
+                //パラメータを更新する
+                HTTPLogic.getTack(tack!.tackId,
+                    callBack: {(operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+                        //Tackインスタンスの生成
+                        self.tack = Tack.tackListFactory(responseObject)[0]
+                        //パラメータをセットする
+                        self.setParamater()
+                        //リプライの取
+                        self.setReply()
+                })
+                
                 return false;
             default:
                 break;

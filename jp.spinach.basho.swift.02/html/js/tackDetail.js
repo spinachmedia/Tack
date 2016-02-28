@@ -31,9 +31,9 @@ var article = "<article tack_id=''>\
             <div class='tack_body'>\
                 <div class='tack_body_message'></div>\
             </div>\
+            <div class='tack_date_time'></div>\
         </div>\
     </div>\
-    <div class='tack_date_time'></div>\
 </article>";
 
 /*
@@ -94,7 +94,7 @@ var setSNSId = function(snsId){
 
 var setSnsName = function(snsName){
     this.snsName = snsName;
-    $(".sns_name_text").append(this.snsName);
+    $(".sns_name_text").html(this.snsName);
 }
 
 var setImage = function(imageUrl){
@@ -108,17 +108,17 @@ var setSNSCategory = function(snsType){
 
 var setPlaceName = function(placeName){
     this.placeName = placeName
-    $("#place_name").append(this.placeName);
+//    $("#place_name").append(this.placeName);
 }
 
 var setComment = function(comment){
     this.comment = comment
-    $("#comment").append(this.comment);
+    $("#comment").html(this.comment);
 }
 
 var setGoodTack = function(goodTack){
     this.goodTack = goodTack
-    $("#good_tack_count").append(this.goodTack);
+    $("#good_tack_count").html(this.goodTack);
 }
 
 var setCityCode = function(cityCode){
@@ -155,16 +155,23 @@ var getReplyList = function(){
         url: urlGetList,
         dataType: 'json', 
         data: { 
+            sns_id   : ownerSnsId,
+            token : ownerToken,
             tack_id   : tackId   ,
-            start   : 0       , 
+            start   : 0       ,
             count   : 30      ,
         }
     }).done(function( items ) {
         
-        for(var i = 0 ; i < items["items"].length ; i++){
+        //リプライリストを空に。
+        $("#reply_list").html("");
+        
+        //リプライリストの作成
+        for(var i = items["items"].length - 1 ; i >= 0 ; i--){
             createArticle(items["items"][i]);
         }
         
+        //更新の終了をネイティブに通知。
         location.href = "native://loadFinished"
 
     });
@@ -175,10 +182,26 @@ var createArticle = function(tackData){
     var articleQuery = $(article)
     var content = $("#reply_list").append(articleQuery);
     
-    var date = Date.parse(tackData["date"]);
+    var date = new Date(tackData["date"]);
+//    var date = Date.parse(tackData["date"]);
     articleQuery.find(".tack_body_message").html(tackData["comment"]);
-    articleQuery.find(".tack_date_time").html(date);
+    articleQuery.find(".tack_date_time").html(formatDate(date,"YYYY/MM/DD hh:mm:ss"));
     
 }
 
 
+var formatDate = function (date, format) {
+  if (!format) format = 'YYYY-MM-DD hh:mm:ss.SSS';
+  format = format.replace(/YYYY/g, date.getFullYear());
+  format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+  format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+  if (format.match(/S/g)) {
+    var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
+    var length = format.match(/S/g).length;
+    for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+  }
+  return format;
+};

@@ -33,7 +33,21 @@ body {
 #image_area {
     position: relative;
     min-height: 70px;
-    background-color: #ffc7c7;
+    background-color: #CCC;
+}
+#image_area:before {
+    content: "No Image...";
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    color: #FFF;
+    font-size: 150%;
+    z-index: 5;
 }
 .bottom_bar{
     position: absolute;
@@ -63,6 +77,7 @@ body {
 #good_tack {
     position: absolute;
     top: 50%;
+    left: 10px;
     transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
@@ -154,6 +169,7 @@ body {
 
 #tack_image {
     width: 100%;
+    z-index: 1000;
 }
 
 .wrapper {
@@ -161,30 +177,54 @@ body {
 }
 
 #reply_text_form {
-    width: 100%;
-    padding: 10px 15px;
+    width: 96%;
+    padding: 4px 2%;
     border-radius: 5px;
     margin: 3px 5px;
+    font-size: 120%;
+    border-color: #999;
+    color: #666;
 }
 
 #send_button {
+    width: 80%;
     display: inline-block;
-    padding: 7px 15px;
-    margin-left: 30px;
+    padding: 8px 0px;
     text-align: center;
     background-color: #ff1e1e;
     color: #FFF;
     border-radius: 5px;
-    font-size: 130%;
+    font-size: 120%;
     border-bottom: 4px solid #a00f0f;
 }
 
 .left {
-    width: 70%;
-    display: inline-block;
+    width: 75%;
 }
 
 .right {
-    margin: 0px 10px;
-    display: inline-block;
+    width:25%;
+    text-align: center;
+    vertical-align: top;
+}
+
+.send_area {
+    width: 100%;
+    text-align: center;
+}
+
+#reply_list {
+    padding: 4px 10px;
+}
+
+
+
+.tack_date_time {
+    text-align: right;
+}
+
+article {
+    padding: 2px 4px;
+    border-top: solid 1px #BBB;
+    color: #666;
 }

@@ -21,6 +21,36 @@ struct HTTPLogic {
         
     }
     
+    static func getTack(tackId: String,
+        callBack:(operation: AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void){
+            
+            let url = Setting.SERVER_URL + ":" + Setting.SERVER_PORT + Setting.GET_TACK_ONE
+            
+            let manager : AFHTTPRequestOperationManager = HTTPRequestManagerFactory();
+            manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            //パラメータ生成
+            let params: Dictionary = [
+                "sns_id": LocalDataLogic.getSnsId(),
+                "SNSType": SNSLogic.getLoginedSNSType(),
+                "token": SNSLogic.getSNSToken(),
+                "tackId": tackId
+            ]
+            
+            //リクエスト送信
+            manager.GET(url, parameters: params,
+                success: { (operation: AFHTTPRequestOperation!, responseObject:AnyObject!) in
+                    //クロージャの呼び出し
+                    callBack(operation: operation,responseObject: responseObject)
+                    
+                }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) in
+                    print("error: \(error)")
+                }
+            )
+
+        
+    }
+    
     
     ///Tackリストを取得する
     static func getTackRequest(

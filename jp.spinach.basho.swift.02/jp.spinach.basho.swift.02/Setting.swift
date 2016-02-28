@@ -14,6 +14,7 @@ struct Setting {
     static let SERVER_PORT = "3000"
 
     static let GET_TACK = "/api/getTack"
+    static let GET_TACK_ONE = "/api/getTackOne"
     static let GET_MY_TACK = "/api/getMyTack"
     static let GET_REPLY = "/api/getReply"
     
