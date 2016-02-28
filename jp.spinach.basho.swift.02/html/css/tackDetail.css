@@ -159,3 +159,32 @@ body {
 .wrapper {
     padding-bottom: 80px;
 }
+
+#reply_text_form {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 3px 5px;
+}
+
+#send_button {
+    display: inline-block;
+    padding: 7px 15px;
+    margin-left: 30px;
+    text-align: center;
+    background-color: #ff1e1e;
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 130%;
+    border-bottom: 4px solid #a00f0f;
+}
+
+.left {
+    width: 70%;
+    display: inline-block;
+}
+
+.right {
+    margin: 0px 10px;
+    display: inline-block;
+}

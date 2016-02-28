@@ -58,6 +58,15 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         let urlSendReply = "setUrlSendReply('http://tack.spinachmedia.info:3000/api/postReply');"
         webView.stringByEvaluatingJavaScriptFromString(urlSendReply)
         
+        let urlGoodTack = "setUrlGoodTack('http://tack.spinachmedia.info:3000/api/postGood');"
+        webView.stringByEvaluatingJavaScriptFromString(urlGoodTack)
+        
+        let setOwnerSnsId = "setOwnerSnsId(" + FBSDKProfile.currentProfile().userID! + ");"
+        webView.stringByEvaluatingJavaScriptFromString( setOwnerSnsId )
+        
+        let setOwnerSnsToken = "setOwnerToken('" + SNSLogic.getSNSToken() + "');"
+        webView.stringByEvaluatingJavaScriptFromString( setOwnerSnsToken )
+        
         let setTackId = "setTackId('" + tack!.tackId + "');";
         webView.stringByEvaluatingJavaScriptFromString( setTackId )
         

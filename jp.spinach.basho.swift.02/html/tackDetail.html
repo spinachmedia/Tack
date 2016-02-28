@@ -16,8 +16,24 @@
                         dataType: 'json', 
                         data: {
                             tack_id  : tackId,
-                            sns_id   : "test", 
+                            sns_id   : ownerSnsId, 
+                            token : ownerToken,
                             comment  : "test",
+                        }
+                    }).done(function( items ) {
+
+                    });
+                });
+                
+                $(".button_bg").tap(function(e){
+                    $.ajax({
+                        type: "POST",
+                        url: urlGoodTack,
+                        dataType: 'json', 
+                        data: {
+                            tack_id  : tackId,
+                            token: ownerToken,
+                            sns_id   : ownerSnsId, 
                         }
                     }).done(function( items ) {
 
@@ -70,12 +86,14 @@
                 </div>
                 <div id="comment"></div>
                 <div id="date"></div>
-<!--
                 <div id="reply_form">
-                    <input id="reply_text_form" type="text" />
-                    <div style="padding:30px;background-color:#DDD;" id="send_button">送信</div>
+                    <div class="left">
+                        <input id="reply_text_form" type="text" />
+                    </div>
+                    <div class="right">
+                        <span id="send_button">送信</span>
+                    </div>
                 </div>
--->
                 <div id="reply_list">
                 </div>
             </div>

@@ -3,6 +3,9 @@
 var domain = "";
 var urlGetList = "";
 var urlSendReply = "";
+var urlGoodTack = "";
+var ownerSnsId = "";
+var ownerToken = "";
 var tackId = "";
 var snsId = "";
 var snsName = "";
@@ -69,6 +72,18 @@ var setUrlSendReply = function(urlSendReply){
     this.urlSendReply = urlSendReply;   
 }
 
+var setUrlGoodTack = function(urlSendGood){
+    this.urlGoodTack = urlSendGood;   
+}
+
+var setOwnerSnsId = function(ownerSnsId){
+    this.ownerSnsId = ownerSnsId;   
+}
+
+var setOwnerToken = function(ownerToken){
+    this.ownerToken = ownerToken;   
+}
+    
 var setTackId = function(tackId){
     this.tackId = tackId;
 }
