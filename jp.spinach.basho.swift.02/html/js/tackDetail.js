@@ -144,7 +144,7 @@ var setFilePath = function(filePath){
 
 var setDate = function(date){
     this.date = date
-    $("#date").append(this.date);
+    $("#date").html(this.date);
 }
 
 
