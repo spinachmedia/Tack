@@ -29,11 +29,15 @@ class LeftboardViewController: UIViewController {
     @IBAction func toTackList(sender: AnyObject) {
         //次の画面を生成
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        
+        
         let nextViewController : TackListViewController = storyBoard.instantiateViewControllerWithIdentifier("TackListViewController") as! TackListViewController
         
-        //        ( self.slideMenuController()?.mainViewController? as UINavigationController ).pushViewController(nextViewController, animated: true)
+        let centerViewController : UINavigationController = UINavigationController.init(rootViewController: nextViewController)
+        centerViewController.navigationBarHidden = true
         
-        self.slideMenuController()?.mainViewController = nextViewController
+        self.slideMenuController()?.mainViewController = centerViewController
         
         //スライドを閉じる
         self.slideMenuController()?.closeLeft()

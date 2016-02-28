@@ -164,7 +164,7 @@ var createArticle = function(tackData){
     
     //要素をタップしたら画面遷移
     articleQuery.tap(function(obj){
-        window.open("native://" + obj.attr("tack_id"));
+        window.open("native://toDetail/" + obj.attr("tack_id"));
     });
     
 }

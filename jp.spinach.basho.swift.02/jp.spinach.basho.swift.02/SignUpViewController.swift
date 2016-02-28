@@ -44,6 +44,10 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
                 Log.debugLog("無効")
             }
             
+            //名前の取得
+            if(FBSDKProfile.currentProfile() != nil){
+                LocalDataLogic.setSnsName( FBSDKProfile.currentProfile().name );
+            }
             
             //自動でマップの画面に遷移
             toTopViewController()
@@ -94,6 +98,11 @@ class SignUpViewController: UIViewController , FBSDKLoginButtonDelegate {
                     LocalDataLogic.setFBAccessTokenDictionary(authData)
                     
                     LocalDataLogic.setSnsId(result.token.userID!)
+                    
+                    //名前の取得
+                    if(FBSDKProfile.currentProfile() != nil){
+                        LocalDataLogic.setSnsName( FBSDKProfile.currentProfile().name );
+                    }
                     
                     self.toTopViewController()
                 

@@ -62,6 +62,20 @@ struct LocalDataLogic {
     }
     
     
+    static func setSnsName(snsId:String!){
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(snsId!, forKey: "sns_name")
+    }
+    static func getSnsName() -> String{
+        let defaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let result : String? = defaults.stringForKey("sns_name")
+        if let a = result {
+            return result!
+        }
+        return ""
+    }
+    
+    
     static func setUUID(){
         if(isStartUp()){
         }else{

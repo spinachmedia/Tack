@@ -12,6 +12,9 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
     
     @IBOutlet weak var webView: UIWebView!
     
+    
+    var tackList : [Tack]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +27,21 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
         
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
+        
+        HTTPLogic.getMyTack { (operation, responseObject) -> Void in
+            self.tackList = Tack.tackListFactory(responseObject)
+        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController!.setNavigationBarHidden(false, animated: true)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -94,6 +112,27 @@ class TackListViewController: UIViewController , UIWebViewDelegate{
                     MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                     return false;
                 case "toDetail":
+                    
+                    //まだTackリストを取得できていない場合
+                    if let a = self.tackList {
+                        
+                    }else{
+                        return false;
+                    }
+                    
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let nextController : InfoViewDetailViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewDetailViewController") as! InfoViewDetailViewController
+
+                    for tack in self.tackList! {
+                        if tack.tackId == request.URL!.lastPathComponent {
+                            nextController.tack = tack
+                        }else{
+                            
+                        }
+                    }
+                    
+                    self.navigationController?.pushViewController(nextController as UIViewController, animated: true)
+                    
                     return false;
                 default:
                 break;
