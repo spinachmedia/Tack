@@ -113,7 +113,7 @@ class NearTackListView: UIView {
                         textView.textColor = UIColor.whiteColor()
                         textView.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
                         textView.clipsToBounds = true
-                        
+                        textView.editable = false
                         
                         
                         textView.frame = CGRectMake(

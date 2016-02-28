@@ -100,7 +100,12 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         let setPlaceName = "setPlaceName('" + tack!.placeName + "');";
         webView.stringByEvaluatingJavaScriptFromString( setPlaceName )
         
-        let setComment = "setComment('" + tack!.comment + "');";
+        
+        var comment : String? = tack!.comment.stringByReplacingOccurrencesOfString("\n",
+            withString: "<br>",
+            options: NSStringCompareOptions.RegularExpressionSearch,
+            range: nil)
+        let setComment = "setComment('" + comment! + "');";
         webView.stringByEvaluatingJavaScriptFromString( setComment )
         
         let setGoodTack = "setGoodTack('" + String(tack!.goodTackCount) + "');";
