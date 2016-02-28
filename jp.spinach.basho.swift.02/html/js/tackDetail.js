@@ -86,6 +86,9 @@ var setOwnerToken = function(ownerToken){
     
 var setTackId = function(tackId){
     this.tackId = tackId;
+    if(localStorage.getItem('good' + tackId) != null){
+        $(".button_bg").addClass("gooded");
+    }
 }
 
 var setSNSId = function(snsId){
@@ -167,7 +170,7 @@ var getReplyList = function(){
         $("#reply_list").html("");
         
         //リプライリストの作成
-        for(var i = items["items"].length - 1 ; i >= 0 ; i--){
+        for(var i = 0 ; i < items["items"].length ; i++){
             createArticle(items["items"][i]);
         }
         

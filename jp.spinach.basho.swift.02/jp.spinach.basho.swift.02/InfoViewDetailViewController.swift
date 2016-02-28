@@ -13,6 +13,10 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
     
     @IBOutlet weak var webView: UIWebView!
     
+    //画面を更新する際に、情報を非同期に取得する関係で情報がLOSTする。
+    //そのため事前にこの情報だけ確保しておく。
+    var snsName : String = ""
+    
     //前画面から渡される値
     var tack : Tack?
     
@@ -40,6 +44,8 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         
         //テキストの色を指定する
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        
+        snsName = tack!.snsName
 
     }
     
@@ -79,9 +85,8 @@ class InfoViewDetailViewController: UIViewController , UIWebViewDelegate{
         let setSnsId = "setSnsId('" + tack!.snsId + "');";
         webView.stringByEvaluatingJavaScriptFromString( setSnsId )
         
-        let setSnsName = "setSnsName('" + tack!.snsName + "');";
+        let setSnsName = "setSnsName('" + snsName + "');";
         webView.stringByEvaluatingJavaScriptFromString( setSnsName )
-        
         
         let setImage = "setImage('https://graph.facebook.com/" + tack!.snsId + "/picture');";
         webView.stringByEvaluatingJavaScriptFromString( setImage )

@@ -9,8 +9,26 @@
         <script src="./js/tackDetail.js"></script>
         <script>
             $(function(){
+                
+                //リプライのリストを取得する。
                 getReplyList();
+                
+                //直前に送信した文字列を格納する。
+                var prevtext = "";
                 $("#send_button").tap(function(e){
+                    
+                    //空文字は送信できない。
+                    if($("#reply_text_form").val() == ""){
+                        return;
+                    }
+                    
+                    //直前に送信した文字列と同一の文字列は送信できない。
+                    if($("#reply_text_form").val() == prevtext){
+                        return;
+                    }
+                    
+                    prevtext = $("#reply_text_form").val();
+                    
                     $.ajax({
                         type: "POST",
                         url: urlSendReply,
@@ -28,6 +46,9 @@
                 });
                 
                 $(".button_bg").tap(function(e){
+                    if(localStorage.getItem('good' + tackId) != null){
+                        return;
+                    }
                     $.ajax({
                         type: "POST",
                         url: urlGoodTack,
@@ -40,6 +61,7 @@
                     }).done(function( items ) {
                         //画面の更新
                         //location.reload();
+                        localStorage.setItem('good' + tackId, "true");
                         location.href = "native://reload"
                     });
                 });
@@ -62,7 +84,6 @@
                         }
                     }
                 });
-
             });
         </script>
     </head>
@@ -110,11 +131,12 @@
                 </div>
                 <div id="comment"></div>
                 <div id="date"></div>
+                <div id="bar">Comment</div>
                 <div id="reply_form">
                     <table class="send_area">
                         <tr>
                             <td class="left">
-                                <textarea id="reply_text_form"></textarea>
+                                <textarea id="reply_text_form" maxlength="250"></textarea>
                             </td>
                             <td class="right">
                                 <span id="send_button">送信</span>
